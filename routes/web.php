@@ -13,6 +13,8 @@
 
 Route::get('/', ['as' => 'index', 'uses' => 'IndexController@index']);
 
+Route::get('/products', ['as' => 'index', 'uses' => 'IndexController@productPage']);
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
