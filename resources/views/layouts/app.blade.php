@@ -33,7 +33,7 @@
                 <li>
                   <a href="{{ url('/login') }}">
                     <img src="{{asset('img/profile.png')}}" alt="user profile">
-                    Login
+                    Login / Register
                   </a>
                 </li>
               @else
