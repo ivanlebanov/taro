@@ -1,21 +1,30 @@
 // main: ../styles.sass
 @import ../variables
 
-.button
+.btn
   text-align: center
   -webkit-appearance: none
   -moz-appearance: none
   appearance:  none
-  padding: 0.5em 2.5em
+  padding: 10px 20px
   font-family: $button-font
-  font-size: 1.5em
+  font-size: 1.2em
   cursor: pointer
   margin: 0.8em 0
-  &.red-button
+  display: block
+  float: left
+  text-decoration: none
+  border: 1px solid $white
+  &.red-btn
     background: $red
     color: $white
     border-radius: $radius
     border: 1px solid $red
-    display: block
-    float: left
-    text-decoration: none
+  &.link-btn
+    text-decoration: underline
+    color: $red
+    margin-top: 0.9em
+  &.dark-link-btn
+    text-decoration: underline
+    color: $dark-grey
+    margin-top: 0
