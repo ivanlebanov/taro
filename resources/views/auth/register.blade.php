@@ -4,8 +4,7 @@
 
 @section('content')
   <div class="container">
-    <div class="col-md-3">
-    </div>
+    <div class="col-md-3"></div>
     <div class="col-md-6">
       <div class="panel">
         <h2>Register</h2>
