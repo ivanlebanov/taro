@@ -13,13 +13,16 @@ class IndexController extends Controller
   public function index()
   {
     // get latest 4 products currently being promoted
-    $active_promotions = Product::where('p_discount_active', 1)->orderBy('updated_at', 'desc')->take(4)->get();
+    $data = array();
+    $data['categories'] = Category::all();
+    $data['products'] = Product::where('p_discount_active', 1)->orderBy('updated_at', 'desc')->take(4)->get();
 
-    return view('welcome', ["products" => $active_promotions]);
+    return view('welcome', $data);
   }
 
   /**
   *  Method for displaying the homepage.
+  * will be soon @deprecated and refactored
   **/
   public function productPage()
   {

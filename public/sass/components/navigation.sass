@@ -1,20 +1,21 @@
 // main: ../styles.sass
 @import ../variables
+.navbar-brand
+  font-family: 'Quicksand'
+  font-weight: 600
+  text-transform: uppercase
+  display: block
+  float: left
+  font-size: 40pt
+  span
+    color: $red
 .navbar
   color: $red
   width: 100%
   padding: 10px 0
   overflow: hidden
   background: $white
-  .navbar-brand
-    font-family: 'Quicksand'
-    font-weight: 600
-    text-transform: uppercase
-    display: block
-    float: left
-    font-size: 40pt
-    span
-      color: $red
+
   ul
     display: block
     float: right
@@ -35,3 +36,21 @@
         display: block
         position: relative
         padding-left: 30px
+.sumbenu
+  background: $dark-grey
+  ul
+    margin: 0
+    padding: 0
+    overflow: hidden
+    li
+      width: 25%
+      display: block
+      float: left
+      padding: 15px 10px
+      text-align: center
+      a
+        color: $white
+        text-transform: uppercase
+        font-family: $heading-font
+        font-weight: 600
+        font-size: 1.23em

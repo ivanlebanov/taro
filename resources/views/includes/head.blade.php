@@ -17,7 +17,9 @@
     </script>
 </head>
 <body>
-
+        @if(!isset($categories))
+          @inject('categories', 'App\Services\Categories')
+        @endif
         <nav class="navbar">
           <div class="container">
             <!-- Branding Image -->
@@ -62,6 +64,17 @@
                   </form>
                 </li>
               @endif
+            </ul>
+          </div>
+        </nav>
+        <nav class="sumbenu">
+          <div class="container">
+            <ul>
+              @foreach($categories->categories as $key => $category)
+                <li>
+                  <a href="#">{{$category->pc_name}}</a>
+                </li>
+              @endforeach
             </ul>
           </div>
         </nav>
