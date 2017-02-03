@@ -32,6 +32,6 @@ class Categories
     public function handle()
     {
       $this->categories = Category::all();
-
+      $this->categories = $this->categories->categories
     }
 }
