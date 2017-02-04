@@ -70,11 +70,19 @@
         <nav class="sumbenu">
           <div class="container">
             <ul>
-              @foreach($categories as $key => $category)
-                <li>
-                  <a href="#">{{$category->pc_name}}</a>
-                </li>
-              @endforeach
+              @if(isset($categories->categories))
+                @foreach($categories->categories as $key => $category)
+                  <li>
+                    <a href="#">{{$category['pc_name']}}</a>
+                  </li>
+                @endforeach
+              @else
+                @foreach($categories as $key => $category)
+                  <li>
+                    <a href="#">{{$category['pc_name']}}</a>
+                  </li>
+                @endforeach
+              @endif
             </ul>
           </div>
         </nav>
