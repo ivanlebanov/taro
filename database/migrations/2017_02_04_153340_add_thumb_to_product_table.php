@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddForeignKeyToProducts extends Migration
+class AddThumbToProductTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,8 +15,8 @@ class AddForeignKeyToProducts extends Migration
     {
         Schema::table('product', function (Blueprint $table) {
             //
-            $table->string('category_id');
-          //  $table->foreign('category_id')->references('pc_id')->on('product_category');
+            $table->string('p_thumb', 255);
+            $table->bigInteger('p_sales');
         });
     }
 

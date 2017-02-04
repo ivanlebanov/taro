@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product as Product;
 use App\Category as Category;
+use App\Slider as Slider;
 class IndexController extends Controller
 {
   /**
@@ -14,8 +15,9 @@ class IndexController extends Controller
   {
     // get latest 4 products currently being promoted
     $data = array();
-    $data['categories'] = Category::all();
-    $data['products'] = Product::where('p_discount_active', 1)->orderBy('updated_at', 'desc')->take(4)->get();
+    $data['slider'] = Slider::orderBy('updated_at', 'desc')->take(4)->get();
+    $data['on_sale'] = Product::where('p_discount_active', 1)->orderBy('updated_at', 'desc')->take(4)->get();
+    $data['best_sellers'] = Product::orderBy('p_sales', 'desc')->take(4)->get();
 
     return view('welcome', $data);
   }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddForeignKeyToProducts extends Migration
+class CreateProductSliderTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class AddForeignKeyToProducts extends Migration
      */
     public function up()
     {
-        Schema::table('product', function (Blueprint $table) {
-            //
-            $table->string('category_id');
-          //  $table->foreign('category_id')->references('pc_id')->on('product_category');
+        Schema::create('slider', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('s_title', 255);
+            $table->string('s_link', 255);
+            $table->string('s_image', 255);
+            $table->timestamps();
         });
     }
 
@@ -27,8 +29,6 @@ class AddForeignKeyToProducts extends Migration
      */
     public function down()
     {
-        Schema::table('product', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('slider');
     }
 }

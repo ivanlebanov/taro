@@ -3,15 +3,12 @@
 @section('title') Home @endsection
 
 @section('content')
+  <!-- including the slider -->
+  @include('includes.slider')
+  <!-- displaying 4 latest products on sale using the template for listing products -->
+  @include('includes.list_pictures', [ 'products' => $on_sale, 'title' => 'On Sale'])
 
-  <div class="container">
-    @if(count($products) > 0)
-      <ul>
-        @foreach($products as $product)
-          <li>{{$product['p_name']}}  -  <strike>{{$product['p_price']}}</strike>{{$product['p_discount_price']}}$ </li>
-        @endforeach
-      </ul>
-    @endif
-  </div>
+  <!-- displaying 4 most bought products using the template for listing products -->
+  @include('includes.list_pictures', [ 'products' => $best_sellers, 'title' => 'Best sellers'])
 
 @endsection

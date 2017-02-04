@@ -1,0 +1,64 @@
+// main: ../../styles.sass
+@import "variables";
+@import "../../variables";
+/*
+	Theme controls how everything looks in Gallery CSS.
+*/
+
+.gallery {
+	position: relative;
+	overflow: hidden;
+  .item {
+		height: 70vh;
+		overflow: hidden;
+		text-align: center;
+		background-repeat: no-repeat;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+		.prev-item{
+			position: absolute;
+			top:calc(50% - #{15px});
+			left:20px;
+			img{
+				max-width: 20px;
+			}
+		}
+		.next-item{
+			position: absolute;
+			top:calc(50% - #{15px});
+			right:35px;
+			img{
+				max-width: 20px;
+			}
+		}
+		h2{
+			position: relative;
+			top: 50%;
+			-webkit-transform: translateY(-50%);
+			-ms-transform: translateY(-50%);
+			transform: translateY(-50%);
+			max-width: 1200px;
+			margin: auto;
+		}
+		h2 a{
+			color: $red;
+			text-transform: uppercase;
+			font-size: 1.7em;
+		}
+	}
+	.controls { position: absolute; bottom: 0; width: 100%; text-align: center; }
+
+	.control-button {
+		display: inline-block; margin: 0 .02em;
+		font-size: 3em;
+
+		@extend %inactive-button;
+
+		text-align: center; text-decoration: none;
+		transition: color .1s;
+
+		&:hover { @extend %active-button; }
+	}
+}
