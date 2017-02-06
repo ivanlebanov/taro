@@ -50,22 +50,18 @@
   <script src="{{ asset('js/notificationFx.js') }}"></script>
   <script>
   function showErrorNotification(status, message){
-  var notification = new NotificationFx({
-    message : '<p>'  + message + ' </p>',
-    layout : 'growl',
-    effect : 'jelly',
-    type : status, // notice, warning, error or success
-    onClose : function() {
-      bttn.disabled = false;
-    }
-  });
-  notification.show();
-}
-
-// show the notification
-
-
-</script>
+    var notification = new NotificationFx({
+      message : '<p>'  + message + ' </p>',
+      layout : 'growl',
+      effect : 'jelly',
+      type : status, // notice, warning, error or success
+      onClose : function() {
+        bttn.disabled = false;
+      }
+    });
+    notification.show();
+  }
+  </script>
   <script type="text/javascript">
   var compareButtons = document.getElementsByClassName("compare");
 
@@ -73,12 +69,12 @@
     var item_id = this.getAttribute("data-item-id");
     var comparelist = localStorage.compareList;
     if(comparelist.length == 2)
-      showNotificationError('success', 'We will show you differences side to side.');
+      showErrorNotification('success', 'We will show you differences side to side.');
     for (var i = 0; i < comparelist.length; i++) {
       if(comparelist[i] == item_id)
-        showNotificationError('error', 'Items has been added.');
+        showErrorNotification('error', 'Items has been added.');
       else
-        showNotificationError('error', 'Items has been added.');
+        showErrorNotification('error', 'Items has been added.');
     }
   };
 
@@ -116,6 +112,30 @@
   $('input, textarea').on("keyup", function() {
     $(this).removeClass('error');
   });
+  </script>
+  <script type="text/javascript">
+    $('#search').on("keyup", function() {
+
+      if($("#search").val().length > 2){
+        searchResults($("#search").val(), $(this).data('url'));
+      }
+    });
+    function searchResults(phrase, url){
+      $.ajax({
+          type: "POST",
+          url: url,
+          success: function(data){
+            console.log(data);
+            showSuggestions(data);
+          },
+
+          data: {phrase:phrase},
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+      });
+
+    }
   </script>
   @if (session()->has('status'))
 

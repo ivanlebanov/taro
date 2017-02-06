@@ -6,10 +6,10 @@
   <!-- including the slider -->
   @include('includes.slider')
   <!-- displaying 4 latest products on sale using the template for listing products -->
-  @include('includes.list_pictures', [ 'products' => $on_sale, 'title' => 'On Sale'])
+  @include('includes.list_products', [ 'products' => $on_sale, 'title' => 'On Sale'])
 
   <!-- displaying 4 most bought products using the template for listing products -->
-  @include('includes.list_pictures', [ 'products' => $best_sellers, 'title' => 'Best sellers'])
+  @include('includes.list_products', [ 'products' => $best_sellers, 'title' => 'Best sellers'])
 
 @endsection
 @section('page_footer')

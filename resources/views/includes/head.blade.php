@@ -23,66 +23,73 @@
         <nav class="navbar">
           <div class="container">
             <!-- Branding Image -->
-            <a class="navbar-brand" href="{{ url('/') }}">
-                {!! config('app.name', 'Laravel') !!}
-            </a>
+            <div class="col-md-2">
+              <a class="navbar-brand" href="{{ url('/') }}">
+                  {!! config('app.name', 'Laravel') !!}
+              </a>
+            </div>
+            <!-- Search bar -->
+            <div class="col-md-5">
+              {{ Form::open(['route' => 'search.phrase'])}}
+                {{ Form::text('phrase', null, ['placeholder' => 'Search', 'id' => 'search' ,'data-url' => route('search.results') ]) }}
+                {{ Form::submit('', ['class' => 'red-search-icon']) }}
+              {{ Form::close()}}
+            </div>
             <!-- Right Side Of Navbar -->
-            <ul>
-              <!-- Authentication Links -->
-              @if (Auth::guest())
+            <div class="col-md-5">
+              <ul>
+                <!-- Authentication Links -->
+                @if (Auth::guest())
+                  <li>
+                    <a href="{{ url('/login') }}">
+                      <img src="{{asset('img/profile.png')}}" alt="user profile">
+                      Login / Register
+                    </a>
+                  </li>
+                @else
+                <!-- link to user profile -->
+                  <li>
+                    <a href="{{ route('profile.get_personal_info') }}">
+                      <img src="{{asset('img/profile.png')}}" alt="user profile icon">
+                      User account
+                    </a>
+                  </li>
+                @endif
+                <!-- link to the bag -->
                 <li>
-                  <a href="{{ url('/login') }}">
-                    <img src="{{asset('img/profile.png')}}" alt="user profile">
-                    Login / Register
+                  <a href="#">
+                    <img src="{{asset('img/bag.png')}}" alt="user bag icon">
+                    Bag
                   </a>
                 </li>
-              @else
-              <!-- link to user profile -->
-                <li>
-                  <a href="{{ route('profile.get_personal_info') }}">
-                    <img src="{{asset('img/profile.png')}}" alt="user profile icon">
-                    User account
-                  </a>
-                </li>
-              @endif
-              <!-- link to the bag -->
-              <li>
-                <a href="#">
-                  <img src="{{asset('img/bag.png')}}" alt="user bag icon">
-                  Bag
-                </a>
-              </li>
-              @if (!Auth::guest())
-                <!-- Log out link -->
-                <li>
-                  <a href="{{ url('/logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                    <img src="{{asset('img/logout.png')}}" alt="logout icon">
-                    Logout
-                  </a>
-                  <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                      {{ csrf_field() }}
-                  </form>
-                </li>
-              @endif
-            </ul>
+                @if (!Auth::guest())
+                  <!-- Log out link -->
+                  <li>
+                    <a href="{{ url('/logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                      <img src="{{asset('img/logout.png')}}" alt="logout icon">
+                      Logout
+                    </a>
+                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+                  </li>
+                @endif
+              </ul>
+            </div>
           </div>
         </nav>
         <nav class="sumbenu">
           <div class="container">
             <ul>
-              @if(isset($categories->categories))
                 @foreach($categories->categories as $key => $category)
-                  <li>
-                    <a href="#">{{$category['pc_name']}}</a>
-                  </li>
+
+                <li>
+                  <a href="{{ route('products.category', ['category' => $category['pc_name'] ])}}">
+                    {{$category['pc_name']}}
+                  </a>
+                </li>
                 @endforeach
-              @else
-                @foreach($categories as $key => $category)
-                  <li>
-                    <a href="#">{{$category['pc_name']}}</a>
-                  </li>
-                @endforeach
-              @endif
+
             </ul>
           </div>
         </nav>
