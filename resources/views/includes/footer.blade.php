@@ -12,26 +12,26 @@
           <div class="col-lg-6">
             <ul>
               <li>
-                <a href="#">Delivery</a>
+                <a href="{{ route('static.delivery') }}">Delivery</a>
               </li>
               <li>
-                <a href="#">FAQ</a>
+                <a href="{{ route('static.faq') }}">FAQ</a>
               </li>
               <li>
-                <a href="#">Payment options</a>
+                <a href="{{ route('static.payments') }}">Payment options</a>
               </li>
             </ul>
           </div>
           <div class="col-lg-6">
             <ul>
               <li>
-                <a href="#">Customer support</a>
+                <a href="{{ route('static.support') }}">Customer support</a>
               </li>
               <li>
                 <a href="#">Contact us</a>
               </li>
               <li>
-                <a href="#">Refunds/Returns</a>
+                <a href="{{ route('static.refunds') }}">Refunds/Returns</a>
               </li>
             </ul>
           </div>
