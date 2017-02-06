@@ -29,7 +29,7 @@
           </div>
 
           <div class="product-list-footer">
-            <button type="button" class="btn grey-btn">compare</button>
+            <button data-item-id='{{$product['p_id']}}' type="button" class="btn grey-btn compare">compare</button>
             <button type="button" class="btn red-btn">quick buy</button>
           </div>
         </div>

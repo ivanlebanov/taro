@@ -39,7 +39,7 @@
               @else
               <!-- link to user profile -->
                 <li>
-                  <a href="#">
+                  <a href="{{ route('profile.get_personal_info') }}">
                     <img src="{{asset('img/profile.png')}}" alt="user profile icon">
                     User account
                   </a>

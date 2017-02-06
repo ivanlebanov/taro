@@ -12,3 +12,12 @@
   @include('includes.list_pictures', [ 'products' => $best_sellers, 'title' => 'Best sellers'])
 
 @endsection
+@section('page_footer')
+  <script type="text/javascript">
+    var url = window.location.href;
+    if (url.indexOf('#') == -1){
+      url += '#item-1';
+      window.location.href = url;
+    }
+  </script>
+@endsection
