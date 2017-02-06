@@ -28,7 +28,7 @@
                 <a href="{{ route('static.support') }}">Customer support</a>
               </li>
               <li>
-                <a href="#">Contact us</a>
+                <a href="{{ route('contact') }}">Contact us</a>
               </li>
               <li>
                 <a href="{{ route('static.refunds') }}">Refunds/Returns</a>

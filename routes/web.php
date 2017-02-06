@@ -30,6 +30,10 @@ Route::group(['middleware' => 'web'], function() {
   Route::get('/customer-support',['as' => 'static.support', 'uses' => 'StaticPagesController@getSupportPage']);
   Route::get('/returns-refunds',['as' => 'static.refunds', 'uses' => 'StaticPagesController@getRefundPage']);
 
+  //Contact us page
+  Route::get('/contact-us',['as' => 'contact', 'uses' => 'ContactsController@getContactPage']);
+  Route::post('/contact-us',['as' => 'sent_contact', 'uses' => 'ContactsController@saveContactForm']);
+
   // User account
   Route::get('/user-account', ['as' => 'profile.get_personal_info', 'uses' => 'UserController@profile']);
   Route::post('/user-account',['as' => 'profile.update_personal_info', 'uses' => 'UserController@savePersonalInfo']);
