@@ -4,26 +4,30 @@
 <link rel="stylesheet" href="css.css">
 <section>
 <?php
-	function qrydb($query,$conn) {
-		$products;
+	function qrydb($query,$conn,$productID) {
+		static $products;
 		
-		if (querytype == "ALL PRODUCTS") {
+		if ($query == "ALL PRODUCTS") {
 			if ($products == NULL) {
-				$qry = "SELECT p_name, p_price, p_discount_price, p_discount_active, p_description, p_image FROM products WHERE '$productID';";
+				$qry = "SELECT p_quantity, p_name, p_price, p_discount_price, p_discount_active, p_description, p_image FROM products WHERE p_id = '$productID';";
 				$products = mysqli_query($conn ,$qry);
+				//var_dump($products);
+			} else {
+				//echo "fetched from cache!";
 			}
 			return $products;
 		} else {
-			return mysqli_query($conn ,$query);
+			return mysqli_query($conn ,$qry);
 		}
     }
 	
 	$productID = 1;
 	$conn = mysqli_connect("localhost", "root", "root", "taro");
-	//$result = qrydb("ALL PRODUCTS",$conn);
+	$result = qrydb("ALL PRODUCTS",$conn,$productID);
+	$result = qrydb("ALL PRODUCTS",$conn,$productID);
 	
-	$qry = "SELECT p_quantity, p_name, p_price, p_discount_price, p_discount_active, p_description, p_image FROM products WHERE p_id = '$productID';";
-	$result = mysqli_query($conn ,$qry);
+	//$qry = "SELECT p_quantity, p_name, p_price, p_discount_price, p_discount_active, p_description, p_image FROM products WHERE p_id = '$productID';";
+	//$result = mysqli_query($conn ,$qry);
 	
 	if(mysqli_num_rows($result) > 0) {
 		while ($row = mysqli_fetch_array($result)) {
