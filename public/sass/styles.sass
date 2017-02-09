@@ -1,6 +1,8 @@
 // compileCompressed: ../css/style.css
 @import reset
 
+// grid
+@import "bootstrap/bootstrap-grid"
 // setting defaults
 @import main
 
@@ -9,10 +11,23 @@
 @import fonts/open_sans
 
 // sections
+@import sections/footer
+
 @import components/navigation
+@import components/notifications
+
+@import sections/slider/gallery
+@import sections/slider/gallery.build
+@import sections/slider/gallery.theme
+
 
 // components
 @import components/links
 @import components/buttons
 @import components/headings
 @import components/paragraphs
+@import components/panels
+
+// forms
+@import forms/inputs
+@import forms/select

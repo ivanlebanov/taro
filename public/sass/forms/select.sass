@@ -1,0 +1,42 @@
+// main: ../styles.sass
+@import ../variables
+select
+  width: 100%
+  margin-left: 15px
+
+.select-style
+    border: 1px solid #ccc
+    width: 100%
+    margin-left: 15px
+    border-radius: 3px
+    overflow: hidden
+    border: 2px solid $dark-grey
+    padding: 10px 0
+    border-radius: $radius
+    font-size: 20px
+    font-family: 'Quicksand'
+    font-weight: 600
+    color: $dark-grey
+    display: block
+    width: calc(100% - #{15px}
+    margin: 15px  0 15px 15px
+    background: #fafafa url("../img/icon-select.png") no-repeat 90% 50%
+    background-size: 10px 6px
+    &.error
+      border-color: $red
+    select
+      padding: 0 15px
+      font-size: 20px
+      font-family: 'Quicksand'
+      font-weight: 600
+      width:  calc(100% - #{30px}
+
+      border: none
+      box-shadow: none
+      background: transparent
+      background-image: none
+      -webkit-appearance: none
+
+
+.select-style select:focus
+    outline: none

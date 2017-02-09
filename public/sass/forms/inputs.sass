@@ -1,0 +1,41 @@
+// main: ../styles.sass
+@import ../variables
+
+input[type="text"], input[type="email"], input[type="password"], textarea
+  border: 2px solid $dark-grey
+  padding: 10px 15px
+  color: $dark-grey
+  display: block
+  width: 100%
+  margin: 15px 0
+  border-radius: $radius
+  font-size: 20px
+  font-family: 'Quicksand'
+  font-weight: 600
+  &:focus
+    outline: none
+  &.error
+    border-color: $red
+
+.input-row
+  overflow: hidden
+  display: block
+  float: left
+  width: 100%
+  margin: 0
+.panel
+  form
+    .col-sm-6, .col-md-6
+      padding: 0
+
+.navbar
+  input[type="text"]
+    border: none
+    background: $light-grey
+    border-radius: 0
+    margin: 0
+    color: $dark-grey
+    min-height: 78px
+    font-size: 26px
+    padding-left: 30px
+    padding-right: 60px

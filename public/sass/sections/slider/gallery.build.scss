@@ -1,0 +1,6 @@
+// main: ../../styles.sass
+@import "gallery";
+
+@for $i from 2 through 6 {
+  @include gallery($i);
+}

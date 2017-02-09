@@ -1,22 +1,27 @@
 // main: ../styles.sass
+@import ../variables
+.navbar-brand
+  font-family: 'Quicksand'
+  font-weight: 600
+  text-transform: uppercase
+  display: block
+  float: left
+  font-size: 40pt
+  padding-top: 12px
+  span
+    color: $red
 .navbar
   color: $red
   width: 100%
-  padding: 10px 0
+  padding: 0
   overflow: hidden
-  .navbar-brand
-    font-family: 'Quicksand'
-    font-weight: 600
-    text-transform: uppercase
-    display: block
-    float: left
-    font-size: 40pt
-    span
-      color: $red
+  background: $white
+  div
+    position: relative
   ul
     display: block
     float: right
-    padding: 7px 0px
+    padding: 17px 0px
     li
       display: inline-block
       margin: 10pt
@@ -33,3 +38,30 @@
         display: block
         position: relative
         padding-left: 30px
+.sumbenu
+  background: $dark-grey
+  ul
+    margin: 0
+    padding: 0
+    overflow: hidden
+    li
+      width: 25%
+      display: block
+      float: left
+      padding: 15px 10px
+      text-align: center
+      a
+        color: $white
+        text-transform: uppercase
+        font-family: $heading-font
+        font-weight: 600
+        font-size: 1.23em
+.red-search-icon
+  position: absolute
+  top: 27px
+  right: 40px
+  width: 25px
+  height: 25px
+  background: #fafafa url("../img/icon-search.png") no-repeat 90% 50%
+  background-size: 25px 25px
+  border: none
