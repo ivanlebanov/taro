@@ -266,4 +266,17 @@ if ( ! function_exists('get_countries') )
        );
      }
    }
+
+   if ( ! function_exists('error_msg') )
+   {
+     function error_msg($msg, $reload = false){
+       return json_encode(
+         array(
+            'status'      =>  'error',
+            'message'   =>  $msg,
+            'reload' => $reload
+        )
+       );
+     }
+   }
 ?>

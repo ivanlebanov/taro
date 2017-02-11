@@ -56,30 +56,10 @@
       effect : 'jelly',
       type : status, // notice, warning, error or success
       onClose : function() {
-        bttn.disabled = false;
+        //bttn.disabled = false;
       }
     });
     notification.show();
-  }
-  </script>
-  <script type="text/javascript">
-  var compareButtons = document.getElementsByClassName("compare");
-
-  function compare() {
-    var item_id = this.getAttribute("data-item-id");
-    var comparelist = localStorage.compareList;
-    if(comparelist.length == 2)
-      showErrorNotification('success', 'We will show you differences side to side.');
-    for (var i = 0; i < comparelist.length; i++) {
-      if(comparelist[i] == item_id)
-        showErrorNotification('error', 'Items has been added.');
-      else
-        showErrorNotification('error', 'Items has been added.');
-    }
-  };
-
-  for (var i = 0; i < compareButtons.length; i++) {
-    compareButtons[i].addEventListener('click', compare, false);
   }
   </script>
 
@@ -135,6 +115,27 @@
           }
       });
 
+    }
+  </script>
+  <script type="text/javascript">
+    $('.compare').on('click', function(){
+      compare($(this).data('item-id'), $(this).data('url'));
+    });
+    function compare(p_id, url){
+      $.ajax({
+          type: "POST",
+          url: url,
+          success: function(data){
+            data = JSON.parse(data);
+            console.log(data);
+            showErrorNotification(data.status, data.message);
+          },
+
+          data: {p_id:p_id},
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+      });
     }
   </script>
   @if (session()->has('status'))

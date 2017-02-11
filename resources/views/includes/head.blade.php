@@ -31,7 +31,7 @@
             <!-- Search bar -->
             <div class="col-md-5">
               {{ Form::open(['route' => 'search.phrase'])}}
-                {{ Form::text('phrase', null, ['placeholder' => 'Search', 'id' => 'search' ,'data-url' => route('search.results') ]) }}
+                {{ Form::text('phrase', null, ['placeholder' => 'Search', 'id' => 'search', 'autocomplete' => 'off' ,'data-url' => route('search.results') ]) }}
                 {{ Form::submit('', ['class' => 'red-search-icon']) }}
               {{ Form::close()}}
             </div>
@@ -81,13 +81,13 @@
         <nav class="sumbenu">
           <div class="container">
             <ul>
-                @foreach($categories->categories as $key => $category)
 
-                <li>
-                  <a href="{{ route('products.category', ['category' => $category['pc_name'] ])}}">
-                    {{$category['pc_name']}}
-                  </a>
-                </li>
+                @foreach($categories->categories as $key => $category)
+                  <li>
+                    <a href="{{ route('products.category', ['category' => $category['pc_name'] ])}}">
+                      {{$category['pc_name']}}
+                    </a>
+                  </li>
                 @endforeach
 
             </ul>

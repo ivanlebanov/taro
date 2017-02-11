@@ -20,6 +20,10 @@ Route::group(['middleware' => 'web'], function() {
   Route::post('/search',['as' => 'search.phrase', 'uses' => 'SearchController@search']);
   Route::post('/search-results',['as' => 'search.results', 'uses' => 'SearchController@searchResults']);
 
+  // compare
+  Route::post('/compare',['as' => 'compare.add', 'uses' => 'CompareController@add']);
+  Route::delete('/compare',['as' => 'compare.delete', 'uses' => 'CompareController@remove']);
+  Route::get('/compare',['as' => 'compare.get', 'uses' => 'CompareController@get']);
   //Basic authentication
   Auth::routes();
 

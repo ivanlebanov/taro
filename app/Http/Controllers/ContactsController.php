@@ -31,18 +31,18 @@ class ContactsController extends Controller
 
   public function saveContactForm(UpdateContactUsRequest $request)
   {
-      $user_id = \Auth::user()['attributes']['id'];
-      $inputs = $request->input();
-      $message = new Message();
-      $message->m_user_id = $user_id;
-      $message->m_subject = $inputs['subject'];
-      $message->m_message = $inputs['message'];
+    $user_id = \Auth::user()['attributes']['id'];
+    $inputs = $request->input();
+    $message = new Message();
+    $message->m_user_id = $user_id;
+    $message->m_subject = $inputs['subject'];
+    $message->m_message = $inputs['message'];
 
-      $message->save();
+    $message->save();
 
-      // success message in json format for the UI
-      $status = success_msg('Successfully send your message');
+    // success message in json format for the UI
+    $status = success_msg('Successfully send your message');
 
-      return redirect()->back()->with('status', $status );
+    return redirect()->back()->with('status', $status );
   }
 }
