@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 
 use App\Product as Product;
 use App\Category as Category;
-use App\Slider as Slider;
 use App\User as User;
+use App\Company as Company;
 use App\Http\Requests\UpdatePersonalInfoRequest;
 use App\Http\Requests\UpdateAddressRequest;
 class ProductController extends Controller
@@ -26,6 +26,10 @@ class ProductController extends Controller
   public function getSingleProductPage($id, $category)
   {
     $data['product'] = Product::where('p_id', $id)->first();
+    $category_id = $data['product']['attributes']['category_id'];
+    $company_id = $data['product']['attributes']['p_company_id'];
+    $data['category'] = Category::where('pc_id', $category_id)->first();
+    $data['company'] = Company::find($company_id)->first();
 
     return view('products.single_product', $data);
   }
