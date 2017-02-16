@@ -11,10 +11,10 @@
         <form class="login-form" method="POST" action="{{ url('/login') }}">
           {{ csrf_field() }}
           <!-- email field -->
-          <input type="email" name="email" value="{{ old('email') }}"
-          placeholder="E-mail&#42;" required autofocus>
+          <input type="text" name="email" value="{{ old('email') }}"
+          placeholder="E-mail&#42;">
           <!-- password field -->
-          <input type="password" placeholder="Password&#42;" name="password" required>
+          <input type="password" placeholder="Password&#42;" name="password">
           <!-- login button -->
           <button type="submit" class="btn red-btn">Login</button>
           <!-- reset password link -->

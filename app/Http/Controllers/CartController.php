@@ -19,7 +19,7 @@ class CartController extends Controller
   {
     // success message in json format for the UI
     $status = success_msg('Product successfully added to the bag');
-
+    
     return $status;
 
   }

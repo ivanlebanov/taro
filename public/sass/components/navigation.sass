@@ -14,7 +14,7 @@
   color: $red
   width: 100%
   padding: 0
-  overflow: hidden
+  float: left
   background: $white
   div
     position: relative
@@ -38,8 +38,40 @@
         display: block
         position: relative
         padding-left: 30px
+  .suggestions
+    position: absolute
+    top: 78px
+    margin: 0
+    padding: 0
+    z-index: 9
+    right: 15px
+    left: 15px
+    background: $light-grey
+    border-bottom-left-radius: $radius
+    border-bottom-right-radius: $radius
+    overflow: hidden
+    li
+      display: block
+      width: 100%
+      float: left
+      position: relative
+      margin: 0
+      padding: 10pt
+      &:hover
+        background: $dark-grey
+        a
+          color: $white
+      a
+        padding-left: 44px
+      img
+        max-width: 40px
+        max-height: 40px
+        border-radius: $radis-mini
+
 .sumbenu
   background: $dark-grey
+  width: 100%
+  float: left
   ul
     margin: 0
     padding: 0

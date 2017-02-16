@@ -34,6 +34,8 @@
                 {{ Form::text('phrase', null, ['placeholder' => 'Search', 'id' => 'search', 'autocomplete' => 'off' ,'data-url' => route('search.results') ]) }}
                 {{ Form::submit('', ['class' => 'red-search-icon']) }}
               {{ Form::close()}}
+              <ul class="suggestions hidden">
+              </ul>
             </div>
             <!-- Right Side Of Navbar -->
             <div class="col-md-5">

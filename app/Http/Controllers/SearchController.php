@@ -31,6 +31,10 @@ class SearchController extends Controller
     $data['phrase'] = $input['phrase'];
     $data['products'] = Product::where('p_name', 'LIKE', $search)->take(5)->get()->toArray();
 
+    foreach ($data['products'] as $key => $product) {
+      $data['products'][$key]['url'] = route('products.single_product', ['id' => $product['p_id'], 'name' => str_slug($product['p_name']) ]);
+    }
+
     return response()->json($data['products']);
   }
 }
