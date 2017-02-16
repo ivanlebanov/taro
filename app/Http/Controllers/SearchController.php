@@ -3,14 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-
 use App\Product as Product;
-use App\Category as Category;
-use App\Slider as Slider;
-use App\User as User;
-use App\Http\Requests\UpdatePersonalInfoRequest;
-use App\Http\Requests\UpdateAddressRequest;
+
 class SearchController extends Controller
 {
 
