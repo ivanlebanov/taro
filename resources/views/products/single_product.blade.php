@@ -42,5 +42,9 @@
         <button type="button" class="btn big-btn red-btn add_to_cart">Buy now</button>
       </div>
     </div>
+	<div class="col-md-9">
+        <?php //echo "test";?>
+		@include('includes.list_products', [ 'products' => $relatedproducts, 'title' => 'Products!'])
+		</div>
   </div>
 @endsection

@@ -31,6 +31,8 @@ class ProductController extends Controller
     $data['category'] = Category::where('pc_id', $category_id)->first();
     $data['company'] = Company::where('id', $company_id)->first();
 
+	$data['relatedproducts'] = Product::where('category_id', $category_id)->take(4);
+	
     return view('products.single_product', $data);
   }
 
