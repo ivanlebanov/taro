@@ -1,54 +1,39 @@
 function add_to_cart(url) {
-  $.ajax({
-      type: "POST",
-      url: url,
-      success: function(data){
-        data = JSON.parse(data);
-
-        showErrorNotification(data.status, data.message);
-      },
-
-      data: {},
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      }
-  });
+  makeAjaxCall("POST", url, {} , true);
 }
-
 
 function compare(p_id, url){
+  makeAjaxCall("POST", url,{p_id:p_id}, true);
+}
+
+function makeAjaxCall(method, url, data, showError) {
   $.ajax({
       type: "POST",
       url: url,
       success: function(data){
         data = JSON.parse(data);
-
-        showErrorNotification(data.status, data.message);
+        if(showError)
+          showErrorNotification(data.status, data.message);
       },
-
-      data: {p_id:p_id},
+      data: data,
       headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        'X-CSRF-TOKEN': window.Laravel.csrfToken
       }
   });
 }
-
 
 function searchResults(phrase, url){
   $.ajax({
       type: "POST",
       url: url,
       success: function(data){
-        console.log(data);
         showSuggestions(data);
       },
-
       data: {phrase:phrase},
       headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        'X-CSRF-TOKEN': window.Laravel.csrfToken
       }
   });
-
 }
 
 function showSuggestions(data) {
@@ -58,34 +43,28 @@ function showSuggestions(data) {
     $('.suggestions').append("<li><a href='" + data[i].url + "'>" +
     "<img src='/img/products/"+ data[i].p_thumb +"'>" +  data[i].p_name  + "</a></li>");
   }
-  
-}
 
+}
 
 function showErrorNotification(status, message){
   var notification = new NotificationFx({
     message : '<p>'  + message + ' </p>',
     layout : 'growl',
     effect : 'jelly',
-    type : status, // notice, warning, error or success
-    onClose : function() {
-      //bttn.disabled = false;
-    }
+    type : status
   });
   notification.show();
 }
 
-
-
-
 $('input, textarea').on("keyup", function() {
   $(this).removeClass('error');
 });
+
 $('#search').on("keyup", function() {
-  if($("#search").val().length > 2){
+  if($("#search").val().length > 1)
     searchResults($("#search").val(), $(this).data('url'));
-  }
 });
+
 $('.compare').on('click', function(){
   compare($(this).data('item-id'), $(this).data('url'));
 });

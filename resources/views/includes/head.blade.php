@@ -59,7 +59,7 @@
                 @endif
                 <!-- link to the bag -->
                 <li>
-                  <a href="#">
+                  <a href="{{ route('cart.get') }}">
                     <img src="{{asset('img/bag.png')}}" alt="user bag icon">
                     Bag
                   </a>
