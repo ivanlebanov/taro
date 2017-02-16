@@ -40,14 +40,14 @@
             £{{$product['p_price']}}
           @endif
           </div>
-          <button type="button" class="btn big-btn red-btn add_to_cart">Buy now</button>
+          <button type="button" class="btn big-btn red-btn add_to_cart"
+                  data-url="{{ route('cart.add', ['id' => $product['p_id'] ])}}">Buy now</button>
         </div>
       </div>
     </div>
-  </div>
-  <div class="row">
     <div class="container">
       @include('includes.list_products', [ 'products' => $relatedproducts, 'title' => 'You might like:'])
     </div>
   </div>
+
 @endsection

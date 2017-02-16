@@ -127,7 +127,7 @@
           url: url,
           success: function(data){
             data = JSON.parse(data);
-            console.log(data);
+
             showErrorNotification(data.status, data.message);
           },
 
@@ -137,6 +137,26 @@
           }
       });
     }
+    $('.add_to_cart').on('click', function(){
+      add_to_cart($(this).data('url'));
+    });
+    function add_to_cart(url) {
+      $.ajax({
+          type: "POST",
+          url: url,
+          success: function(data){
+            data = JSON.parse(data);
+
+            showErrorNotification(data.status, data.message);
+          },
+
+          data: {},
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+      });
+    }
+    // add_to_cart
   </script>
   @if (session()->has('status'))
 
