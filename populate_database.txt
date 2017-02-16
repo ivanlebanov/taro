@@ -1,4 +1,6 @@
 INSERT INTO `product` (`p_id`, `p_name`, `p_price`, `p_discount_price`, `p_discount_active`, `created_at`, `updated_at`, `category_id`, `p_description`, `p_features`, `p_thumb`, `p_sales`, `p_company_id`) VALUES
+(1, '12-inch MacBook Pro\n', 1000, 999, 1, NULL, NULL, '1', 'Our goal with MacBook was to do the impossible: engineer a full-size experience into the lightest and most compact Mac notebook ever. That meant reimagining every element to make it not only lighter and thinner but also better.', '10 hours of battery life | super light | 12 inch retina display | trackpad with Force Touch', 'picture1.jpg', 200, '1'),
+(2, 'Software 1', 400, 300, 0, NULL, NULL, '4', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla egestas massa at nunc sodales,', 'Test 3|Test 4| Test 5', 'picture2.png', 300, ''),
 (3, '13-inch MacBook Pro\n', 1299, 1199, 1, NULL, NULL, '1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla egestas massa at nunc sodales,', 'Fast | Reliable | Apple', 'macbook-pro.jpg', 300, '1'),
 (4, 'Samsung Tab 5\n', 299, 279, 1, NULL, NULL, '3', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla egestas massa at nunc sodales,', 'Android | Touch Screen | Best Seller', 'samsung-tab.jpeg', 300, '2'),
 (5, 'OfficePC by TARO\n', 239, 150, 0, NULL, NULL, '2', 'Our own brand of desktop PCs, designed to get the job done. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla egestas massa at nunc sodales,', 'Windows | Office | TARO Brand', 'windows-pc.jpeg', 300, '3'),
@@ -11,6 +13,7 @@ INSERT INTO `product` (`p_id`, `p_name`, `p_price`, `p_discount_price`, `p_disco
 
 
 INSERT INTO `company` (`id`, `c_name`, `created_at`, `updated_at`) VALUES
+(1, 'Apple inc.', NULL, NULL),
 (2, 'Samsung', NULL, NULL),
 (3, 'TARO', NULL, NULL),
 (4, 'Acer', NULL, NULL);
