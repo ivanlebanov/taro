@@ -29,7 +29,7 @@ class ProductController extends Controller
     $category_id = $data['product']['attributes']['category_id'];
     $company_id = $data['product']['attributes']['p_company_id'];
     $data['category'] = Category::where('pc_id', $category_id)->first();
-    $data['company'] = Company::find($company_id)->first();
+    $data['company'] = Company::where('id', $company_id)->first();
 
     return view('products.single_product', $data);
   }
