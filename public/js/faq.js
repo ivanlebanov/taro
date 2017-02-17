@@ -8,14 +8,14 @@ function showFaq(e){
         e.target.src = "/img/arrow_down.png";
         elem.style.display = "none";
     }
-};
+}
 
 function connectListeners(){
     var arrows = document.querySelectorAll(".faq_arrow");
 
     for (let arrow of arrows){
         arrow.addEventListener("click", showFaq);
-    };
+    }
 }
 
 window.addEventListener("load", connectListeners);

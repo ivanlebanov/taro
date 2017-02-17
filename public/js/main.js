@@ -77,6 +77,8 @@ $('input, textarea').on("keyup", function() {
 $('#search').on("keyup", function() {
   if($("#search").val().length > 1)
     searchResults($("#search").val(), $(this).data('url'));
+  else
+    $('.suggestions').empty();
 });
 
 $('.compare').on('click', function(){

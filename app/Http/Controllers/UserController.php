@@ -11,6 +11,8 @@ use App\Slider as Slider;
 use App\User as User;
 use App\Http\Requests\UpdatePersonalInfoRequest;
 use App\Http\Requests\UpdateAddressRequest;
+use App\Http\Requests\UpdateUserAccountRequest;
+
 class UserController extends Controller
 {
 /**
@@ -70,4 +72,21 @@ class UserController extends Controller
 
   }
 
+  public function update(UpdateUserAccountRequest $request)
+  {
+    // get the keys needed from the form
+    $data = array_only($request->input(), ['name', 'telephone', "address","town_city", "country", "postcode"]);
+    // GET user to update
+    $user = User::find(\Auth::user()['attributes']['id'])->first();
+    // update all fields
+    foreach ($data as $key => $value)
+      $user->$key = $value;
+
+    // save the new data
+    $user->save();
+    // success message in json format for the UI
+    $status = success_msg('Successfully updated user information');
+
+    return redirect()->back()->with('status', $status );
+  }
 }

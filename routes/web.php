@@ -49,5 +49,7 @@ Route::group(['middleware' => 'web'], function() {
   // User account
   Route::get('/user-account', ['as' => 'profile.get_personal_info', 'uses' => 'UserController@profile']);
   Route::post('/user-account',['as' => 'profile.update_personal_info', 'uses' => 'UserController@savePersonalInfo']);
+  Route::put('/user-acount',['as' => 'profile.update', 'uses' => 'UserController@update']);
   Route::post('/user-address',['as' => 'profile.update_address', 'uses' => 'UserController@saveAddress']);
+  Route::post('/user-account/delivery',['as' => 'delivery.add', 'uses' => 'UserController@addDelivery']);
 });

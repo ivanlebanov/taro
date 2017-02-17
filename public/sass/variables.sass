@@ -15,3 +15,10 @@ $lgrey: #eeeeee
 // radius
 $radius: 10px
 $radis-mini: 5px
+
+
+@mixin ease-in($ms)
+    -webkit-transition: all $ms ease-in-out
+    -moz-transition: all $ms ease-in-out
+    -o-transition: all $ms ease-in-out
+    transition: all $ms ease-in-out
