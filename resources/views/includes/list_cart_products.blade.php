@@ -33,9 +33,8 @@
           </div>
 
           <div class="product-list-footer">
-            <button data-item-id='{{$product['p_id']}}' type="button" class="btn grey-btn compare"
-            style="width:100%"
-            data-url="{{route('compare.add')}}">remove from cart</button>
+            <button type="button" class="btn grey-btn remove_from_cart"
+            data-url="{{route('cart.delete', ['id' => $product['p_id'] ])}}">remove from cart</button>
           </div>
         </div>
       </div>

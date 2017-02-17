@@ -36,25 +36,52 @@ class CartController extends Controller
 
   }
 
+  public function delete(Request $request, $id)
+  {
+    $cart = json_decode(Cookie::get('cart'));
+    $cartData = array();
+
+    foreach ($cart as $product_id => $quantity) {
+      if($product_id !== $id)
+        $cartData[$product_id] = $quantity;
+    }
+
+    $cartData = json_encode($cartData);
+    Cookie::queue('cart', $cartData, 60000);
+
+
+    // success message in json format for the UI
+    $status = success_msg('Product successfully removed from the bag', true);
+
+    return $status;
+
+  }
+  public function calculateTotal($products, $cookie)
+  {
+    // incorporate total counting
+    $total = 0;
+
+    foreach ($products as $key => $product) {
+      $price = ( $products[$key]['attributes']['p_discount_active'] ) ? $products[$key]['attributes']['p_discount_price']
+      : $products[$key]['attributes']['p_price'];
+      $total += $price * $cookie->$products[$key]['attributes']['p_id'];
+    }
+
+    return $total;
+  }
   public function getCartPage()
   {
     $data['cart'] = json_decode(Cookie::get('cart'));
+
     if(!$data['cart']){
       $data['products'] = Product::inRandomOrder()->take(4)->get();
       return view('cart.empty_cart', $data);
     }else {
 
       $ids =  array_keys(get_object_vars($data['cart']));
-      $data['total'] = 0;
       $data['products'] = Product::whereIn('p_id', $ids)->get();
+      $data['total'] = $this->calculateTotal($data['products'], $data['cart']);
 
-      // incorporate total counting
-      foreach ($data['products'] as $key => $product) {
-        $price = ( $data['products'][$key]['attributes']['p_discount_active'] ) ? $data['products'][$key]['attributes']['p_discount_price']
-        : $data['products'][$key]['attributes']['p_price'];
-        $data['total'] += $price * $data['cart']->$data['products'][$key]['attributes']['p_id'];
-      }
-      //dd($total);
       return view('cart.cart', $data);
     }
   }

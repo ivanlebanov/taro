@@ -256,14 +256,15 @@ if ( ! function_exists('get_countries') )
 
    if ( ! function_exists('success_msg') )
    {
-     function success_msg($msg, $reload = false){
-       return json_encode(
-         array(
-            'status'      =>  'success',
-            'message'   =>  $msg,
-            'reload' => $reload
-        )
-       );
+     function success_msg($msg, $reload = false, $additional_data  = []){
+         return json_encode(
+           array(
+              'status'      =>  'success',
+              'message'   =>  $msg,
+              'reload' => $reload
+          )
+         );
+
      }
    }
 

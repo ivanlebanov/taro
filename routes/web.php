@@ -17,13 +17,13 @@ Route::group(['middleware' => 'web'], function() {
   // Products
   Route::get('/products/{category}', ['as' => 'products.category', 'uses' => 'ProductController@getCategoryPage']);
   Route::get('/product/{id}/{name}', ['as' => 'products.single_product', 'uses' => 'ProductController@getSingleProductPage']);
-  Route::post('/product/{id}', ['as' => 'cart.add', 'uses' => 'CartController@add']);
   Route::post('/search',['as' => 'search.phrase', 'uses' => 'SearchController@search']);
   Route::post('/search-results',['as' => 'search.results', 'uses' => 'SearchController@searchResults']);
 
   // Cart
   Route::get('/cart',['as' => 'cart.get', 'uses' => 'CartController@getCartPage']);
-
+  Route::post('/product/{id}', ['as' => 'cart.add', 'uses' => 'CartController@add']);
+  Route::delete('/product/{id}', ['as' => 'cart.delete', 'uses' => 'CartController@delete']);
 
   // compare
   Route::post('/compare',['as' => 'compare.add', 'uses' => 'CompareController@add']);
