@@ -1,0 +1,11 @@
+.faq_arrow {
+    float: right;
+}
+
+.faq_arrow:hover {
+    cursor: pointer;
+}
+
+.panel > p {
+    display: none;
+}
