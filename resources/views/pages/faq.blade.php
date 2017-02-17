@@ -7,16 +7,24 @@
     <h1>FAQ</h1>
     <div class="col-md-12">
         <div class="panel">
-            <h2>Title 1</h2>
+            <h2>What is TARO</h2>
             <p>This is the first FAQ entry</p>
         </div>
         <div class="panel">
-            <h2>Title 2</h2>
+            <h2>How do I place an order?</h2>
             <p>This is the second FAQ entry</p>
         </div>
         <div class="panel">
-            <h2>Title 3</h2>
+            <h2>Do you accept returns?</h2>
             <p>This is the third FAQ entry</p>
+        </div>
+        <div class="panel">
+            <h2>Where do you ship to?</h2>
+            <p>This is the fourth FAQ entry</p>
+        </div>
+        <div class="panel">
+            <h2>Who do I contact about an order?</h2>
+            <p>This is the fifth FAQ entry</p>
         </div>
     </div>
 </div>
