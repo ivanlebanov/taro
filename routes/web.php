@@ -25,6 +25,9 @@ Route::group(['middleware' => 'web'], function() {
   Route::post('/product/{id}', ['as' => 'cart.add', 'uses' => 'CartController@add']);
   Route::delete('/product/{id}', ['as' => 'cart.delete', 'uses' => 'CartController@delete']);
 
+  // Checkout
+  Route::get('/checkout', ['as' => 'checkout.get', 'uses' => 'CheckoutController@getCheckoutPage']);
+
   // compare
   Route::post('/compare',['as' => 'compare.add', 'uses' => 'CompareController@add']);
   Route::delete('/compare',['as' => 'compare.delete', 'uses' => 'CompareController@remove']);

@@ -25,6 +25,16 @@
             <h2>Title 3</h2>
             <p>This is the third FAQ entry</p>
         </div>
+        <div class="panel">
+            <img src="{{asset('img/arrow_down.png')}}" alt="arrow" class="faq_arrow"/>
+            <h2>Where do you ship to?</h2>
+            <p>This is the fourth FAQ entry</p>
+        </div>
+        <div class="panel">
+            <img src="{{asset('img/arrow_down.png')}}" alt="arrow" class="faq_arrow"/>
+            <h2>Who do I contact about an order?</h2>
+            <p>This is the fifth FAQ entry</p>
+        </div>
     </div>
 </div>
 @endsection

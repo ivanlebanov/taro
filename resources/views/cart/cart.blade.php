@@ -5,8 +5,15 @@
 @section('content')
   <div class="row">
     <div class="container">
-      <h1>Cart (£{{$total}})</h1>
-      @include('includes.list_cart_products', [ 'products' => $products, 'title' => ''])
+      <div class="col-md-8">
+        <h1>Cart (£{{$total}})</h1>
+      </div>
+      <div class="col-md-4">
+        <a href="{{ route('checkout.get')}}" class="btn red-btn big-btn">Proceed</a>
+      </div>
+      <div class="col-md-12">
+        @include('includes.list_cart_products', [ 'products' => $products, 'title' => ''])
+      </div>
     </div>
   </div>
 @endsection
