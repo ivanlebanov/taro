@@ -64,7 +64,8 @@ class CartController extends Controller
     foreach ($products as $key => $product) {
       $price = ( $products[$key]['attributes']['p_discount_active'] ) ? $products[$key]['attributes']['p_discount_price']
       : $products[$key]['attributes']['p_price'];
-      $total += $price * $cookie->$products[$key]['attributes']['p_id'];
+      $id = $cookie->$products[$key]['attributes']['p_id'];
+      $total += $price * $id;
     }
 
     return $total;
