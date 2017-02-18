@@ -8,6 +8,10 @@ function remove_from_cart(url, elem) {
 function compare(p_id, url){
   makeAjaxCall("POST", url,{p_id:p_id}, true);
 }
+function compare_delete(p_id, url, elem){
+  makeAjaxCall("DELETE", url,{p_id:p_id}, true);
+  elem.remove();
+}
 function reloadPage(ms){
   setTimeout(function(){
     location.reload();
@@ -48,7 +52,7 @@ function searchResults(phrase, url){
 
 function showSuggestions(data) {
   $('.suggestions').empty();
-  console.log(data);
+
   for (var i = 0; i < data.length; i++) {
     $('.suggestions').append("<li><a href='" + data[i].url + "'>" +
     "<img src='/img/products/"+ data[i].p_thumb +"'>" +  data[i].p_name  + "</a></li>");
@@ -83,6 +87,9 @@ $('#search').on("keyup", function() {
 
 $('.compare').on('click', function(){
   compare($(this).data('item-id'), $(this).data('url'));
+});
+$('.compare_delete').on('click', function(){
+  compare_delete($(this).data('item-id'), $(this).data('url'), $(this).closest('.col-md-3 '));
 });
 
 $('.add_to_cart').on('click', function(){

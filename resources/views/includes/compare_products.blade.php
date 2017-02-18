@@ -32,7 +32,7 @@
           </div>
 
           <div class="product-list-footer compare-footer">
-            <button data-item-id='{{$product['p_id']}}' type="button" class="btn grey-btn compare"
+            <button data-item-id='{{$product['p_id']}}' type="button" class="btn grey-btn compare_delete"
             data-url="{{route('compare.delete')}}">remove</button>
             <button type="button" class="btn red-btn">quick buy</button>
           </div>

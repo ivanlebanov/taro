@@ -38,6 +38,10 @@ class CompareController extends Controller
       return response()->json($response);
 
     }
+    if(count($compare_list) > 2)
+      return response()->json(error_msg('Maximum items to add are 3.
+      Please remove some from<a href="' . route('compare.get') . '"> here</a>.
+      If you want to add a new one'));
     // append the new id
     $compare_list[] = $inputs['p_id'];
     $new_length = count($compare_list);
@@ -55,6 +59,20 @@ class CompareController extends Controller
 
   public function remove(Request $request)
   {
-    # code...
+    $input = $request->input();
+    $compare_cookie = Cookie::get('compare');
+    $compare_list = ($compare_cookie != "") ? explode( ', ', $compare_cookie ) : [];
+    $new_list = array();
+
+    foreach ($compare_list as $key => $item) {
+      if($item != $input['p_id'])
+        $new_list[] = $item;
+    }
+
+    $new_cookie = (count($new_list > 0)) ? implode( ', ', $new_list ) : [];
+    // save for 60 minutes
+    Cookie::queue('compare', $new_cookie, 60000);
+
+    return success_msg('Successfully removed item');
   }
 }
