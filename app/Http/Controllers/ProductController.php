@@ -48,4 +48,11 @@ class ProductController extends Controller
     return view('products.single_product', $data);
   }
 
+  public function getSingleProduct($id)
+  {
+    $product = Product::where('p_id', $id)->first();
+
+    return json_encode($product);
+  }
+
 }

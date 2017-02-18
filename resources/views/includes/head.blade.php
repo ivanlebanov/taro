@@ -20,6 +20,7 @@
         @if(!isset($categories))
           @inject('categories', 'App\Services\Categories')
         @endif
+        @include('products.quick_add')
         <nav class="navbar">
           <div class="container">
             <!-- Branding Image -->

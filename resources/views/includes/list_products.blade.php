@@ -36,7 +36,8 @@
           <div class="product-list-footer">
             <button data-item-id='{{$product['p_id']}}' type="button" class="btn grey-btn compare"
             data-url="{{route('compare.add')}}">compare</button>
-            <button type="button" class="btn red-btn">quick buy</button>
+            <button  data-url="{{ route('cart.add', ['id' => $product['p_id'] ])}}"
+            data-url2="{{route('product.getData', ['id' => $product['p_id'] ])}}" type="button" class="btn red-btn show-popup">quick buy</button>
           </div>
           @endif
         </div>

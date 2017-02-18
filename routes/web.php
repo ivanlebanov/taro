@@ -17,6 +17,7 @@ Route::group(['middleware' => 'web'], function() {
   // Products
   Route::get('/products/{category}', ['as' => 'products.category', 'uses' => 'ProductController@getCategoryPage']);
   Route::get('/product/{id}/{name}', ['as' => 'products.single_product', 'uses' => 'ProductController@getSingleProductPage']);
+  Route::get('/product/{id}', ['as' => 'product.getData', 'uses' => 'ProductController@getSingleProduct']);
   Route::post('/search',['as' => 'search.phrase', 'uses' => 'SearchController@search']);
   Route::post('/search-results',['as' => 'search.results', 'uses' => 'SearchController@searchResults']);
 

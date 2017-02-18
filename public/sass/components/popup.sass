@@ -1,0 +1,71 @@
+// main: ../styles.sass
+@import ../variables
+
+.overlay
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  background: $grey
+  opacity: .5
+  z-index: 11
+  display: none
+.popup
+  position: fixed
+  width: 50%
+  height: 60vh
+
+  overflow: hidden
+  top: 20%
+  left: 25%
+  z-index: 12
+  background: $white
+  border-radius: $radius
+  display: none
+  h2
+    margin: 0 10px 20px 0
+    font-size: 2.3em
+  .btn.big-btn
+    position: absolute
+    bottom: 0
+    margin: 0
+    left: 0
+    right: 0
+    width: 100%
+    border-bottom-left-radius: 0
+    border-top-left-radius: 0
+    border-top-right-radius: 0
+  .feature-list
+    margin: 10px 0
+  .panel
+    margin-top: 0
+    padding-top: 18px
+  .price
+    color: $red
+    font-size: 2em
+  .close
+    cursor: pointer
+    position: absolute
+    right: 25px
+    top: 24px
+    img
+      max-width: 20px
+  & > div
+    position: relative
+    height: 60vh
+  .images
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+  .item
+    height: 60vh
+    background: no-repeat center center
+    -webkit-background-size: cover
+    -moz-background-size: cover
+    -o-background-size: cover
+    background-size: cover
+    border-top-left-radius: $radius
+    border-bottom-left-radius: $radius
