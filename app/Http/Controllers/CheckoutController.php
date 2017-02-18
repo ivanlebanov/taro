@@ -46,6 +46,8 @@ class CheckoutController extends Controller
     // validation for empty cookie
     if(Cookie::get('cart') == null )
       return redirect()->back()->with('status', error_msg('Ensure you have products in the bag') );
+
+    // getting the data
     $cart = json_decode(Cookie::get('cart'));
     $ids =  array_keys(get_object_vars($cart));
     $products = Product::whereIn('p_id', $ids)->get();
@@ -60,7 +62,7 @@ class CheckoutController extends Controller
     $order->o_delivery = json_encode($delivery);
     $order->o_address = json_encode($user_info);
     $order->o_user_id = $user_id;
-
+    $order->o_products_quantities = json_encode($cart);
     $order->save();
 
     Cookie::queue('cart', null, 60000);

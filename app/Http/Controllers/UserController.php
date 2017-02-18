@@ -3,17 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-
-use App\Product as Product;
-use App\Category as Category;
-use App\Slider as Slider;
 use App\User as User;
+use App\Order as Order;
 use App\Http\Requests\UpdatePersonalInfoRequest;
 use App\Http\Requests\UpdateAddressRequest;
 use App\Http\Requests\UpdateUserAccountRequest;
 use App\Http\Requests\UpdateUserDeliveryRequest;
-
 
 class UserController extends Controller
 {
@@ -32,7 +27,15 @@ class UserController extends Controller
       $user = \Auth::user();
       $data['personal'] = array_only($user['attributes'], ['name', 'telephone']);
       $data['location'] = array_only($user['attributes'], ['address', 'town_city', 'country', 'postcode']);
+      $orders = Order::where('o_user_id', $user->id )->get()->all();
+      if(count($orders) > 0)
+        foreach ($orders as $key => $order)
+          foreach ($order['attributes'] as $order_keys => $order_values)
+            $data['orders'][$key][$order_keys] = json_decode($order_values, true);
+      else
+        $data['orders'] = [];
 
+    
       return view('user.profile', $data);
   }
 

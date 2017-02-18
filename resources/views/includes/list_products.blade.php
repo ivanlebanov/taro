@@ -19,6 +19,9 @@
               @foreach($product['p_features'] as $feature)
                 <li>{{$feature}}</li>
               @endforeach
+              @if(isset($quantity))
+                <p>Quantity: {{$quantities[$product['p_id']]}} </p>
+              @endif
               <div class="price">
               @if($product['p_discount_active'] == 1)
                 <strike>£{{$product['p_price']}}</strike> £{{$product['p_discount_price']}}
@@ -29,12 +32,13 @@
             </ul>
             @endif
           </div>
-
+          @if(!isset($quantity))
           <div class="product-list-footer">
             <button data-item-id='{{$product['p_id']}}' type="button" class="btn grey-btn compare"
             data-url="{{route('compare.add')}}">compare</button>
             <button type="button" class="btn red-btn">quick buy</button>
           </div>
+          @endif
         </div>
       </div>
     @endforeach
