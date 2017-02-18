@@ -1,12 +1,12 @@
 function showFaq(e){
     var elem = this.parentElement.lastElementChild;
     var currentDis = elem.style.display;
-    if(currentDis == "none"){
-        e.target.src = "/img/arrow_up.png";
-        elem.style.display = "block";
-    }else{
+    if(currentDis == "block"){
         e.target.src = "/img/arrow_down.png";
         elem.style.display = "none";
+    }else{
+        e.target.src = "/img/arrow_up.png";
+        elem.style.display = "block";
     }
 }
 
