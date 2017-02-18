@@ -35,7 +35,7 @@ class UserController extends Controller
       else
         $data['orders'] = [];
 
-    
+
       return view('user.profile', $data);
   }
 
@@ -44,7 +44,7 @@ class UserController extends Controller
     // get the keys needed from the form
     $data = array_only($request->input(), ['name', 'telephone']);
     // GET user to update
-    $user = User::find(\Auth::user()['attributes']['id'])->first();
+    $user = User::where('id', \Auth::user()['attributes']['id'])->first();
     // update all fields
     foreach ($data as $key => $value)
       $user->$key = $value;
@@ -63,7 +63,7 @@ class UserController extends Controller
     // get the keys needed from the form
     $data = array_only($request->input(), ["address","town_city", "country", "postcode"]);
     // GET user to update
-    $user = User::find(\Auth::user()['attributes']['id'])->first();
+    $user = User::where('id', \Auth::user()['attributes']['id'])->first();
     // update all fields
     foreach ($data as $key => $value)
       $user->$key = $value;
@@ -82,7 +82,7 @@ class UserController extends Controller
     // get the keys needed from the form
     $data = array_only($request->input(), ['name', 'telephone', "address","town_city", "country", "postcode"]);
     // GET user to update
-    $user = User::find(\Auth::user()['attributes']['id'])->first();
+    $user = User::where('id', \Auth::user()['attributes']['id'])->first();
     // update all fields
     foreach ($data as $key => $value)
       $user->$key = $value;
@@ -98,7 +98,7 @@ class UserController extends Controller
   public function addDelivery(UpdateUserDeliveryRequest $request)
   {
     $input = $request->input();
-    $user = User::find(\Auth::user()['attributes']['id'])->first();
+    $user = User::where('id', \Auth::user()['attributes']['id'])->first();
     $user->delivery_type_id = $input['delivery_type'];
 
     // save the new data
