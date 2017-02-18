@@ -12,6 +12,8 @@ use App\User as User;
 use App\Http\Requests\UpdatePersonalInfoRequest;
 use App\Http\Requests\UpdateAddressRequest;
 use App\Http\Requests\UpdateUserAccountRequest;
+use App\Http\Requests\UpdateUserDeliveryRequest;
+
 
 class UserController extends Controller
 {
@@ -86,6 +88,20 @@ class UserController extends Controller
     $user->save();
     // success message in json format for the UI
     $status = success_msg('Successfully updated user information');
+
+    return redirect()->back()->with('status', $status );
+  }
+
+  public function addDelivery(UpdateUserDeliveryRequest $request)
+  {
+    $input = $request->input();
+    $user = User::find(\Auth::user()['attributes']['id'])->first();
+    $user->delivery_type_id = $input['delivery_type'];
+
+    // save the new data
+    $user->save();
+    // success message in json format for the UI
+    $status = success_msg('Successfully updated preffered delivery type');
 
     return redirect()->back()->with('status', $status );
   }

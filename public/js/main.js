@@ -48,7 +48,7 @@ function searchResults(phrase, url){
 
 function showSuggestions(data) {
   $('.suggestions').empty();
-
+  console.log(data);
   for (var i = 0; i < data.length; i++) {
     $('.suggestions').append("<li><a href='" + data[i].url + "'>" +
     "<img src='/img/products/"+ data[i].p_thumb +"'>" +  data[i].p_name  + "</a></li>");

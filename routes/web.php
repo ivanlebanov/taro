@@ -27,7 +27,8 @@ Route::group(['middleware' => 'web'], function() {
 
   // Checkout
   Route::get('/checkout', ['as' => 'checkout.get', 'uses' => 'CheckoutController@getCheckoutPage']);
-
+  Route::post('/checkout', ['as' => 'checkout.post', 'uses' => 'CheckoutController@placeOrder']);
+  Route::get('/order_confirmed/{id}', ['as' => 'checkout.confirmed', 'uses' => 'CheckoutController@orderConfirmed']);
   // compare
   Route::post('/compare',['as' => 'compare.add', 'uses' => 'CompareController@add']);
   Route::delete('/compare',['as' => 'compare.delete', 'uses' => 'CompareController@remove']);

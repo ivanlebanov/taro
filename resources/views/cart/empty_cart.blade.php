@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title') Cart  @endsection
+@section('title') Bag  @endsection
 
 @section('content')
   <div class="container">
     <div class="col-md-5">
       <div class="panel">
-        <h2>Cart</h2>
-        <p>No nothing to see here yet.</p>
+        <h2>Bag</h2>
+        <p>Nothing to see here yet.</p>
       </div>
     </div>
   </div>

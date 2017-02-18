@@ -4,7 +4,9 @@
       <h1>Checkout</h1>
     </div>
     <div class="col-md-4">
-      <a href="{{ route('checkout.get')}}" class="btn red-btn big-btn procced-btn">Place order</a>
+      {{ Form::open(['route' => 'checkout.post']) }}
+        <button type="submit" class="btn red-btn big-btn procced-btn" name="button">Place order</button>
+      {{ Form::close() }}
     </div>
   </div>
 </div>

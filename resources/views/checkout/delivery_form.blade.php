@@ -1,30 +1,27 @@
 <div class="col-sm-6">
   <div class="panel">
     <h2>Delivery methods</h2>
-    <!-- check if the user has a saved option -->
-    @if(true == false)
+    {{ Form::open(['route' => 'delivery.add']) }}
 
-    @else
-      {{ Form::open(['route' => 'delivery.add']) }}
-        @foreach($delivery_types as $key => $delivery_type)
-          @if($key == 0)
-            {{ Form::radio('delivery_type', $delivery_type['attributes']['id'], true,
-            array('id'=>'delivery-' . $key, 'class' => 'hidden')) }}
-            {{ Form::label('delivery-' . $key, $delivery_type['attributes']['dt_name']) }}
-          @else
-            {{ Form::radio('delivery_type', $delivery_type['attributes']['id'], false,
-            array('id'=>'delivery-' . $key, 'class' => 'hidden')) }}
-            {{ Form::label('delivery-' . $key, $delivery_type['attributes']['dt_name']) }}
-          @endif
-        @endforeach
+      @foreach($delivery_types as $key => $delivery_type)
+        @if($delivery_type['id'] == $delivery_type_id)
+          {{ Form::radio('delivery_type', $delivery_type['attributes']['id'], true,
+          array('id'=>'delivery-' . $key, 'class' => 'hidden')) }}
+          {{ Form::label('delivery-' . $key,
+          $delivery_type['attributes']['dt_name']
+          . " (" . $delivery_type['attributes']['dt_length'] . ", +£" . $delivery_type['attributes']['dt_price'] . ")") }}
+        @else
+          {{ Form::radio('delivery_type', $delivery_type['attributes']['id'], false,
+          array('id'=>'delivery-' . $key, 'class' => 'hidden')) }}
+          {{ Form::label('delivery-' . $key,
+          $delivery_type['attributes']['dt_name']
+          . " (" . $delivery_type['attributes']['dt_length'] . ", +£" . $delivery_type['attributes']['dt_price'] . ")") }}
+        @endif
+      @endforeach
 
-        {{ Form::submit('Save', ['class' => 'btn red-btn']) }}
+      {{ Form::submit('Save', ['class' => 'btn red-btn']) }}
 
-      {{ Form::open(['route' => 'profile.update']) }}
-    @endif
-
+    {{ Form::close()}}
 
   </div>
-
-
 </div>
