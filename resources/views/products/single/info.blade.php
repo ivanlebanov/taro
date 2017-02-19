@@ -49,7 +49,8 @@
                 data-url="{{ route('wishlist.add')}}">Add to wishlist</a>
       </div>
     </div>
-
-
+    @if($product['p_user_manual_link'] != "")
+      <a href="{{asset($product['p_user_manual_link'])}}" class="btn grey-link-btn" target="_blank">User Manual</a>
+    @endif
   </div>
 </div>
