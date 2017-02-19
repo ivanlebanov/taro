@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Product as Product;
 use App\Category as Category;
 use App\Company as Company;
+use App\ProductImage as ProductImage;
 
 class ProductController extends Controller
 {
@@ -43,6 +44,8 @@ class ProductController extends Controller
     $data['category'] = Category::where('pc_id', $category_id)->first();
     // product's company
     $data['company'] = Company::where('id', $company_id)->first();
+    $data['gallery'] = ProductImage::where('pi_product_id', $id)->get()->all();
+
 	  $data['relatedproducts'] = Product::where('category_id', $category_id)->where('p_id', '!=', $id)->inRandomOrder()->take(4)->get();
 
     return view('products.single_product', $data);

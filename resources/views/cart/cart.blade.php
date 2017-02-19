@@ -11,7 +11,7 @@
       <div class="col-md-4">
         <a href="{{ route('checkout.get')}}" class="btn red-btn big-btn procced-btn">Proceed</a>
       </div>
-      <div class="col-md-12">
+      <div class="row">
         @include('includes.list_cart_products', [ 'products' => $products, 'title' => ''])
       </div>
     </div>
