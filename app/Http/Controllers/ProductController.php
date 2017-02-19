@@ -54,7 +54,8 @@ class ProductController extends Controller
   public function getSingleProduct($id)
   {
     $product = Product::where('p_id', $id)->first();
-
+    $product['gallery'] = ProductImage::where('pi_product_id', $id)->get()->all();
+    
     return json_encode($product);
   }
 

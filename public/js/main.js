@@ -75,7 +75,17 @@ function showPopup(url, url2){
         for (var i = 0; i < features.length; i++) {
           $('#feature-list-popup').append('<li>' + features[i] + '</li>');
         }
+        if(data.gallery.length > 0){
+          $('.gallery-poup-links').show();
+          $('.gallery-poup-links').append("<li class='active' data-src='/img/products/" + data.p_thumb + "'></li>");
 
+          for (var g = 0; g < data.gallery.length; g++) {
+            $('.gallery-poup-links').append("<li data-src='/img/products/" + data.gallery[g].pi_image + "'></li>");
+          }
+
+        }else{
+          $('.gallery-poup-links').show();
+        }
         if(data.p_discount_active)
           $('#price-popup').html('<strike>£' + data.p_price + '</strike> £' + data.p_discount_price);
         else
@@ -97,12 +107,15 @@ function showCartContents(url){
         data = JSON.parse(data);
         console.log(data);
         $('.cart_sidebar .items').empty();
-
-        for (var i = 0; i < data.products.length; i++) {
-          $('.cart_sidebar .items').append("<li><a href='" + data.products[i].url + "'>" +
-          "<img src='/img/products/"+ data.products[i].p_thumb +"'>" +
-          data.cart[data.products[i].p_id] + " * " +  data.products[i].p_name  +
-          "</a></li>");
+        if(data.products.length > 0){
+          for (var i = 0; i < data.products.length; i++) {
+            $('.cart_sidebar .items').append("<li><a href='" + data.products[i].url + "'>" +
+            "<img src='/img/products/"+ data.products[i].p_thumb +"'>" +
+            data.cart[data.products[i].p_id] + " * " +  data.products[i].p_name  +
+            "</a></li>");
+          }
+        }else{
+            $('.cart_sidebar .items').append("<li>No items in the bag.</li>");
         }
 
         $('.cart_sidebar .price').html("Total: £" + data.total);
@@ -131,7 +144,15 @@ function showErrorNotification(status, message){
   });
   notification.show();
 }
+function changeImagePopup(src, elem) {
 
+  $('#gallery-popup .item').css('background-image', 'url(' + src + ")");
+  $('.gallery-poup-links li').removeClass('active');
+  elem.addClass('active');
+}
+$('body').on('click', '.gallery-poup-links li', function(){
+  changeImagePopup($(this).data('src'), $(this));
+});
 $('.remove_from_cart').on('click', function(){
   remove_from_cart($(this).data('url'), $(this).closest('.col-md-3 '));
 });

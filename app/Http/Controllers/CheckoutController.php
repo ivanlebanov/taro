@@ -54,6 +54,8 @@ class CheckoutController extends Controller
     $delivery = Delivery::where('id', $user['delivery_type_id'])->first()['attributes'];
     $total = (new CartController)->calculateTotal($products, $cart) + $delivery['dt_price'];
 
+    $this->reacalculateStock($cart);
+
     // creating a new order
     $order = new Order;
 
@@ -85,5 +87,17 @@ class CheckoutController extends Controller
     }
 
     return view('checkout.order_placed', $data);
+  }
+
+  public function reacalculateStock($cart)
+  {
+
+    foreach ($cart as $id => $quantity) {
+      $product = Product::where('p_id', $id)->first();
+      $p_stock = $product->p_stock - $quantity;
+      $p_sales = $product->p_sales + $quantity;
+      $product->update(array('p_stock' => $p_stock, 'p_sales' => $p_sales));
+    }
+
   }
 }

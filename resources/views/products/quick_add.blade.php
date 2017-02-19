@@ -3,6 +3,7 @@
 <div class="popup">
   <div class="col-md-6">
     <div class="images" id="gallery-popup"></div>
+    <ul class="gallery-poup-links"></ul>
   </div>
   <div class="col-md-6">
     <div class="panel">

@@ -12,16 +12,21 @@ class CartController extends Controller
   public function getCartContents()
   {
     $data['cart'] = json_decode(Cookie::get('cart'));
-    $ids =  array_keys(get_object_vars($data['cart']));
-    $data['products'] = Product::whereIn('p_id', $ids)->get();
-    $data['total'] = $this->calculateTotal($data['products'], $data['cart']);
+    if($data['cart'] != null){
+      $ids =  array_keys(get_object_vars($data['cart']));
+      $data['products'] = Product::whereIn('p_id', $ids)->get();
+      $data['total'] = $this->calculateTotal($data['products'], $data['cart']);
 
-    if(count($data['products']) > 0){
-      foreach ($data['products'] as $key => $product) {
-        $data['products'][$key]['url'] = route('products.single_product', ['id' => $product['p_id'], 'name' => str_slug($product['p_name']) ]);
+      if(count($data['products']) > 0){
+        foreach ($data['products'] as $key => $product) {
+          $data['products'][$key]['url'] = route('products.single_product', ['id' => $product['p_id'], 'name' => str_slug($product['p_name']) ]);
+        }
       }
+    }else {
+      $data['products'] = [];
+      $data['total'] = 0;
     }
-    
+
     return json_encode($data);
   }
 
@@ -35,16 +40,12 @@ class CartController extends Controller
     // validation if the product is in stock
     $product = Product::where('p_id', $id)->first();
 
-    if($product['p_stock'] == "" || $product['p_stock'] < $inputs['quantity']){
+    $quantity = isset($cart->$id) ? $cart->$id + $inputs['quantity'] : $inputs['quantity'];
+
+    // validation check for availability
+    if($product['p_stock'] == "" || $product['p_stock'] < $quantity)
       return error_msg('There is not enough stock');
-    }else{
-      $product->p_id = $id;
-
-      $p_stock = $product->p_stock - $inputs['quantity'];
-      $p_sales = $product->p_sales + $inputs['quantity'];
-      $product->update(array('p_stock' => $p_stock, 'p_sales' => $p_sales));
-    }
-
+      
     // validation if the exceeds maximum number of items
     $cart_quantity = $this->getCartQuantity($cart);
     if($cart_quantity + $inputs['quantity'] > 50)
@@ -64,7 +65,7 @@ class CartController extends Controller
       $cartData = json_encode($cart);
     }
 
-    Cookie::queue('cart', $cartData, 60000);
+    Cookie::queue('cart', $cartData, 600000);
 
     // success message in json format for the UI
     $status = success_msg('Product successfully added to the bag');
@@ -84,7 +85,7 @@ class CartController extends Controller
     }
 
     $cartData = json_encode($cartData);
-    Cookie::queue('cart', $cartData, 60000);
+    Cookie::queue('cart', $cartData, 600000);
 
 
     // success message in json format for the UI
