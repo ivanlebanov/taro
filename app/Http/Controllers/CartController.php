@@ -16,7 +16,9 @@ class CartController extends Controller
       $inputs['quantity'] = 1;
     $cart = json_decode(Cookie::get('cart'));
     $cartData = array();
-
+    $cart_quantity = $this->getCartQuantity($cart);
+    if($cart_quantity + $inputs['quantity'] > 50)
+      return error_msg('Maximum items in the cart is 50');
     if(!$cart){
       $cartData[$id] = 1;
       $cartData = json_encode($cartData);
@@ -73,6 +75,21 @@ class CartController extends Controller
 
     return $total;
   }
+
+  public function getCartQuantity($cart)
+  {
+    $quantity = 0;
+    if(count($cart) > 0){
+
+      foreach ($cart as $key => $value) {
+        $quantity += $value;
+      }
+    }
+
+    return $quantity;
+
+  }
+
   public function getCartPage()
   {
     $data['cart'] = json_decode(Cookie::get('cart'));
