@@ -23,7 +23,7 @@
     </ul>
     @endif
     @if($product['p_stock'] == "" || $product['p_stock'] == 0 )
-    <p>Out of stock</p>
+      <p>Out of stock</p>
     @endif
     <div class="price">
       @if($product['p_discount_active'] == 1)

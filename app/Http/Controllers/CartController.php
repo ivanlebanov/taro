@@ -9,6 +9,22 @@ use Cookie;
 class CartController extends Controller
 {
 
+  public function getCartContents()
+  {
+    $data['cart'] = json_decode(Cookie::get('cart'));
+    $ids =  array_keys(get_object_vars($data['cart']));
+    $data['products'] = Product::whereIn('p_id', $ids)->get();
+    $data['total'] = $this->calculateTotal($data['products'], $data['cart']);
+
+    if(count($data['products']) > 0){
+      foreach ($data['products'] as $key => $product) {
+        $data['products'][$key]['url'] = route('products.single_product', ['id' => $product['p_id'], 'name' => str_slug($product['p_name']) ]);
+      }
+    }
+    
+    return json_encode($data);
+  }
+
   public function add(Request $request, $id)
   {
     $inputs = $request->input();

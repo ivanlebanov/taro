@@ -120,3 +120,52 @@
   background: #fafafa url("../img/icon-search.png") no-repeat 90% 50%
   background-size: 25px 25px
   border: none
+.cart_sidebar
+  position: fixed
+  top: 0
+  right: 0
+  width: 20vw
+  min-height: 100vh
+  /* bottom: 0 */
+  background: $dark-grey
+  z-index: 11
+  display: none
+  ul.items
+    margin: 20px
+    overflow: hidden
+    li
+      display: block
+      width: 100%
+      float: left
+      position: relative
+      margin: 0
+      padding: 10pt
+      a
+        color: $white
+        padding-left: 44px
+    img
+      max-width: 40px
+      border-radius: $radis-mini
+      position: absolute
+      left: 0
+      top: 9px
+  .price
+    margin: 20px
+
+  .close-cart-sidebar
+    position: absolute
+    top: 28px
+    right: 25px
+    cursor: pointer
+    img
+      max-width: 20px
+  h2
+    color: $white
+    margin: 15px 40px 15px 25px
+  .btn.red-btn
+    border-radius: 0
+    position: absolute
+    bottom: 0
+    left: 0
+    right: 0
+    margin: 0
