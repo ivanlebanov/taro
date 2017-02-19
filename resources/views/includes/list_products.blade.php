@@ -23,6 +23,7 @@
                 <p>Quantity: {{$quantities[$product['p_id']]}} </p>
               @endif
               <div class="price">
+              
               @if($product['p_discount_active'] == 1)
                 <strike>£{{$product['p_price']}}</strike> £{{$product['p_discount_price']}}
               @else

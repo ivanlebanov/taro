@@ -1,6 +1,9 @@
 function add_to_cart(url) {
   makeAjaxCall("POST", url, {} , true);
 }
+function add_to_cart_single(url, quantity) {
+  makeAjaxCall("POST", url, {quantity:quantity} , true);
+}
 function remove_from_cart(url, elem) {
   makeAjaxCall("DELETE", url, {} , true);
   elem.remove();
@@ -134,4 +137,8 @@ $('.compare_delete').on('click', function(){
 
 $('.add_to_cart').on('click', function(){
   add_to_cart($(this).data('url'));
+});
+
+$('.add_to_cart_single').on('click', function(){
+  add_to_cart_single($(this).data('url'), $("#quantity").val());
 });

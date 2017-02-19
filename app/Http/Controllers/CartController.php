@@ -11,6 +11,9 @@ class CartController extends Controller
 
   public function add(Request $request, $id)
   {
+    $inputs = $request->input();
+    if(!isset($inputs['quantity']))
+      $inputs['quantity'] = 1;
     $cart = json_decode(Cookie::get('cart'));
     $cartData = array();
 
@@ -20,9 +23,9 @@ class CartController extends Controller
     }else{
 
       if( property_exists($cart, $id) )
-        $cart->$id = $cart->$id + 1;
+        $cart->$id = $cart->$id + $inputs['quantity'];
       else
-        $cart->$id = 1;
+        $cart->$id = $inputs['quantity'];
 
       $cartData = json_encode($cart);
     }
