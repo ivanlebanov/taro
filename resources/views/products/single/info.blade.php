@@ -22,6 +22,9 @@
 
     </ul>
     @endif
+    @if($product['p_stock'] == "" || $product['p_stock'] == 0 )
+    <p>Out of stock</p>
+    @endif
     <div class="price">
       @if($product['p_discount_active'] == 1)
         <strike>£{{$product['p_price']}}</strike> £{{$product['p_discount_price']}}

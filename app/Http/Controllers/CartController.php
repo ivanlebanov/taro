@@ -16,9 +16,25 @@ class CartController extends Controller
       $inputs['quantity'] = 1;
     $cart = json_decode(Cookie::get('cart'));
     $cartData = array();
+    // validation if the product is in stock
+    $product = Product::where('p_id', $id)->first();
+
+    if($product['p_stock'] == "" || $product['p_stock'] < $inputs['quantity']){
+      return error_msg('There is not enough stock');
+    }else{
+      $product->p_id = $id;
+
+      $p_stock = $product->p_stock - $inputs['quantity'];
+      $p_sales = $product->p_sales + $inputs['quantity'];
+      $product->update(array('p_stock' => $p_stock, 'p_sales' => $p_sales));
+    }
+
+    // validation if the exceeds maximum number of items
     $cart_quantity = $this->getCartQuantity($cart);
     if($cart_quantity + $inputs['quantity'] > 50)
       return error_msg('Maximum items in the cart is 50');
+
+
     if(!$cart){
       $cartData[$id] = 1;
       $cartData = json_encode($cartData);

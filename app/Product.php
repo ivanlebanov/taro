@@ -12,6 +12,7 @@ class Product extends Model
    * @var string
    */
   protected $table = 'product';
+  protected $primaryKey = 'p_id';
+  protected $fillable = array('p_stock', 'p_sales');
 
-  
 }
