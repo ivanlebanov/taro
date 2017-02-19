@@ -45,7 +45,7 @@ class CartController extends Controller
     // validation check for availability
     if($product['p_stock'] == "" || $product['p_stock'] < $quantity)
       return error_msg('There is not enough stock');
-      
+
     // validation if the exceeds maximum number of items
     $cart_quantity = $this->getCartQuantity($cart);
     if($cart_quantity + $inputs['quantity'] > 50)
@@ -69,6 +69,51 @@ class CartController extends Controller
 
     // success message in json format for the UI
     $status = success_msg('Product successfully added to the bag');
+
+    return $status;
+
+  }
+
+  public function update(Request $request, $id)
+  {
+    $inputs = $request->input();
+    if(!isset($inputs['quantity']))
+      $inputs['quantity'] = 1;
+    $cart = json_decode(Cookie::get('cart'));
+    $cartData = array();
+    // validation if the product is in stock
+    $product = Product::where('p_id', $id)->first();
+
+    $quantity =  $inputs['quantity'];
+
+    // validation check for availability
+    if($product['p_stock'] == "" || $product['p_stock'] < $quantity)
+      return error_msg('There is not enough stock');
+
+    // validation if the exceeds maximum number of items
+    $cart_quantity = $this->getCartQuantity($cart);
+    if($cart_quantity + $inputs['quantity'] > 50)
+      return error_msg('Maximum items in the cart is 50');
+
+    if($inputs['quantity'] == 0)
+      return error_msg('If you want to remove the product - please click the remove button');
+
+    if(!$cart){
+      $cartData[$id] = 1;
+      $cartData = json_encode($cartData);
+    }else{
+
+      if( property_exists($cart, $id) )
+        $cart->$id = $inputs['quantity'];
+
+
+      $cartData = json_encode($cart);
+    }
+
+    Cookie::queue('cart', $cartData, 600000);
+
+    // success message in json format for the UI
+    $status = success_msg('Product quantity successfully updated');
 
     return $status;
 

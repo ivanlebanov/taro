@@ -25,6 +25,7 @@ Route::group(['middleware' => 'web'], function() {
   Route::get('/cart',['as' => 'cart.get', 'uses' => 'CartController@getCartPage']);
   Route::get('/cart/contents', ['as' => 'cart.getcontents', 'uses' => 'CartController@getCartContents']);
   Route::post('/product/{id}', ['as' => 'cart.add', 'uses' => 'CartController@add']);
+  Route::put('/product/{id}', ['as' => 'cart.update', 'uses' => 'CartController@update']);
   Route::delete('/product/{id}', ['as' => 'cart.delete', 'uses' => 'CartController@delete']);
 
   // Checkout

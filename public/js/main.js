@@ -4,6 +4,32 @@ function add_to_cart(url) {
 function add_to_cart_single(url, quantity) {
   makeAjaxCall("POST", url, {quantity:quantity} , true);
 }
+function update_cart(url, quantity, increase, elem, button, second_button) {
+  $.ajax({
+      type: "PUT",
+      url: url,
+      success: function(data){
+        data = JSON.parse(data);
+        showErrorNotification(data.status, data.message);
+        if(data.status == 'success'){
+            elem.text(quantity);
+            if(increase === true){
+              $(button).data("qty", quantity + 1);
+              $(second_button).data("qty", quantity - 1);
+            }else{
+
+              $(button).data("qty", quantity + 1);
+              $(second_button).data("qty", quantity - 1);
+            }
+
+        }
+      },
+      data: {quantity:quantity},
+      headers: {
+        'X-CSRF-TOKEN': window.Laravel.csrfToken
+      }
+  });
+}
 function remove_from_cart(url, elem) {
   makeAjaxCall("DELETE", url, {} , true);
   elem.remove();
@@ -99,6 +125,20 @@ function showPopup(url, url2){
   });
 }
 
+function changeTotal(url, elem) {
+
+  $.ajax({
+      type: "GET",
+      url: url,
+      async: false,
+      success: function(data){
+        data = JSON.parse(data);
+        console.log(data.total);
+        $('#cart-total').html(data.total);
+      }
+    });
+}
+
 function showCartContents(url){
   $.ajax({
       type: "GET",
@@ -145,7 +185,6 @@ function showErrorNotification(status, message){
   notification.show();
 }
 function changeImagePopup(src, elem) {
-
   $('#gallery-popup .item').css('background-image', 'url(' + src + ")");
   $('.gallery-poup-links li').removeClass('active');
   elem.addClass('active');
@@ -211,4 +250,22 @@ $('.overlay').on('click', function(){
 });
 $('.add_to_cart_single').on('click', function(){
   add_to_cart_single($(this).data('url'), $("#quantity").val());
+});
+$('.qty-increase').on('click', function(e){
+  e.preventDefault();
+  update_cart($(this).data('url'), $(this).data('qty'),true,
+  $('#prod-' + $(this).data('id')), $(this), $(this).closest('.col-md-3').find('.qty-decrease'));
+  var cart_url = $(this).data('url-cart');
+  setTimeout(function(){
+    changeTotal(cart_url , $('#cart-total'));
+  }, 1000);
+});
+$('.qty-decrease').on('click', function(e){
+  e.preventDefault();
+  update_cart($(this).data('url'), $(this).data('qty'),false,
+   $('#prod-' + $(this).data('id')), $(this).closest('.col-md-3').find('.qty-increase'), $(this));
+   var cart_url = $(this).data('url-cart');
+   setTimeout(function(){
+     changeTotal(cart_url , $('#cart-total'));
+   }, 1000);
 });

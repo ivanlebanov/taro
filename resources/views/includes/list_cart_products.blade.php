@@ -22,7 +22,17 @@
 
             </ul>
             @endif
-            <p>Quantity: {{$cart->$product['p_id']}} </p>
+            <p>Quantity:
+              <a href="#" data-url="{{route('cart.update', ['id' => $product['p_id'] ])}}"
+                 data-qty="{{$cart->$product['p_id'] - 1}}" data-id="{{$product['p_id']}}"
+                 data-url-cart="{{route('cart.getcontents')}}"
+                 class="btn red-btn qty-btn qty-decrease"> - </a>
+              <span class="qty" id="prod-{{$product['p_id']}}">{{$cart->$product['p_id']}}</span>
+              <a href="#" data-url="{{route('cart.update', ['id' => $product['p_id'] ])}}"
+                 data-qty="{{$cart->$product['p_id'] + 1}}" data-id="{{$product['p_id']}}"
+                 data-url-cart="{{route('cart.getcontents')}}"
+                 class="btn red-btn qty-btn qty-increase"> + </a>
+             </p>
             <div class="price">
               @if($product['p_discount_active'] == 1)
                 <strike>£{{$product['p_price']}}</strike> £{{$product['p_discount_price']}}

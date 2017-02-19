@@ -6,7 +6,7 @@
   <div class="row">
     <div class="container">
       <div class="col-md-8">
-        <h1>Bag (£{{$total}})</h1>
+        <h1>Bag (£<span id="cart-total">{{$total}}</span>)</h1>
       </div>
       <div class="col-md-4">
         <a href="{{ route('checkout.get')}}" class="btn red-btn big-btn procced-btn">Proceed</a>
