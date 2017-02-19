@@ -9,6 +9,15 @@
         @include('includes.compare_products', [ 'products' => $products, 'title' => 'Comparing products' ])
 
   @else
-    @include('products.no_products')
+
+  <div class="container">
+    <div class="col-md-5">
+      <div class="panel">
+        <h2>Compare</h2>
+        <p>No products added for comparison.</p>
+      </div>
+    </div>
+  </div>
+
   @endif
 @endsection

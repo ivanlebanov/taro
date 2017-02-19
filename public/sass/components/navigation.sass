@@ -24,9 +24,14 @@
     display: block
     float: right
     padding: 17px 0px
+    & > li:hover
+      ul
+        display: block
+
     li
       display: inline-block
       margin: 10pt
+      position: relative
       img
         position: absolute
         left: -5px
@@ -40,6 +45,21 @@
         display: block
         position: relative
         padding-left: 30px
+    .dropdown-list
+      position: absolute
+      background: $white
+      width: 100%
+      top: 21px
+      padding: 0
+      display: none
+      border-bottom-left-radius: $radius
+      border-bottom-right-radius: $radius
+      li
+        display: block
+        float: none
+        a
+          padding: 0
+          padding-left: 17px
   .suggestions
     position: absolute
     top: 78px

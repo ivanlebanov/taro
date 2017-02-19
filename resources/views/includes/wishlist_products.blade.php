@@ -12,7 +12,6 @@
           </a>
           <div class="product-list-body">
             <h4>{{$product['p_name']}}</h4>
-            <p>Description: {{$product['p_description']}}</p>
             <?php $product['p_features'] = explode('|' , $product['p_features']); ?>
             @if(count($product['p_features']) > 0)
             <ul class="feature-list">
@@ -32,8 +31,8 @@
           </div>
 
           <div class="product-list-footer compare-footer">
-            <button data-item-id='{{$product['p_id']}}' type="button" class="btn grey-btn compare_delete"
-            data-url="{{route('compare.delete')}}">remove</button>
+            <button data-item-id='{{$product['p_id']}}' type="button" class="btn grey-btn wishlist_delete"
+            data-url="{{route('wishlist.delete')}}">remove</button>
             <button data-url="{{ route('cart.add', ['id' => $product['p_id'] ])}}"
             data-url2="{{route('product.getData', ['id' => $product['p_id'] ])}}" type="button" class="btn red-btn show-popup">quick buy</button>
           </div>

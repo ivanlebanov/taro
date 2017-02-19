@@ -30,14 +30,23 @@
       @endif
     </div>
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-2">
+        <h3>Quantity:</h3>
+      </div>
+      <div class="col-md-10">
         <div class="select-style">
           {{ Form::selectRange('quantity', 1, 10, null, ['class' => 'field', 'id' =>"quantity"]) }}
         </div>
       </div>
+    </div>
+    <div class="row">
       <div class="col-md-6">
         <button type="button" class="btn big-btn red-btn add_to_cart_single"
                 data-url="{{ route('cart.add', ['id' => $product['p_id'] ])}}">Buy now</button>
+      </div>
+      <div class="col-md-6">
+        <a href="#" class="btn link-btn add_to_wishlist" data-item-id="{{$product['p_id']}}"
+                data-url="{{ route('wishlist.add')}}">Add to wishlist</a>
       </div>
     </div>
 

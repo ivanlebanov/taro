@@ -56,6 +56,18 @@
                       <img src="{{asset('img/profile.png')}}" alt="user profile icon">
                       User account
                     </a>
+                    <ul class="dropdown-list">
+                      <li>
+                        <a href="{{ route('compare.get') }}">
+                          Compare
+                        </a>
+                      </li>
+                      <li>
+                        <a href="{{ route('wishlist.get') }}">
+                          Wishlist
+                        </a>
+                      </li>
+                    </ul>
                   </li>
                 @endif
                 <!-- link to the bag -->

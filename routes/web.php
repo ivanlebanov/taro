@@ -30,10 +30,17 @@ Route::group(['middleware' => 'web'], function() {
   Route::get('/checkout', ['as' => 'checkout.get', 'uses' => 'CheckoutController@getCheckoutPage']);
   Route::post('/checkout', ['as' => 'checkout.post', 'uses' => 'CheckoutController@placeOrder']);
   Route::get('/order_confirmed/{id}', ['as' => 'checkout.confirmed', 'uses' => 'CheckoutController@orderConfirmed']);
+
   // compare
   Route::post('/compare',['as' => 'compare.add', 'uses' => 'CompareController@add']);
   Route::delete('/compare',['as' => 'compare.delete', 'uses' => 'CompareController@remove']);
   Route::get('/compare',['as' => 'compare.get', 'uses' => 'CompareController@get']);
+
+  // wishlist
+  Route::post('/wishlist',['as' => 'wishlist.add', 'uses' => 'WishlistController@add']);
+  Route::delete('/wishlist',['as' => 'wishlist.delete', 'uses' => 'WishlistController@remove']);
+  Route::get('/wishlist',['as' => 'wishlist.get', 'uses' => 'WishlistController@get']);
+
   //Basic authentication
   Auth::routes();
 

@@ -134,6 +134,15 @@ $('.show-popup').on('click', function(){
 $('.compare').on('click', function(){
   compare($(this).data('item-id'), $(this).data('url'));
 });
+
+$('.add_to_wishlist').on('click', function(e){
+  e.preventDefault();
+  compare($(this).data('item-id'), $(this).data('url'));
+});
+
+$('.wishlist_delete').on('click', function(){
+  compare_delete($(this).data('item-id'), $(this).data('url'), $(this).closest('.col-md-3 '));
+});
 $('.compare_delete').on('click', function(){
   compare_delete($(this).data('item-id'), $(this).data('url'), $(this).closest('.col-md-3 '));
 });
