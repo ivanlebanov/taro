@@ -30,9 +30,10 @@ class SearchController extends Controller
   public function subSearch($newString)
   {
     $data['products'] = Product::where('p_name', 'LIKE', $newString)->orwhere('p_name', 'LIKE', $newString)->get()->toArray();
-
-    return ( empty($data['products']) ) ? $this->subSearch(substr($newString, 0, -2).'%') : $data['products'];
-
+    if(trim($newString) != "%%")
+      return ( empty($data['products']) ) ? $this->subSearch(substr($newString, 0, -2).'%') : $data['products'];
+    else
+      return [];
   }
 
 
