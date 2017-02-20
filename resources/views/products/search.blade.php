@@ -5,9 +5,9 @@
 @section('content')
   @if(count($products) > 0)
     @if($exactmatch)
-      @include('includes.list_products', [ 'products' => $products, 'title' => 'Your search for: ' . $phrase ])
+      @include('includes.list_products', [ 'products' => $products, 'title' => 'Your search for "' . $phrase . '" returned ' . count($products) . ' results:' ])
     @else
-      @include('includes.list_products', [ 'products' => $products, 'title' => "We didn't find an exact match for: " . $phrase  . ". Products you may like:"])
+      @include('includes.list_products', [ 'products' => $products, 'title' => "We didn't find an exact match for  " . $phrase  . ". Products you may like:"])
     @endif
   @else
     <div class="container">
