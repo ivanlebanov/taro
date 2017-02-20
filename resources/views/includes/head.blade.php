@@ -32,7 +32,7 @@
             </div>
             <!-- Search bar -->
             <div class="col-md-5">
-              {{ Form::open(['route' => 'search.phrase'])}}
+              {{ Form::open(['route' => 'search.phrase', 'method' => 'GET'])}}
                 {{ Form::text('phrase', null, ['placeholder' => 'Search', 'id' => 'search', 'autocomplete' => 'off' ,'data-url' => route('search.results') ]) }}
                 {{ Form::submit('', ['class' => 'red-search-icon']) }}
               {{ Form::close()}}
