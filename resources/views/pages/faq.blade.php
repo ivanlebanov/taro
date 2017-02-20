@@ -17,7 +17,7 @@
         </div>
         <div class="panel">
             <img src="{{asset('img/arrow_down.png')}}" alt="arrow" class="faq_arrow"/>
-            <h2>How do I place and order?</h2>
+            <h2>How do I place an order?</h2>
             <p>This is the second FAQ entry</p>
         </div>
         <div class="panel">
