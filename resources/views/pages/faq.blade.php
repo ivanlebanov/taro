@@ -12,17 +12,17 @@
         -->
         <div class="panel">
             <img src="{{asset('img/arrow_down.png')}}" alt="arrow" class="faq_arrow"/>
-            <h2>Title 1</h2>
+            <h2>What is Taro?</h2>
             <p>This is the first FAQ entry</p>
         </div>
         <div class="panel">
             <img src="{{asset('img/arrow_down.png')}}" alt="arrow" class="faq_arrow"/>
-            <h2>Title 2</h2>
+            <h2>How do I place and order?</h2>
             <p>This is the second FAQ entry</p>
         </div>
         <div class="panel">
             <img src="{{asset('img/arrow_down.png')}}" alt="arrow" class="faq_arrow"/>
-            <h2>Title 3</h2>
+            <h2>What is your returns policy?</h2>
             <p>This is the third FAQ entry</p>
         </div>
         <div class="panel">
