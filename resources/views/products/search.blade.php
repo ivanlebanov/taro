@@ -14,7 +14,7 @@
       <div class="col-md-7">
         <div class="panel">
           <h2>Your search for: {{$phrase}}</h2>
-          <p>Nothing found.</p>
+          <p>Nothing found. Why not check out some <u><a href="../products/Laptops">Laptops?</a></u></p>
         </div>
       </div>
     </div>
