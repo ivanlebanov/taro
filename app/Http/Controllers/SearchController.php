@@ -15,8 +15,25 @@ class SearchController extends Controller
     $data['phrase'] = $input['phrase'];
     $data['products'] = Product::where('p_id', 'LIKE', $search)->orwhere('p_name', 'LIKE', $search)->get()->toArray();
 
+    if (empty($data['products'])) {
+        $data['products'] = $this->subSearch($search);
+    }
+
     return view('products.search', $data);
   }
+
+  public function subSearch($newString)
+  {
+    if (empty($data['products'] = Product::where('p_name', 'LIKE', $newString)->
+    orwhere('p_name', 'LIKE', $newString)->get()->toArray())) {
+    return $this->subSearch(substr($newString, 0, -2).'%');
+  }else{
+      return Product::where('p_name', 'LIKE', $newString)->
+      orwhere('p_name', 'LIKE', $newString)->get()->toArray();
+    }
+  }
+
+
 
   public function searchResults(Request $request)
   {
