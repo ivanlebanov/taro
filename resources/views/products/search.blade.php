@@ -4,7 +4,11 @@
 
 @section('content')
   @if(count($products) > 0)
-    @include('includes.list_products', [ 'products' => $products, 'title' => 'Your search for: ' . $phrase ])
+    @if($exactmatch)
+      @include('includes.list_products', [ 'products' => $products, 'title' => 'Your search for: ' . $phrase ])
+    @else
+      @include('includes.list_products', [ 'products' => $products, 'title' => "We didn't find an exact match for: " . $phrase  . ". Products you may like:"])
+    @endif
   @else
     <div class="container">
       <div class="col-md-7">

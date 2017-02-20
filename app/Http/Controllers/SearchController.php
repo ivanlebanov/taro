@@ -4,33 +4,35 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product as Product;
+use App\Http\Requests\SearchRequest;
 
 class SearchController extends Controller
 {
 
-  public function search(Request $request)
+  public function search(SearchRequest $request)
   {
     $input = $request->input();
+    $data['exactmatch'] = true;
     $search = '%'.$input['phrase'].'%';
     $data['phrase'] = $input['phrase'];
     $data['products'] = Product::where('p_id', 'LIKE', $search)->orwhere('p_name', 'LIKE', $search)->get()->toArray();
 
-    if (empty($data['products'])) {
-        $data['products'] = $this->subSearch($search);
+    if (empty($data['products'])){
+      $data['products'] = $this->subSearch($search);
+      $data['exactmatch'] = false;
     }
 
+
     return view('products.search', $data);
+
   }
 
   public function subSearch($newString)
   {
-    if (empty($data['products'] = Product::where('p_name', 'LIKE', $newString)->
-    orwhere('p_name', 'LIKE', $newString)->get()->toArray())) {
-    return $this->subSearch(substr($newString, 0, -2).'%');
-  }else{
-      return Product::where('p_name', 'LIKE', $newString)->
-      orwhere('p_name', 'LIKE', $newString)->get()->toArray();
-    }
+    $data['products'] = Product::where('p_name', 'LIKE', $newString)->orwhere('p_name', 'LIKE', $newString)->get()->toArray();
+
+    return ( empty($data['products']) ) ? $this->subSearch(substr($newString, 0, -2).'%') : $data['products'];
+
   }
 
 
