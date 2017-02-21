@@ -16,13 +16,30 @@ class ProductController extends Controller
   * @param  string  $category - the name of the category
   * @return View
   */
-  public function getCategoryPage($category)
+  public function getCategoryPage(Request $request, $category)
   {
+    $input = $request->input();
+    if(!isset($input['filter']))
+      $input['filter'] = null;
     // current category
     $data['category'] = Category::where('pc_name', $category)->first();
+
     $category_id = $data['category']['attributes']['pc_id'];
-    // latest product for initial page load
-    $data['latest_products'] = Product::where('category_id', $category_id)->orderBy('updated_at', 'desc')->take(4)->get();
+    // latest product for initial page load depending on the filter
+    switch ($input['filter']) {
+      case 'alphabetically':
+        $data['latest_products'] = Product::where('category_id', $category_id)->orderBy('p_name', 'asc')->take(2)->get();
+        break;
+      case 'best_sellers':
+        $data['latest_products'] = Product::where('category_id', $category_id)->orderBy('p_sales', 'desc')->take(2)->get();
+        break;
+      case 'high_low':
+        $data['latest_products'] = Product::where('category_id', $category_id)->orderBy('p_price', 'desc')->take(2)->get();
+        break;
+      default:
+        $data['latest_products'] = Product::where('category_id', $category_id)->orderBy('p_name', 'asc')->take(2)->get();
+        break;
+    }
 
     return view('products.category', $data);
   }
@@ -55,7 +72,7 @@ class ProductController extends Controller
   {
     $product = Product::where('p_id', $id)->first();
     $product['gallery'] = ProductImage::where('pi_product_id', $id)->get()->all();
-    
+
     return json_encode($product);
   }
 

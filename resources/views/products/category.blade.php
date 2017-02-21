@@ -6,9 +6,11 @@
   <!-- displaying latest products in the category using the template for listing products -->
   @if(count($latest_products) > 0)
     <div class="container">
-      @include('products.sidebar')
-      <div class="col-md-9">
-        @include('includes.list_products', [ 'products' => $latest_products, 'title' => $category['pc_name'], 'columns' => '4'])
+        @include('includes.list_products', [ 'products' => $latest_products, 'title' => $category['pc_name'], 'extra_button' => true])
+    </div>
+    <div class="row">
+      <div class="container load_more">
+        <button type="button" id="load_more" class="btn red-btn">load more</button>
       </div>
     </div>
   @else

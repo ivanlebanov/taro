@@ -1,6 +1,11 @@
 // main: ../styles.sass
 @import ../variables
-
+.load_more
+  text-align: center
+  .btn.red-btn
+    float: none
+    display: inline-block
+    margin-bottom: 50px
 .panel
   background: $white
   padding: 35px 25px
@@ -10,6 +15,9 @@
 .product-list
   overflow: hidden
   margin: 20px 0 40px
+  &.category-list
+    h3
+      margin-top: 28px
   p
     display: block
     margin-bottom: 20px
