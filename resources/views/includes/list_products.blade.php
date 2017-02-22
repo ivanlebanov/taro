@@ -1,27 +1,28 @@
 <section class="product-list @if(isset($extra_button)) category-list @endif">
   <div class="row">
-    <div class="col-md-9">
-      <h3>{{$title}}</h3>
-    </div>
-    @if(isset($extra_button))
-      <div class="col-md-3">
-        {{ Form::open(['route' => array('products.category','category' => $category['pc_name'] ),  'method' => 'GET'])}}
-          <div class="select-style">
-            <select class="extra_button" name="filter" onchange="this.form.submit()">
-              <option @if(isset($_GET['filter']) && $_GET['filter'] == "alphabetically" ) selected="selected" @endif
-              value="alphabetically">Alphabetically</option>
-              <option @if(isset($_GET['filter']) && $_GET['filter'] == "best_sellers" ) selected="selected" @endif
-              value="best_sellers">Best sellers</option>
-              <option @if(isset($_GET['filter']) && $_GET['filter'] == "high_low" ) selected="selected" @endif 
-              value="high_low">Price - high to low</option>
-            </select>
-          </div>
-        {{ Form::close() }}
+    <div class="container">
+      <div class="col-md-9">
+        <h3>@if(isset($title)){{$title}} @endif</h3>
       </div>
+      @if(isset($extra_button))
+        <div class="col-md-3">
+          {{ Form::open(['route' => array('products.category','category' => $category['pc_name'] ),  'method' => 'GET'])}}
+            <div class="select-style">
+              <select class="extra_button" name="filter" onchange="this.form.submit()">
+                <option @if(isset($_GET['filter']) && $_GET['filter'] == "alphabetically" ) selected="selected" @endif
+                value="alphabetically">Alphabetically</option>
+                <option @if(isset($_GET['filter']) && $_GET['filter'] == "best_sellers" ) selected="selected" @endif
+                value="best_sellers">Best sellers</option>
+                <option @if(isset($_GET['filter']) && $_GET['filter'] == "high_low" ) selected="selected" @endif
+                value="high_low">Price - high to low</option>
+              </select>
+            </div>
+          {{ Form::close() }}
+        </div>
 
-    @endif
+      @endif
+    </div>
   </div>
-
   @if(!isset($columns))
   <div class="container">
   @endif

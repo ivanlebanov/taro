@@ -133,7 +133,7 @@ function changeTotal(url, elem) {
       async: false,
       success: function(data){
         data = JSON.parse(data);
-        console.log(data.total);
+
         $('#cart-total').html(data.total);
       }
     });
@@ -145,7 +145,7 @@ function showCartContents(url){
       url: url,
       success: function(data){
         data = JSON.parse(data);
-        console.log(data);
+
         $('.cart_sidebar .items').empty();
         if(data.products.length > 0){
           for (var i = 0; i < data.products.length; i++) {
@@ -174,7 +174,33 @@ function showSuggestions(data) {
   }
 
 }
+function loadMore(url, offset, mode) {
+  $.ajax({
+      type: "GET",
+      url: url,
+      data: { "offset": offset, "filter": mode } ,
+      success: function(data){
 
+        if (/^[\],:{}\s]*$/.test(data.replace(/\\["\\\/bfnrtu]/g, '@').
+        replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']').
+        replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
+          data = JSON.parse(data);
+          //the json is ok
+          showErrorNotification(data.status, data.message);
+        }else{
+          $('.load_more_products').append(data);
+          //the json is not ok
+
+        }
+
+
+      },
+      headers: {
+        'X-CSRF-TOKEN': window.Laravel.csrfToken
+      }
+
+      });
+}
 function showErrorNotification(status, message){
   var notification = new NotificationFx({
     message : '<p>'  + message + ' </p>',
@@ -221,6 +247,13 @@ $('.compare').on('click', function(){
 $('.add_to_wishlist').on('click', function(e){
   e.preventDefault();
   compare($(this).data('item-id'), $(this).data('url'));
+});
+$('#load_more').on('click', function(e){
+  e.preventDefault();
+  loadMore($(this).data('url'), $(this).data('offset'), $('.extra_button').val());
+  var newoffset = $(this).data('offset') + 4;
+  $(this).data('offset', newoffset);
+
 });
 
 $('.wishlist_delete').on('click', function(){

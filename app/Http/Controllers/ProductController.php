@@ -28,20 +28,55 @@ class ProductController extends Controller
     // latest product for initial page load depending on the filter
     switch ($input['filter']) {
       case 'alphabetically':
-        $data['latest_products'] = Product::where('category_id', $category_id)->orderBy('p_name', 'asc')->take(2)->get();
+        $data['latest_products'] = Product::where('category_id', $category_id)->orderBy('p_name', 'asc')->take(4)->get();
         break;
       case 'best_sellers':
-        $data['latest_products'] = Product::where('category_id', $category_id)->orderBy('p_sales', 'desc')->take(2)->get();
+        $data['latest_products'] = Product::where('category_id', $category_id)->orderBy('p_sales', 'desc')->take(4)->get();
         break;
       case 'high_low':
-        $data['latest_products'] = Product::where('category_id', $category_id)->orderBy('p_price', 'desc')->take(2)->get();
+        $data['latest_products'] = Product::where('category_id', $category_id)->orderBy('p_price', 'desc')->take(4)->get();
         break;
       default:
-        $data['latest_products'] = Product::where('category_id', $category_id)->orderBy('p_name', 'asc')->take(2)->get();
+        $data['latest_products'] = Product::where('category_id', $category_id)->orderBy('p_name', 'asc')->take(4)->get();
         break;
     }
 
     return view('products.category', $data);
+  }
+
+
+  public function loadMore(Request $request, $category)
+  {
+    $input = $request->input();
+    if(!isset($input['filter']))
+      $input['filter'] = null;
+    // current category
+    $data['category'] = Category::where('pc_name', $category)->first();
+
+    $category_id = $data['category']['attributes']['pc_id'];
+    // latest product for initial page load depending on the filter
+    switch ($input['filter']) {
+      case 'alphabetically':
+        $data['products'] = Product::where('category_id', $category_id)->orderBy('p_name', 'asc')->offset($input['offset'])
+                                          ->take(4)->get();
+        break;
+      case 'best_sellers':
+        $data['products'] = Product::where('category_id', $category_id)->orderBy('p_sales', 'desc')->offset($input['offset'])
+                                          ->take(4)->get();
+        break;
+      case 'high_low':
+        $data['products'] = Product::where('category_id', $category_id)->orderBy('p_price', 'desc')->offset($input['offset'])
+                                          ->take(4)->get();
+        break;
+      default:
+        $data['products'] = Product::where('category_id', $category_id)->orderBy('p_name', 'asc')->offset($input['offset'])
+                                          ->take(4)->get();
+        break;
+    }
+    if(count($data['products']) > 0)
+      return view('includes.list_products', $data);
+    else
+      return error_msg('No more products');
   }
 
   /**
