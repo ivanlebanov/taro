@@ -36,6 +36,9 @@ class ProductController extends Controller
       case 'high_low':
         $data['latest_products'] = Product::where('category_id', $category_id)->orderBy('p_price', 'desc')->take(4)->get();
         break;
+      case 'low_high':
+        $data['latest_products'] = Product::where('category_id', $category_id)->orderBy('p_price', 'asc')->take(4)->get();
+        break;
       default:
         $data['latest_products'] = Product::where('category_id', $category_id)->orderBy('p_name', 'asc')->take(4)->get();
         break;
@@ -66,6 +69,10 @@ class ProductController extends Controller
         break;
       case 'high_low':
         $data['products'] = Product::where('category_id', $category_id)->orderBy('p_price', 'desc')->offset($input['offset'])
+                                          ->take(4)->get();
+        break;
+	  case 'high_low':
+        $data['products'] = Product::where('category_id', $category_id)->orderBy('p_price', 'asc')->offset($input['offset'])
                                           ->take(4)->get();
         break;
       default:

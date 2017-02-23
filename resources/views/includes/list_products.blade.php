@@ -15,6 +15,8 @@
                 value="best_sellers">Best sellers</option>
                 <option @if(isset($_GET['filter']) && $_GET['filter'] == "high_low" ) selected="selected" @endif
                 value="high_low">Price - high to low</option>
+				<option @if(isset($_GET['filter']) && $_GET['filter'] == "low_high" ) selected="selected" @endif
+                value="low_high">Price - low to high</option>
               </select>
             </div>
           {{ Form::close() }}
