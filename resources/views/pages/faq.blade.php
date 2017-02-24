@@ -13,27 +13,35 @@
         <div class="panel">
             <img src="{{asset('img/arrow_down.png')}}" alt="arrow" class="faq_arrow"/>
             <h2>What is Taro?</h2>
-            <p>This is the first FAQ entry</p>
+            <p>TARO is a brand new website that allows you to buy a variety of
+              different technology products. </p>
         </div>
         <div class="panel">
             <img src="{{asset('img/arrow_down.png')}}" alt="arrow" class="faq_arrow"/>
             <h2>How do I place an order?</h2>
-            <p>This is the second FAQ entry</p>
+            <p>To place an order, simply search for an item using the bar above,
+            or use one of the categories if you want to browse for a product. Click quick
+            buy, or if you want more detail, click on the product. If you wish to proceed,
+             click buy and proceed with the purchase.</p>
         </div>
         <div class="panel">
             <img src="{{asset('img/arrow_down.png')}}" alt="arrow" class="faq_arrow"/>
             <h2>What is your returns policy?</h2>
-            <p>This is the third FAQ entry</p>
+            <p>Our returns policy and be found on the
+               <a href=../returns-refunds class="simple_link">
+                 Returns/Refunds</a> page</p>
         </div>
         <div class="panel">
             <img src="{{asset('img/arrow_down.png')}}" alt="arrow" class="faq_arrow"/>
             <h2>Where do you ship to?</h2>
-            <p>This is the fourth FAQ entry</p>
+            <p>We offer courier shipping throught the UK and USA.</p>
         </div>
         <div class="panel">
             <img src="{{asset('img/arrow_down.png')}}" alt="arrow" class="faq_arrow"/>
             <h2>Who do I contact about an order?</h2>
-            <p>This is the fifth FAQ entry</p>
+            <p>If you need to get in touch, visit the
+               <a href=../contact-us class="simple_link">
+                 Contact Us</a> page</p>
         </div>
     </div>
 </div>
