@@ -21,7 +21,8 @@
     $path == "admin.delivery-types.addPage") class="active" @endif>
       <a href="{{ route('admin.delivery_types.get') }}">delivery types</a>
     </li>
-    <li @if($path == "admin.sliders.get") class="active" @endif>
+    <li @if($path == "admin.sliders.get" || $path == "admin.sliders.editPage" ||
+    $path == "admin.sliders.addPage") class="active" @endif>
       <a href="{{ route('admin.sliders.get') }}">sliders</a>
     </li>
   </ul>

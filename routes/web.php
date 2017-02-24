@@ -36,10 +36,17 @@ Route::group(['middleware' => 'web'], function() {
   Route::put('/admin/delivery-types/{id}', ['as' => 'admin.delivery-types.update', 'uses' => 'Admin\AdminDeliveryTypesController@update']);
   Route::post('/admin/delivery-types/', ['as' => 'admin.delivery-types.add', 'uses' => 'Admin\AdminDeliveryTypesController@add']);
 
+  // Admin sliders
+  Route::get('/admin/sliders', ['as' => 'admin.sliders.get', 'uses' => 'Admin\AdminSlidersController@getSliders']);
+  Route::get('/admin/sliders/{id}', ['as' => 'admin.sliders.editPage', 'uses' => 'Admin\AdminSlidersController@editSlider']);
+  Route::get('/admin/slider/', ['as' => 'admin.sliders.addPage', 'uses' => 'Admin\AdminSlidersController@addSlider']);
+  Route::delete('/admin/sliders/{id}', ['as' => 'admin.sliders.delete', 'uses' => 'Admin\AdminSlidersController@delete']);
+  Route::put('/admin/sliders/{id}', ['as' => 'admin.sliders.update', 'uses' => 'Admin\AdminSlidersController@update']);
+  Route::post('/admin/slider/', ['as' => 'admin.sliders.add', 'uses' => 'Admin\AdminSlidersController@add']);
+
 
 
   Route::get('/admin/products', ['as' => 'admin.products.get', 'uses' => 'Admin\AdminProductsController@getProducts']);
-  Route::get('/admin/sliders', ['as' => 'admin.sliders.get', 'uses' => 'Admin\AdminSlidersController@getSliders']);
 
 
   // Products
