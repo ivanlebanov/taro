@@ -12,7 +12,7 @@
 
 <div class="col-md-5">
   <div class="panel">
-    <h2>Add category</h2>
+    <h2>Edit category</h2>
     {{ Form::open([ 'route' => ['admin.categories.update', 'id' =>  $category['pc_id'] ] , 'method' => 'PUT']) }}
       {{ Form::text('pc_name', $category['pc_name'], ['placeholder' => "Category name*"] ) }}
       {{ Form::submit('Save', ['class' => 'btn red-btn']) }}

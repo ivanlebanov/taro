@@ -22,8 +22,13 @@ Route::group(['middleware' => 'web'], function() {
   Route::put('/admin/category/{id}', ['as' => 'admin.categories.update', 'uses' => 'Admin\AdminCategoryController@update']);
   Route::post('/admin/category/', ['as' => 'admin.categories.add', 'uses' => 'Admin\AdminCategoryController@add']);
 
-
+  // Admin Users
   Route::get('/admin/users', ['as' => 'admin.users.get', 'uses' => 'Admin\AdminUsersController@getUsers']);
+  Route::get('/admin/user/{id}', ['as' => 'admin.users.editPage', 'uses' => 'Admin\AdminUsersController@editUser']);
+  Route::delete('/admin/user/{id}', ['as' => 'admin.users.delete', 'uses' => 'Admin\AdminUsersController@delete']);
+  Route::put('/admin/user/{id}', ['as' => 'admin.users.update', 'uses' => 'Admin\AdminUsersController@update']);
+
+
   Route::get('/admin/products', ['as' => 'admin.products.get', 'uses' => 'Admin\AdminProductsController@getProducts']);
   Route::get('/admin/delivery-types', ['as' => 'admin.delivery_types.get', 'uses' => 'Admin\AdminDeliveryTypesController@getDeliveryTypes']);
   Route::get('/admin/sliders', ['as' => 'admin.sliders.get', 'uses' => 'Admin\AdminSlidersController@getSliders']);

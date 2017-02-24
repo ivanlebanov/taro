@@ -13,7 +13,7 @@
     <li @if($path == "admin.categories.get" || $path == "admin.categories.addPage") class="active" @endif>
       <a href="{{ route('admin.categories.get') }}">categories</a>
     </li>
-    <li  @if($path == "admin.users.get") class="active" @endif>
+    <li  @if($path == "admin.users.get" || $path =="admin.users.editPage") class="active" @endif>
       <a href="{{ route('admin.users.get') }}">users</a>
     </li>
     <li @if($path == "admin.delivery_types.get") class="active" @endif>
