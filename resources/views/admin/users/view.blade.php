@@ -22,7 +22,7 @@
                 </a>
               </div>
               <div class="col-md-3">
-                <a href="#"  class="simple_link delete_category"
+                <a href="#"  class="simple_link delete_user"
                   data-url="{{ route('admin.users.delete', ['id' => $user['id']]) }}">
                 delete
                 </a>

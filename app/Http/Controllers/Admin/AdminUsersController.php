@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\User as User;
 use App\Delivery as Delivery;
 use Cookie;
+use App\Http\Requests\AdminEditUserRequest;
 
 class AdminUsersController extends Controller
 {
@@ -33,7 +34,7 @@ class AdminUsersController extends Controller
     return view('admin.users.edit', $data);
   }
 
-  public function update(Request $request, $id)
+  public function update(AdminEditUserRequest $request, $id)
   {
     $inputs = $request->input();
     $user = User::where('id', $id)->first();
@@ -53,4 +54,14 @@ class AdminUsersController extends Controller
     return redirect()->route('admin.users.get')->with('status', $status );
   }
 
+  public function delete($id)
+  {
+    $user = User::where('id', $id)->get()->first();
+    $user->delete();
+
+    $status = success_msg('Successfully deleted the user');
+
+    return $status;
+
+  }
 }

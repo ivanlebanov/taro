@@ -28,9 +28,17 @@ Route::group(['middleware' => 'web'], function() {
   Route::delete('/admin/user/{id}', ['as' => 'admin.users.delete', 'uses' => 'Admin\AdminUsersController@delete']);
   Route::put('/admin/user/{id}', ['as' => 'admin.users.update', 'uses' => 'Admin\AdminUsersController@update']);
 
+  // Admin delivery types
+  Route::get('/admin/delivery-types', ['as' => 'admin.delivery_types.get', 'uses' => 'Admin\AdminDeliveryTypesController@getDeliveryTypes']);
+  Route::get('/admin/delivery-types/{id}', ['as' => 'admin.delivery-types.editPage', 'uses' => 'Admin\AdminDeliveryTypesController@editDeliveryTypes']);
+  Route::get('/admin/delivery-type', ['as' => 'admin.delivery-types.addPage', 'uses' => 'Admin\AdminDeliveryTypesController@addDeliveryTypes']);
+  Route::delete('/admin/delivery-types/{id}', ['as' => 'admin.delivery-types.delete', 'uses' => 'Admin\AdminDeliveryTypesController@delete']);
+  Route::put('/admin/delivery-types/{id}', ['as' => 'admin.delivery-types.update', 'uses' => 'Admin\AdminDeliveryTypesController@update']);
+  Route::post('/admin/delivery-types/', ['as' => 'admin.delivery-types.add', 'uses' => 'Admin\AdminDeliveryTypesController@add']);
+
+
 
   Route::get('/admin/products', ['as' => 'admin.products.get', 'uses' => 'Admin\AdminProductsController@getProducts']);
-  Route::get('/admin/delivery-types', ['as' => 'admin.delivery_types.get', 'uses' => 'Admin\AdminDeliveryTypesController@getDeliveryTypes']);
   Route::get('/admin/sliders', ['as' => 'admin.sliders.get', 'uses' => 'Admin\AdminSlidersController@getSliders']);
 
 

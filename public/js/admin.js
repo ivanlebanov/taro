@@ -31,8 +31,27 @@ function delete_category(url, elem) {
   makeAjaxCall("DELETE", url, null , true);
   elem.remove();
 }
+function delete_delivery_type(url, elem) {
+  makeAjaxCall("DELETE", url, null , true);
+  elem.remove();
+}
+
+function delete_user(url, elem) {
+  makeAjaxCall("DELETE", url, null , true);
+  elem.remove();
+}
 
 $('.delete_category').on('click', function(e){
   e.preventDefault();
   delete_category($(this).data('url'), $(this).closest('li'));
+});
+
+$('.delete_delivery_type').on('click', function(e){
+  e.preventDefault();
+  delete_delivery_type($(this).data('url'), $(this).closest('li'));
+});
+
+$('.delete_user').on('click', function(e){
+  e.preventDefault();
+  delete_user($(this).data('url'), $(this).closest('li'));
 });

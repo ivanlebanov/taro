@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Category as Category;
 use App\Http\Requests\AddCategoryRequest;
-
 use Cookie;
 
 class AdminCategoryController extends Controller
@@ -50,6 +49,7 @@ class AdminCategoryController extends Controller
     return redirect()->route('admin.categories.get')->with('status', $status );
 
   }
+
   public function update(AddCategoryRequest $request, $id)
   {
     $inputs = $request->input();

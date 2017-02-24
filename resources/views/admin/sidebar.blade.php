@@ -10,13 +10,15 @@
     <li @if($path == "admin.products.get") class="active" @endif>
       <a href="{{ route('admin.products.get') }}">products</a>
     </li>
-    <li @if($path == "admin.categories.get" || $path == "admin.categories.addPage") class="active" @endif>
+    <li @if($path == "admin.categories.get" || $path == "admin.categories.addPage"  ||
+    $path == "admin.categories.editPage") class="active" @endif>
       <a href="{{ route('admin.categories.get') }}">categories</a>
     </li>
     <li  @if($path == "admin.users.get" || $path =="admin.users.editPage") class="active" @endif>
       <a href="{{ route('admin.users.get') }}">users</a>
     </li>
-    <li @if($path == "admin.delivery_types.get") class="active" @endif>
+    <li @if($path == "admin.delivery_types.get" || $path == "admin.delivery-types.editPage" ||
+    $path == "admin.delivery-types.addPage") class="active" @endif>
       <a href="{{ route('admin.delivery_types.get') }}">delivery types</a>
     </li>
     <li @if($path == "admin.sliders.get") class="active" @endif>
