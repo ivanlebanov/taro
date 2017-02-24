@@ -25,5 +25,9 @@
     $path == "admin.sliders.addPage") class="active" @endif>
       <a href="{{ route('admin.sliders.get') }}">sliders</a>
     </li>
+    <li @if($path == "admin.companies.get" || $path == "admin.companies.editPage" ||
+    $path == "admin.companies.addPage") class="active" @endif>
+      <a href="{{ route('admin.companies.get') }}">companies</a>
+    </li>
   </ul>
 </div>

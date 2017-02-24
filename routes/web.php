@@ -45,6 +45,15 @@ Route::group(['middleware' => 'web'], function() {
   Route::post('/admin/slider/', ['as' => 'admin.sliders.add', 'uses' => 'Admin\AdminSlidersController@add']);
 
 
+  // Admin companies
+  Route::get('/admin/companies', ['as' => 'admin.companies.get', 'uses' => 'Admin\AdminCompaniesController@getCompanies']);
+  Route::get('/admin/companies/{id}', ['as' => 'admin.companies.editPage', 'uses' => 'Admin\AdminCompaniesController@editCompany']);
+  Route::get('/admin/company/', ['as' => 'admin.companies.addPage', 'uses' => 'Admin\AdminCompaniesController@addCompany']);
+  Route::delete('/admin/companies/{id}', ['as' => 'admin.companies.delete', 'uses' => 'Admin\AdminCompaniesController@delete']);
+  Route::put('/admin/companies/{id}', ['as' => 'admin.companies.update', 'uses' => 'Admin\AdminCompaniesController@update']);
+  Route::post('/admin/company/', ['as' => 'admin.companies.add', 'uses' => 'Admin\AdminCompaniesController@add']);
+
+
 
   Route::get('/admin/products', ['as' => 'admin.products.get', 'uses' => 'Admin\AdminProductsController@getProducts']);
 
