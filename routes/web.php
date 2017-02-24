@@ -14,8 +14,15 @@ Route::group(['middleware' => 'web'], function() {
   // Homepage
   Route::get('/', ['as' => 'index', 'uses' => 'IndexController@index']);
 
-  // Admin
+  // Admin Categories
   Route::get('/admin/categories', ['as' => 'admin.categories.get', 'uses' => 'Admin\AdminCategoryController@getCategories']);
+  Route::get('/admin/category/{id}', ['as' => 'admin.categories.editPage', 'uses' => 'Admin\AdminCategoryController@editCategory']);
+  Route::get('/admin/category/', ['as' => 'admin.categories.addPage', 'uses' => 'Admin\AdminCategoryController@addCategory']);
+  Route::delete('/admin/category/{id}', ['as' => 'admin.categories.delete', 'uses' => 'Admin\AdminCategoryController@delete']);
+  Route::put('/admin/category/{id}', ['as' => 'admin.categories.update', 'uses' => 'Admin\AdminCategoryController@update']);
+  Route::post('/admin/category/', ['as' => 'admin.categories.add', 'uses' => 'Admin\AdminCategoryController@add']);
+
+
   Route::get('/admin/users', ['as' => 'admin.users.get', 'uses' => 'Admin\AdminUsersController@getUsers']);
   Route::get('/admin/products', ['as' => 'admin.products.get', 'uses' => 'Admin\AdminProductsController@getProducts']);
   Route::get('/admin/delivery-types', ['as' => 'admin.delivery_types.get', 'uses' => 'Admin\AdminDeliveryTypesController@getDeliveryTypes']);

@@ -13,5 +13,7 @@ class Category extends Model
    */
   protected $table = 'product_category';
 
+  protected $primaryKey = 'pc_id';
+  protected $fillable = array('pc_name');
 
 }
