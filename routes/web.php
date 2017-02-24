@@ -14,6 +14,14 @@ Route::group(['middleware' => 'web'], function() {
   // Homepage
   Route::get('/', ['as' => 'index', 'uses' => 'IndexController@index']);
 
+  // Admin
+  Route::get('/admin/categories', ['as' => 'admin.categories.get', 'uses' => 'Admin\AdminCategoryController@getCategories']);
+  Route::get('/admin/users', ['as' => 'admin.users.get', 'uses' => 'Admin\AdminUsersController@getUsers']);
+  Route::get('/admin/products', ['as' => 'admin.products.get', 'uses' => 'Admin\AdminProductsController@getProducts']);
+  Route::get('/admin/delivery-types', ['as' => 'admin.delivery_types.get', 'uses' => 'Admin\AdminDeliveryTypesController@getDeliveryTypes']);
+  Route::get('/admin/sliders', ['as' => 'admin.sliders.get', 'uses' => 'Admin\AdminSlidersController@getSliders']);
+
+
   // Products
   Route::get('/products/{category}', ['as' => 'products.category', 'uses' => 'ProductController@getCategoryPage']);
   Route::get('/products/{category}/loadmore', ['as' => 'products.loadmore', 'uses' => 'ProductController@loadMore']);

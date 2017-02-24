@@ -185,11 +185,10 @@ function loadMore(url, offset, mode) {
         replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']').
         replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
           data = JSON.parse(data);
-          //the json is ok
           showErrorNotification(data.status, data.message);
+          $('#load_more').remove();
         }else{
           $('.load_more_products').append(data);
-          //the json is not ok
 
         }
 
