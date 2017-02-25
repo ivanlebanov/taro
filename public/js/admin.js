@@ -8,6 +8,10 @@ function showErrorNotification(status, message){
   notification.show();
 }
 
+$('input, textarea').on("keyup", function() {
+  $(this).removeClass('error');
+});
+
 function makeAjaxCall(method, url, data, showError) {
   $.ajax({
       type: method,
@@ -49,6 +53,10 @@ $('.delete_category').on('click', function(e){
 $('.delete_delivery_type').on('click', function(e){
   e.preventDefault();
   delete_delivery_type($(this).data('url'), $(this).closest('li'));
+});
+$('.delete_image_product').on('click', function(e){
+  e.preventDefault();
+  delete_delivery_type($(this).data('url'), $(this).closest('.row'));
 });
 
 $('.delete_user').on('click', function(e){

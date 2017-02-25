@@ -89,7 +89,7 @@ function showPopup(url, url2){
       success: function(data){
         data = JSON.parse(data);
 
-        $('#gallery-popup').html('<div class="item" style="background-image:url(' + "/img/products/" + data.p_thumb +')"></div>');
+        $('#gallery-popup').html('<div class="item" style="background-image:url('  + data.p_thumb +')"></div>');
         $('#title-popup').html(data.p_name);
         $('#description-popup').html(data.p_description);
         $('#buy-popup').data('item-id', data.p_id);
@@ -103,10 +103,10 @@ function showPopup(url, url2){
         }
         if(data.gallery.length > 0){
           $('.gallery-poup-links').show();
-          $('.gallery-poup-links').append("<li class='active' data-src='/img/products/" + data.p_thumb + "'></li>");
+          $('.gallery-poup-links').append("<li class='active' data-src='" + data.p_thumb + "'></li>");
 
           for (var g = 0; g < data.gallery.length; g++) {
-            $('.gallery-poup-links').append("<li data-src='/img/products/" + data.gallery[g].pi_image + "'></li>");
+            $('.gallery-poup-links').append("<li data-src='" + data.gallery[g].pi_image + "'></li>");
           }
 
         }else{
@@ -150,7 +150,7 @@ function showCartContents(url){
         if(data.products.length > 0){
           for (var i = 0; i < data.products.length; i++) {
             $('.cart_sidebar .items').append("<li><a href='" + data.products[i].url + "'>" +
-            "<img src='/img/products/"+ data.products[i].p_thumb +"'>" +
+            "<img src='"+ data.products[i].p_thumb +"'>" +
             data.cart[data.products[i].p_id] + " * " +  data.products[i].p_name  +
             "</a></li>");
           }
@@ -170,7 +170,7 @@ function showSuggestions(data) {
 
   for (var i = 0; i < data.length; i++) {
     $('.suggestions').append("<li><a href='" + data[i].url + "'>" +
-    "<img src='/img/products/"+ data[i].p_thumb +"'>" +  data[i].p_name  + "</a></li>");
+    "<img src='"+ data[i].p_thumb +"'>" +  data[i].p_name  + "</a></li>");
   }
 
 }

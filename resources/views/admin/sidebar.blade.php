@@ -7,7 +7,8 @@
   <ul class="main-navigation">
     <?php $path = Route::currentRouteName(); ?>
 
-    <li @if($path == "admin.products.get") class="active" @endif>
+    <li @if($path == "admin.products.get" || $path == "admin.products.addPage"  ||
+    $path == "admin.products.editPage") class="active" @endif>
       <a href="{{ route('admin.products.get') }}">products</a>
     </li>
     <li @if($path == "admin.categories.get" || $path == "admin.categories.addPage"  ||
