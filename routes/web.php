@@ -115,7 +115,6 @@ Route::group(['middleware' => 'web'], function() {
   Route::get('/payments',['as' => 'static.payments', 'uses' => 'StaticPagesController@getPaymentPage']);
   Route::get('/customer-support',['as' => 'static.support', 'uses' => 'StaticPagesController@getSupportPage']);
   Route::get('/returns-refunds',['as' => 'static.refunds', 'uses' => 'StaticPagesController@getRefundPage']);
-  Route::get('/404',['as' => '404', 'uses' => 'StaticPagesController@get404']);
 
 
   //Contact us page

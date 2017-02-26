@@ -1,4 +1,4 @@
-@if ( $errors->count() > 0 )
+@if ( isset($errors) &&  $errors->count() > 0 )
   <script type="text/javascript">
     var html_error = 	'<p>The following errors have occurred:</p><ul>';
         var has_error = false;

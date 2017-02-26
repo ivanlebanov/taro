@@ -103,11 +103,29 @@ class CheckoutController extends Controller
     $html .= $products_html;
     $html .= "Those product(s) will be delivered to " . $user['address'] . ", " . $user['town_city'] .
     ", " . $user['country'] . " for " . $user['name'] . ".";
-    $html .= "<h3>Total: " . $total . "</h3>";
+    $html .= "<h3>Total: £" . $total . "</h3>";
     $pdf = \PDF::loadHTML($html)->setPaper('a4', 'landscape')->setWarnings(false)->save('orders/order' . $order->o_hidden . '.pdf');
+
+    $this->sendMail($order, $html);
 
   }
 
+  public function sendMail($order, $content)
+  {
+
+    \Mail::send('emails.send', ['content' => $content], function ($message)
+    {
+
+        $message->from('test@myport.ac.uk', 'TARO team');
+
+        $message->to('test@myport.ac.uk');
+
+
+        //Add a subject
+        $message->subject("Your order");
+
+    });
+  }
   public function getReceipt($id)
   {
     $data['order'] = Order::where('id', $id)->first()['attributes'];
@@ -130,14 +148,14 @@ class CheckoutController extends Controller
     return view('checkout.order_placed', $data);
   }
 
-  public function reacalculateStock($cart, $bought = true)
+  public function reacalculateStock($cart, $bought)
   {
 
     foreach ($cart as $id => $quantity) {
       $product = Product::where('p_id', $id)->first();
       if($product){
-        $p_stock = ($bought) ? $product->p_stock - $quantity : $product->p_stock + $quantity;
-        $p_sales = ($bought) ? $product->p_sales + $quantity : $product->p_sales - $quantity;
+        $p_stock = ($bought === true) ? $product->p_stock - $quantity : $product->p_stock + $quantity;
+        $p_sales = ($bought === true) ? $product->p_sales + $quantity : $product->p_sales - $quantity;
         $product->update(array('p_stock' => $p_stock, 'p_sales' => $p_sales));
       }
 
@@ -150,6 +168,9 @@ class CheckoutController extends Controller
     $order = Order::where('id', $id)->get()->first();
     if($order['attributes']['o_user_id'] != \Auth::user()['attributes']['id'])
       return error_msg('Not allowed to do this');
+    if(strtotime($order['created_at']) > strtotime("-60 minutes"))
+      return error_msg('An hour has passed');
+
     $this->reacalculateStock(json_decode($order['attributes']['o_products_quantities']), false);
 
     $order->delete();
