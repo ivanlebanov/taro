@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title') Add category  @endsection
+@section('title') Edit category  @endsection
 
 @section('content')
 <div class="col-md-9">

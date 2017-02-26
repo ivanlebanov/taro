@@ -63,6 +63,13 @@ Route::group(['middleware' => 'web'], function() {
   Route::post('/admin/product/', ['as' => 'admin.products.add', 'uses' => 'Admin\AdminProductsController@add']);
   Route::delete('/admin/product/image/{id}', ['as' => 'admin.products.deleteImage', 'uses' => 'Admin\AdminProductsController@deleteImage']);
 
+  // Admin orders
+  Route::get('/admin/orders', ['as' => 'admin.orders.get', 'uses' => 'Admin\AdminOrdersController@getOrders']);
+  Route::get('/admin/order/{id}', ['as' => 'admin.orders.editPage', 'uses' => 'Admin\AdminOrdersController@editOrder']);
+  Route::delete('/admin/orders/{id}', ['as' => 'admin.orders.delete', 'uses' => 'Admin\AdminOrdersController@delete']);
+  Route::put('/admin/order/{id}', ['as' => 'admin.orders.update', 'uses' => 'Admin\AdminOrdersController@update']);
+
+
 
   // Products
   Route::get('/products/{category}', ['as' => 'products.category', 'uses' => 'ProductController@getCategoryPage']);
@@ -108,6 +115,8 @@ Route::group(['middleware' => 'web'], function() {
   Route::get('/payments',['as' => 'static.payments', 'uses' => 'StaticPagesController@getPaymentPage']);
   Route::get('/customer-support',['as' => 'static.support', 'uses' => 'StaticPagesController@getSupportPage']);
   Route::get('/returns-refunds',['as' => 'static.refunds', 'uses' => 'StaticPagesController@getRefundPage']);
+  Route::get('/404',['as' => '404', 'uses' => 'StaticPagesController@get404']);
+
 
   //Contact us page
   Route::get('/contact-us',['as' => 'contact', 'uses' => 'ContactsController@getContactPage']);

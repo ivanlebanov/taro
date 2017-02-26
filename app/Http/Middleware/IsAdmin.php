@@ -17,7 +17,7 @@ class IsAdmin
     {
       $user = \Auth::user();
       if (!$user ||  $user['attributes']['is_admin'] != 1 ) {
-          return redirect(route('index'));
+          return redirect(route('404'));
       }
         return $next($request);
     }

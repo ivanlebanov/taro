@@ -15,31 +15,35 @@ class StaticPagesController extends Controller
 {
   public function getDeliveryPage()
   {
-    # code...
+
     return view('pages.delivery');
   }
 
   public function getFAQPage()
   {
-    # code...
+
     return view('pages.faq');
   }
 
   public function getPaymentPage()
   {
-    # code...
+
     return view('pages.payment');
   }
 
   public function getSupportPage()
   {
-    # code...
+
     return view('pages.support');
   }
 
   public function getRefundPage()
   {
-    # code...
+
     return view('pages.refunds');
+  }
+  public function get404()
+  {
+    return view('errors.404');
   }
 }
