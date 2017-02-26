@@ -82,10 +82,12 @@ Route::group(['middleware' => 'web'], function() {
   Route::put('/product/{id}', ['as' => 'cart.update', 'uses' => 'CartController@update']);
   Route::delete('/product/{id}', ['as' => 'cart.delete', 'uses' => 'CartController@delete']);
 
+
   // Checkout
   Route::get('/checkout', ['as' => 'checkout.get', 'uses' => 'CheckoutController@getCheckoutPage']);
   Route::post('/checkout', ['as' => 'checkout.post', 'uses' => 'CheckoutController@placeOrder']);
   Route::get('/order_confirmed/{id}', ['as' => 'checkout.confirmed', 'uses' => 'CheckoutController@orderConfirmed']);
+  Route::get('/receipt/{id}', ['as' => 'checkout.get-receipt', 'uses' => 'CheckoutController@getReceipt']);
 
   // compare
   Route::post('/compare',['as' => 'compare.add', 'uses' => 'CompareController@add']);

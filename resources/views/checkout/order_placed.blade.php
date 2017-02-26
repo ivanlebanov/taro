@@ -10,6 +10,7 @@
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           Nulla egestas massa at nunc sodales, quis tristique ex scelerisque.
           Fusce ullamcorper libero quis finibus molestie. Mauris non congue tellus.</p>
+          <a href="#" data-url="{{ route('checkout.get-receipt', ['id' => $order['id'] ]) }}" class="btn red-btn get-receipt">your receipt</a>
       </div>
     </div>
   </div>

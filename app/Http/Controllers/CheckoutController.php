@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Product as Product;
 use App\Delivery as Delivery;
 use App\Order as Order;
+use App\User as User;
 use App\Http\Controllers\CartController as CartController;
 use Cookie;
 
@@ -64,8 +65,11 @@ class CheckoutController extends Controller
     $order->o_delivery = json_encode($delivery);
     $order->o_address = json_encode($user_info);
     $order->o_user_id = $user_id;
+    $order->o_hidden = $this->generateRandomString();
     $order->o_products_quantities = json_encode($cart);
     $order->save();
+
+    $this->createReceipt($user_id, $delivery, $user_info, $products, $cart, $total, $order);
 
     Cookie::queue('cart', null, 60000);
 
@@ -74,6 +78,43 @@ class CheckoutController extends Controller
 
     return redirect()->route('checkout.confirmed', ['id' => $order->id])->with('status', $status );
 
+  }
+
+  public function createReceipt($user_id, $delivery, $user_info, $products, $cart, $total, $order)
+  {
+
+    $user = User::where('id', $user_id)->first()->toArray();
+    $html = '<h1>Your order #' . $order->id . "</h1>";
+    $html .= "<p>Thanks for shopping at TARO. This is a proof of your order.</p>";
+
+    $products_html = "";
+    $products_html .= "<ul>";
+
+    foreach ($products as $key => $product) {
+      $products_html .= "<li>";
+      $products_html .= $cart->$product['p_id'] . "x" . $product['p_name'] . " - ";
+      $products_html .= ($product['p_discount_active'] == 1) ? "£" . $product['p_price'] . "</strike> £" . $product['p_discount_price']
+      : "£" .$product['p_price'] ;
+
+      $products_html .= "</li>";
+    }
+
+    $products_html .= "</ul>";
+    $html .= $products_html;
+    $html .= "Those product(s) will be delivered to " . $user['address'] . ", " . $user['town_city'] .
+    ", " . $user['country'] . " for " . $user['name'] . ".";
+    $html .= "<h3>Total: " . $total . "</h3>";
+    $pdf = \PDF::loadHTML($html)->setPaper('a4', 'landscape')->setWarnings(false)->save('orders/order' . $order->o_hidden . '.pdf');
+
+  }
+
+  public function getReceipt($id)
+  {
+    $data['order'] = Order::where('id', $id)->first()['attributes'];
+    if($data['order']['o_user_id'] != \Auth::user()['attributes']['id'])
+      return redirect()->back()->with('status', error_msg('Not allowed to see that page') );
+
+    return "/orders/order" . $data['order']['o_hidden'] . ".pdf";
   }
 
   public function orderConfirmed($id)
@@ -94,10 +135,23 @@ class CheckoutController extends Controller
 
     foreach ($cart as $id => $quantity) {
       $product = Product::where('p_id', $id)->first();
-      $p_stock = $product->p_stock - $quantity;
-      $p_sales = $product->p_sales + $quantity;
-      $product->update(array('p_stock' => $p_stock, 'p_sales' => $p_sales));
+      if($product){
+        $p_stock = $product->p_stock - $quantity;
+        $p_sales = $product->p_sales + $quantity;
+        $product->update(array('p_stock' => $p_stock, 'p_sales' => $p_sales));
+      }
+
     }
 
+  }
+
+  public function generateRandomString($length = 10) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
   }
 }

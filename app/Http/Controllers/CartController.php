@@ -99,7 +99,7 @@ class CartController extends Controller
       return error_msg('If you want to remove the product - please click the remove button');
 
     if(!$cart){
-      $cartData[$id] = 1;
+      $cartData[$id] = $inputs['quantity'];
       $cartData = json_encode($cartData);
     }else{
 

@@ -200,6 +200,33 @@ function loadMore(url, offset, mode) {
 
       });
 }
+
+function getReceipt(url) {
+  $.ajax({
+      type: "GET",
+      url: url,
+      success: function(data){
+
+        if (/^[\],:{}\s]*$/.test(data.replace(/\\["\\\/bfnrtu]/g, '@').
+        replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']').
+        replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
+          data = JSON.parse(data);
+          showErrorNotification(data.status, data.message);
+
+        }else{
+          location.replace(data);
+
+
+        }
+
+
+      },
+      headers: {
+        'X-CSRF-TOKEN': window.Laravel.csrfToken
+      }
+
+      });
+}
 function showErrorNotification(status, message){
   var notification = new NotificationFx({
     message : '<p>'  + message + ' </p>',
@@ -282,6 +309,9 @@ $('.overlay').on('click', function(){
 });
 $('.add_to_cart_single').on('click', function(){
   add_to_cart_single($(this).data('url'), $("#quantity").val());
+});
+$('.get-receipt').on('click', function(){
+  getReceipt($(this).data('url'));
 });
 $('.qty-increase').on('click', function(e){
   e.preventDefault();
