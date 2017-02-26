@@ -55,7 +55,7 @@ class CheckoutController extends Controller
     $delivery = Delivery::where('id', $user['delivery_type_id'])->first()['attributes'];
     $total = (new CartController)->calculateTotal($products, $cart) + $delivery['dt_price'];
 
-    $this->reacalculateStock($cart);
+    $this->reacalculateStock($cart, true);
 
     // creating a new order
     $order = new Order;
@@ -130,18 +130,31 @@ class CheckoutController extends Controller
     return view('checkout.order_placed', $data);
   }
 
-  public function reacalculateStock($cart)
+  public function reacalculateStock($cart, $bought = true)
   {
 
     foreach ($cart as $id => $quantity) {
       $product = Product::where('p_id', $id)->first();
       if($product){
-        $p_stock = $product->p_stock - $quantity;
-        $p_sales = $product->p_sales + $quantity;
+        $p_stock = ($bought) ? $product->p_stock - $quantity : $product->p_stock + $quantity;
+        $p_sales = ($bought) ? $product->p_sales + $quantity : $product->p_sales - $quantity;
         $product->update(array('p_stock' => $p_stock, 'p_sales' => $p_sales));
       }
 
     }
+
+  }
+
+  public function declineOrder($id)
+  {
+    $order = Order::where('id', $id)->get()->first();
+    if($order['attributes']['o_user_id'] != \Auth::user()['attributes']['id'])
+      return error_msg('Not allowed to do this');
+    $this->reacalculateStock(json_decode($order['attributes']['o_products_quantities']), false);
+
+    $order->delete();
+
+    return success_msg('The order has been declined');
 
   }
 

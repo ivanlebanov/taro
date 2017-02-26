@@ -128,4 +128,5 @@ Route::group(['middleware' => 'web'], function() {
   Route::put('/user-acount',['as' => 'profile.update', 'uses' => 'UserController@update']);
   Route::post('/user-address',['as' => 'profile.update_address', 'uses' => 'UserController@saveAddress']);
   Route::post('/user-account/delivery',['as' => 'delivery.add', 'uses' => 'UserController@addDelivery']);
+  Route::post('/user-account/decline_order/{id}',['as' => 'user.decline_order', 'uses' => 'CheckoutController@declineOrder']);
 });

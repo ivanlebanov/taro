@@ -4,6 +4,11 @@ function add_to_cart(url) {
 function add_to_cart_single(url, quantity) {
   makeAjaxCall("POST", url, {quantity:quantity} , true);
 }
+function decline_order(url) {
+  makeAjaxCall("POST", url, {} , true);
+  reloadPage(1000);
+}
+
 function update_cart(url, quantity, increase, elem, button, second_button) {
   $.ajax({
       type: "PUT",
@@ -270,6 +275,10 @@ $('.compare').on('click', function(){
   compare($(this).data('item-id'), $(this).data('url'));
 });
 
+$('.decline_order').on('click', function(e){
+  e.preventDefault();
+  decline_order($(this).data('url'));
+});
 $('.add_to_wishlist').on('click', function(e){
   e.preventDefault();
   compare($(this).data('item-id'), $(this).data('url'));

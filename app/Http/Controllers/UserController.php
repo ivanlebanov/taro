@@ -28,14 +28,15 @@ class UserController extends Controller
       $data['personal'] = array_only($user['attributes'], ['name', 'telephone']);
       $data['location'] = array_only($user['attributes'], ['address', 'town_city', 'country', 'postcode']);
       $orders = Order::where('o_user_id', $user->id )->get()->all();
+
       if(count($orders) > 0)
         foreach ($orders as $key => $order)
           foreach ($order['attributes'] as $order_keys => $order_values)
-            $data['orders'][$key][$order_keys] = json_decode($order_values, true);
+            $data['orders'][$key][$order_keys] = ($order_keys != "created_at") ? json_decode($order_values, true) : $order_values;
       else
         $data['orders'] = [];
 
-
+    
       return view('user.profile', $data);
   }
 

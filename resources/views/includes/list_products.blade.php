@@ -23,6 +23,12 @@
         </div>
 
       @endif
+
+      @if(isset($order) && strtotime($order['created_at']) > strtotime("-60 minutes") )
+        <a href="#" data-url="{{ route('user.decline_order', ['id' => $order['id'] ]) }}" class="btn red-btn decline_order">
+          decline order
+        </a>
+      @endif
     </div>
   </div>
   @if(!isset($columns))

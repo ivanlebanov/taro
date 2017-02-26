@@ -5,7 +5,7 @@
 
     @include('includes.list_products', [ 'products' => $order['o_products'],
     'title' => 'Order #' . $order['id'] .' - £' . $order['o_total'],
-    'quantity' => true, 'quantities' => $order['o_products_quantities'] ] )
+    'quantity' => true, 'quantities' => $order['o_products_quantities'], 'order' => $order ] )
 
   @endforeach
 
