@@ -47,5 +47,4 @@
 </div>
 @endsection
 
-<script src="{{ asset('js/faq.js')}}"></script>
 <link rel="stylesheet" href="{{ asset('css/style_rob.css')}}">
