@@ -5,7 +5,7 @@
 @section('content')
 <div class="container">
     <h1>FAQ</h1>
-    <div class="col-md-12">
+    <div class="col-md-12 faq">
         <!--
         In order for the collapsing of Questions to work, all content must be
         within the lastElementChild of its "panel"
@@ -40,11 +40,9 @@
             <img src="{{asset('img/arrow_down.png')}}" alt="arrow" class="faq_arrow"/>
             <h2>Who do I contact about an order?</h2>
             <p>If you need to get in touch, visit the
-               <a href=../contact-us class="simple_link">
+               <a href="{{ route('contact') }}" class="simple_link">
                  Contact Us</a> page</p>
         </div>
     </div>
 </div>
 @endsection
-
-<link rel="stylesheet" href="{{ asset('css/style_rob.css')}}">
