@@ -1,4 +1,6 @@
-The tests in this folder have been written in Python using the Helium API to interact with pages.
+The tests in this folder have been written in Python
+using the Helium API and the underlying selenium web driver
+to interact with pages.
 
 INSTALL
 -------
@@ -16,4 +18,4 @@ To run the tests simply run python from the command
 line with the tests file path as a parameter
 e.g. "python test.py"
 NOTE: when run the tests will cause a browser window to open, this should then
-    automatically close unless a part of the test has failed.
+    automatically close when the test is completed.
