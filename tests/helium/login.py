@@ -9,11 +9,17 @@ def main():
         print("Test failed!")
     kill_browser()
 
+# logs a user in
+# if login fails, execution is halted and a message displayed
 def loginUser(email, password):
     click("Login / Register")
     write(email, into="E-mail")
     write(password, into="Password")
     click("Login")
+    if (not Text("Logout").exists()):
+        print ("Login has failed!")
+        kill_browser()
+        quit()
 
 # loads the given url in chrome and maximizes the window
 def openSite(url):
