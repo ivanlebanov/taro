@@ -22,23 +22,43 @@
 
     </ul>
     @endif
-    @if($product['p_stock'] == "" || $product['p_stock'] == 0 )
-      <p>Out of stock</p>
-    @endif
     <div class="price">
       @if($product['p_discount_active'] == 1)
         <strike>£{{$product['p_price']}}</strike> £{{$product['p_discount_price']}}
       @else
         £{{$product['p_price']}}
       @endif
+	  @if($product['p_stock'] == "" || $product['p_stock'] == 0 )
+		<br>
+		<p style="color:#ffaa00;font-size:70%;text-align:right;">None left in stock!</p>
+	  @else
+        @if($product['p_stock'] > 10)
+          <p style="color:#f85f73;font-size:70%;text-align:right;">10+
+        @else
+          <p style="color:##f85f73;font-size:70%;text-align:right;">{{$product['p_stock']}}
+        @endif
+	    in stock</p>
+      @endif
     </div>
+	@if($product['p_stock'] == "" || $product['p_stock'] == 0 )
+	<div class="row">
+      <div class="col-md-6">
+        <a href="#" class="btn link-btn add_to_wishlist" data-item-id="{{$product['p_id']}}"
+                data-url="{{ route('wishlist.add')}}">Add to wishlist</a>
+      </div>
+    </div>
+	@else
     <div class="row">
       <div class="col-md-2">
         <h3>Quantity:</h3>
       </div>
       <div class="col-md-10">
         <div class="select-style">
+		@if($product['p_stock'] > 10)
           {{ Form::selectRange('quantity', 1, 10, null, ['class' => 'field', 'id' =>"quantity"]) }}
+        @else
+          {{ Form::selectRange('quantity', 1, $product['p_stock'], null, ['class' => 'field', 'id' =>"quantity"]) }}
+        @endif
         </div>
       </div>
     </div>
@@ -52,6 +72,7 @@
                 data-url="{{ route('wishlist.add')}}">Add to wishlist</a>
       </div>
     </div>
+	@endif
     @if($product['p_user_manual_link'] != "")
       <a href="{{asset($product['p_user_manual_link'])}}" class="btn grey-link-btn" target="_blank">User Manual</a>
     @endif
