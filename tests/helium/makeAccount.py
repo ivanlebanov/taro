@@ -14,6 +14,7 @@ def main():
     else:
         print("Test failed!")
         print("Ensure that the database doesnt already contain the test data.")
+    kill_browser()
 
 # loads the given url in chrome and maximizes the window
 def openSite(url):
