@@ -1,5 +1,8 @@
 from helium.api import *
 
+# This test creates a new account on the system. So before running, requires the
+# test user to be manually removed from the database if the test has been run previously.
+
 def main():
     openSite("localhost:8000")
     click("Login / Register")
