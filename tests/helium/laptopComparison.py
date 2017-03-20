@@ -18,6 +18,7 @@ def main():
         print("Test passed!")
     else:
         print("Test failed!")
+    kill_browser()
 
 # loads the given url in chrome and maximizes the window
 def openSite(url):
