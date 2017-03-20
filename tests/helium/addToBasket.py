@@ -3,7 +3,6 @@ from time import sleep
 
 def main():
     openSite("localhost:8000")
-    click("Desktops")
     addProductToBasket("Desktop", "OfficePC by TARO", "10")
     addProductToBasket("Laptops", "Acer Netbook", "10")
     addProductToBasket("Laptops", "Acer White", "10")
