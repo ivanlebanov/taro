@@ -106,7 +106,7 @@ class CheckoutController extends Controller
     $html .= "<h3>Total: £" . $total . "</h3>";
     $pdf = \PDF::loadHTML($html)->setPaper('a4', 'landscape')->setWarnings(false)->save('orders/order' . $order->o_hidden . '.pdf');
 
-    $this->sendMail($order, $html);
+    //$this->sendMail($order, $html);
 
   }
 
@@ -168,7 +168,7 @@ class CheckoutController extends Controller
     $order = Order::where('id', $id)->get()->first();
     if($order['attributes']['o_user_id'] != \Auth::user()['attributes']['id'])
       return error_msg('Not allowed to do this');
-    if(strtotime($order['created_at']) > strtotime("-60 minutes"))
+    if(strtotime($order['created_at']) < strtotime("-60 minutes"))
       return error_msg('An hour has passed');
 
     $this->reacalculateStock(json_decode($order['attributes']['o_products_quantities']), false);
