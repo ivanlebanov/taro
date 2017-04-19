@@ -19,20 +19,19 @@
     <div class="col-md-5">
       <ul>
         <!-- Authentication Links -->
-        @if (Auth::guest())
-          <li>
+        <li class="dropdown">
+          @if (Auth::guest())
             <a href="{{ url('/login') }}">
               <img src="{{asset('img/profile.png')}}" alt="user profile">
               Login / Register
             </a>
-          </li>
-        @else
-        <!-- link to user profile -->
-          <li>
+          @else
+          <!-- link to user profile -->
             <a href="{{ route('profile.get_personal_info') }}">
               <img src="{{asset('img/profile.png')}}" alt="user profile icon">
               User account
             </a>
+          @endif
             <ul class="dropdown-list">
               <li>
                 <a href="{{ route('compare.get') }}">
@@ -44,9 +43,15 @@
                   Wishlist
                 </a>
               </li>
+              @if (!Auth::guest())
+                <li>
+                  <a href="{{ route('profile.get_personal_orders') }}">
+                    Orders
+                  </a>
+                </li>
+              @endif
             </ul>
-          </li>
-        @endif
+        </li>
         <!-- link to the bag -->
         <li>
           <a href="#" data-url="{{route('cart.getcontents')}}" class="cart_trigger">

@@ -1,5 +1,17 @@
 // main: ../styles.sass
 @import ../variables
+.dropdown
+  position: relative
+  padding-right: 15px
+  &::after
+    content: ''
+    position: absolute
+    top: 0
+    right: 0
+    width: 12px
+    height: 20px
+    background: url("../img/arrow_down.png") no-repeat center center
+    background-size: 100% auto
 .navbar-brand
   font-family: 'Quicksand'
   font-weight: 600

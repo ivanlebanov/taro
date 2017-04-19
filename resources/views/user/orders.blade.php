@@ -1,14 +1,24 @@
-<h2>Orders</h2>
-@if(count($orders) > 0)
+@extends('layouts.app')
 
-  @foreach($orders as $key => $order)
+@section('title') Your orders @endsection
 
-    @include('includes.list_products', [ 'products' => $order['o_products'],
-    'title' => 'Order #' . $order['id'] .' - £' . $order['o_total'],
-    'quantity' => true, 'quantities' => $order['o_products_quantities'], 'order' => $order ] )
+@section('content')
+  <div class="container">
+    @if(count($orders) > 0)
+      <h2>Orders</h2>
+      @foreach($orders as $key => $order)
 
-  @endforeach
+        @include('includes.list_products', [ 'products' => $order['o_products'],
+        'title' => 'Order #' . $order['id'] .' - £' . $order['o_total'],
+        'quantity' => true, 'quantities' => $order['o_products_quantities'], 'order' => $order ] )
 
-@else
-    <p>No completed orders.</p>
-@endif
+      @endforeach
+
+    @else
+      <div class="panel">
+        <h2>Orders</h2>
+        <p>No completed orders.</p>
+      </div>
+    @endif
+  </div>
+@endsection

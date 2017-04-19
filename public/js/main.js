@@ -100,7 +100,7 @@ function showPopup(url, url2){
         $('#buy-popup').data('item-id', data.p_id);
         $('#buy-popup').data('url', url2);
 
-        var features = data.p_features.split(" | ");
+        var features = data.p_features.split("|");
         $('#feature-list-popup').empty();
 
         for (var i = 0; i < features.length; i++) {
