@@ -9,7 +9,7 @@
         {{ Form::text($key, $field, ['placeholder' => ucfirst($key) . "*"]) }}
       @endforeach
 
-      {{ Form::submit('Save', ['class' => 'btn red-btn']) }}
+      {{ Form::submit('Save personal info', ['class' => 'btn red-btn']) }}
 
     {{ Form::close() }}
   </div>

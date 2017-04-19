@@ -25,7 +25,7 @@
         @endif
       @endforeach
 
-      {{ Form::submit('Save', ['class' => 'btn red-btn']) }}
+      {{ Form::submit('Save address', ['class' => 'btn red-btn']) }}
     {!! Form::close() !!}
   </div>
 </div>
