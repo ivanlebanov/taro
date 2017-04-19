@@ -14,7 +14,7 @@
       <p id="description-popup"></p>
       <ul id="feature-list-popup" class="feature-list"></ul>
       <div class="price" id="price-popup"></div>
-      <button id="buy-popup" type="button" class="btn red-btn big-btn add_to_cart" name="button">Buy now</button>
+      <button id="buy-popup" type="button" class="btn red-btn big-btn add_to_cart" name="button">Add to basket</button>
     </div>
   </div>
 </div>

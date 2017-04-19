@@ -65,7 +65,7 @@
     <div class="row">
       <div class="col-md-6">
         <button type="button" class="btn big-btn red-btn add_to_cart_single"
-                data-url="{{ route('cart.add', ['id' => $product['p_id'] ])}}">Buy now</button>
+                data-url="{{ route('cart.add', ['id' => $product['p_id'] ])}}">Add to basket</button>
       </div>
       <div class="col-md-6">
         <a href="#" class="btn link-btn add_to_wishlist" data-item-id="{{$product['p_id']}}"
