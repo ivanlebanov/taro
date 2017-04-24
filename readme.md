@@ -1,27 +1,49 @@
-# Laravel PHP Framework
+# TARO installation process
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+ The TARO project uses the laravel MVC framework as a base. Installation + running the website:
+ 1. Install Composer(https://getcomposer.org/)
+ 2. Install XAMPP (https://www.apachefriends.org/index.html)
+ 3. Pull the repository and put it in the htdocs folder inside the newly created xampp folder
+ 4. Navigate to the repository folder in a cms/terminal and run 'composer install'
+ 5. Change/create your .env file. Should look something like this but it will depend on your OS/xampp version:
+ APP_ENV=local
+ APP_KEY=base64:7av5YTgFFeo/uPa2g1gmuO1fLell+8Xct/SmmW4V1T4=
+ APP_DEBUG=true
+ APP_LOG_LEVEL=debug
+ APP_URL=http://localhost
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+ DB_CONNECTION=mysql
+ DB_HOST=127.0.0.1
+ DB_PORT=8889
+ DB_DATABASE=taro
+ DB_USERNAME=root
+ DB_PASSWORD=root
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+ BROADCAST_DRIVER=log
+ CACHE_DRIVER=file
+ SESSION_DRIVER=file
+ QUEUE_DRIVER=sync
 
-## Official Documentation
+ REDIS_HOST=127.0.0.1
+ REDIS_PASSWORD=null
+ REDIS_PORT=6379
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+ MAIL_DRIVER=log
+ MAIL_HOST=mailtrap.io
+ MAIL_PORT=2525
+ MAIL_USERNAME=null
+ MAIL_PASSWORD=null
+ MAIL_ENCRYPTION=null
 
-## Contributing
+ PUSHER_APP_ID=
+ PUSHER_KEY=
+ PUSHER_SECRET=
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+ 6. Make sure your xampp is running as well as apache and mysql
+ 7. Create a database called 'taro' via phpmyadmin
+ 8. Fill the data via the admin or using populate_database.txt via phpmyadmin
+ 9. Run php artisan serve while being located in the repository folder
+ 10. Go to http://localhost:8000 and register
+ 11. If you want to add data via the admin go to the database changing your user's 'is_admin' field is '1'
+ Go to http://localhost:8000/admin/categories
+ 12. Use the website
