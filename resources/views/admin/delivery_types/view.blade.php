@@ -12,6 +12,7 @@
   </div>
   <div class="col-md-12">
     @if(count($deliveries) > 0)
+      <!-- listing delivery types -->
       <div class="panel mini-panel">
         <ul class="admin-list">
 
@@ -33,11 +34,14 @@
 
         </ul>
       </div>
+      <!-- end of listing delivery types -->
     @else
+      <!-- no delivery types message -->
       <div class="panel">
         <h2>No delivery types</h2>
         <p>There are no categories so far. Why no add the first one?</p>
       </div>
+      <!-- end of no delivery types message -->
     @endif
   </div>
 

@@ -10,6 +10,7 @@
   </div>
   <div class="col-md-12">
     @if(count($orders) > 0)
+    <!-- listing orders -->
       <div class="panel mini-panel">
         <ul class="admin-list">
 
@@ -31,11 +32,14 @@
 
         </ul>
       </div>
+      <!-- end of listing orders -->
     @else
+      <!-- no orders message -->
       <div class="panel">
         <h2>No orders</h2>
         <p>There are no orders so far.</p>
       </div>
+      <!-- end of no orders message -->
     @endif
   </div>
 @endsection

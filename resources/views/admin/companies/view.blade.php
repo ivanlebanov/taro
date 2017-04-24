@@ -11,6 +11,7 @@
   </div>
   <div class="col-md-12">
     @if(count($companies) > 0)
+      <!-- list companies -->
       <div class="panel mini-panel">
         <ul class="admin-list">
 
@@ -32,11 +33,14 @@
 
         </ul>
       </div>
+      <!-- end of list companies -->
     @else
+      <!-- no companies message -->
       <div class="panel">
         <h2>No companies</h2>
         <p>There are no companies so far. Why no add the first one?</p>
       </div>
+      <!-- end of no companies message -->
     @endif
   </div>
 @endsection

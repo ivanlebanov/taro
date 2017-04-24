@@ -11,6 +11,7 @@
   </div>
   <div class="col-md-12">
     @if(count($categories) > 0)
+    <!-- List categories -->
       <div class="panel mini-panel">
         <ul class="admin-list">
 
@@ -32,11 +33,14 @@
 
         </ul>
       </div>
+      <!-- end of list categories -->
     @else
+      <!-- No categories message -->
       <div class="panel">
         <h2>No categories</h2>
         <p>There are no categories so far. Why no add the first one?</p>
       </div>
+      <!-- end of No categories message -->
     @endif
   </div>
 @endsection

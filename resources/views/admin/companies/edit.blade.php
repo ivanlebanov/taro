@@ -13,10 +13,12 @@
 <div class="col-md-5">
   <div class="panel">
     <h2>Edit company</h2>
+    <!-- edit company form -->
     {{ Form::open([ 'route' => ['admin.companies.update', 'id' =>  $company['id'] ] , 'method' => 'PUT']) }}
       {{ Form::text('name', $company['c_name'], ['placeholder' => "Company name*"] ) }}
       {{ Form::submit('Save', ['class' => 'btn red-btn']) }}
     {{ Form::close() }}
+    <!-- end of edit company form -->
   </div>
 </div>
 

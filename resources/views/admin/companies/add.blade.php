@@ -13,10 +13,12 @@
 <div class="col-md-5">
   <div class="panel">
     <h2>Add a company</h2>
+    <!-- add company form -->
     {{ Form::open(['route' => 'admin.companies.add']) }}
       {{ Form::text('name', null, ['placeholder' => "Company name*"] ) }}
       {{ Form::submit('Save', ['class' => 'btn red-btn']) }}
     {{ Form::close() }}
+    <!-- end of add company form -->
   </div>
 </div>
 
