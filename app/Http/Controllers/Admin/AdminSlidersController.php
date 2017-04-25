@@ -11,13 +11,32 @@ use App\Http\Requests\UpdateSliderRequest;
 
 class AdminSlidersController extends Controller
 {
+  /*
+  |--------------------------------------------------------------------------
+  | Admin Sliders Controller
+  |--------------------------------------------------------------------------
+  |
+  | This controller handles CRUD related to the slider
+  | situated on the home page.
+  |
+  */
 
+  /**
+   * Create a new controller instance. Uses admin
+   * middleware to protect the data.
+   *
+   * @return void
+   */
   public function __construct()
   {
       $this->middleware('admin');
   }
 
-
+  /**
+   * A page listing all slides.
+   *
+   * @return \Illuminate\View\View
+   */
   public function getSliders()
   {
     $data['sliders'] = Slider::all()->toArray();
@@ -25,11 +44,23 @@ class AdminSlidersController extends Controller
     return view('admin.sliders.view', $data);
   }
 
+  /**
+   * A page used for adding a slider.
+   *
+   * @return \Illuminate\View\View
+   */
   public function addSlider()
   {
     return view('admin.sliders.add');
   }
 
+  /**
+   * A page used to display a slider which
+   * afterwards can be edited.
+   *
+   * @param int $id unique identifier of the slider
+   * @return \Illuminate\View\View
+   */
   public function editSlider($id)
   {
     $data['slider'] = Slider::where('id', $id)->first();
@@ -38,6 +69,13 @@ class AdminSlidersController extends Controller
 
   }
 
+  /**
+   * A method used for adding a slider.
+   *
+   * @param array $request the validated form data
+   * @return \Illuminate\Support\Facades\Redirect redirects main admin slider page
+   * with a success/error message
+   */
   public function add(AddSliderRequest $request)
   {
 
@@ -67,6 +105,14 @@ class AdminSlidersController extends Controller
     return redirect()->route('admin.sliders.get')->with('status', $status );
   }
 
+  /**
+   * A method used for updating a slider.
+   *
+   * @param array $request the validated form data
+   * @param int $id unique identifier of the slider which is about to be updated
+   * @return \Illuminate\Support\Facades\Redirect redirects main admin slider page
+   * with a success/error message
+   */
   public function update(UpdateSliderRequest $request, $id)
   {
     $inputs = $request->input();
@@ -95,6 +141,12 @@ class AdminSlidersController extends Controller
 
   }
 
+  /**
+   * A method used for deleting a slider.
+   *
+   * @param int $id unique identifier of the slider which is about to be deleted
+   * @return string $status error/success message
+   */
   public function delete($id)
   {
 

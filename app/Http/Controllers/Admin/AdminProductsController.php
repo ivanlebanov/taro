@@ -14,13 +14,32 @@ use App\Http\Requests\UpdateProductRequest;
 
 class AdminProductsController extends Controller
 {
+  /*
+  |--------------------------------------------------------------------------
+  | Admin Products Controller
+  |--------------------------------------------------------------------------
+  |
+  | This controller handles CRUD related to products
+  | in the shop.
+  |
+  */
 
+  /**
+   * Create a new controller instance. Uses admin
+   * middleware to protect the data.
+   *
+   * @return void
+   */
   public function __construct()
   {
       $this->middleware('admin');
   }
 
-
+  /**
+   * A page listing all products.
+   *
+   * @return \Illuminate\View\View
+   */
   public function getProducts()
   {
     $data['products'] = Product::all()->toArray();
@@ -28,6 +47,11 @@ class AdminProductsController extends Controller
     return view('admin.products.view', $data);
   }
 
+  /**
+   * A page used to add a new product.
+   *
+   * @return \Illuminate\View\View
+   */
   public function addProduct()
   {
     $data['product'] = null;
@@ -50,12 +74,20 @@ class AdminProductsController extends Controller
     return view('admin.products.add', $data);
   }
 
+  /**
+   * A method used for adding a new product.
+   *
+   * @param array $request the validated form data
+   * @return \Illuminate\Support\Facades\Redirect redirects main admin company page
+   * with a success/error message
+   */
   public function add(AddProductRequest $request)
   {
     $inputs = $request->input();
     if($inputs["discount_price"] == ""){
       $inputs["discount_price"] = 0;
     }
+    // create a new product instance with the new data
     $product = new Product();
     $product->p_name = $inputs['name'];
     $product->p_price =  $inputs["price"];
@@ -112,6 +144,14 @@ class AdminProductsController extends Controller
 
     return redirect()->route('admin.products.get')->with('status', $status );
   }
+
+  /**
+   * A page used to display a product which
+   * afterwards can be edited.
+   *
+   * @param int $id unique identifier of the product
+   * @return \Illuminate\View\View
+   */
   public function editProduct($id)
   {
     $data['product'] = Product::where('p_id', $id)->first();
@@ -135,6 +175,14 @@ class AdminProductsController extends Controller
     return view('admin.products.edit', $data);
   }
 
+  /**
+   * A method used for updating a product.
+   *
+   * @param array $request the validated form data
+   * @param int $id unique identifier of the product which is about to be updated
+   * @return \Illuminate\Support\Facades\Redirect redirects main admin product page
+   * with a success/error message
+   */
   public function update(UpdateProductRequest $request, $id)
   {
 
@@ -203,6 +251,12 @@ class AdminProductsController extends Controller
 
   }
 
+  /**
+   * A method used for deleting a product additional image.
+   *
+   * @param int $id unique identifier of the product which is about to be deleted
+   * @return string $status error/success message
+   */
   public function deleteImage($id)
   {
 
@@ -214,6 +268,12 @@ class AdminProductsController extends Controller
     return $status;
   }
 
+  /**
+   * A method used for deleting a product.
+   *
+   * @param int $id unique identifier of the product which is about to be deleted
+   * @return string $status error/success message
+   */
   public function delete($id)
   {
 

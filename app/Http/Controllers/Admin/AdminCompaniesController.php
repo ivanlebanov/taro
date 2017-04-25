@@ -10,13 +10,32 @@ use Cookie;
 
 class AdminCompaniesController extends Controller
 {
+  /*
+  |--------------------------------------------------------------------------
+  | Admin Companies Controller
+  |--------------------------------------------------------------------------
+  |
+  | This controller handles CRUD related to Companies for
+  | the products in the shop.
+  |
+  */
 
+  /**
+   * Create a new controller instance. Uses admin
+   * middleware to protect the data.
+   *
+   * @return void
+   */
   public function __construct()
   {
       $this->middleware('admin');
   }
 
-
+  /**
+   * A page listing all companies.
+   *
+   * @return \Illuminate\View\View
+   */
   public function getCompanies()
   {
     $data['companies'] = Company::all()->toArray();
@@ -24,12 +43,23 @@ class AdminCompaniesController extends Controller
     return view('admin.companies.view', $data);
   }
 
-
+  /**
+   * A page used for adding a company.
+   *
+   * @return \Illuminate\View\View
+   */
   public function addCompany()
   {
     return view('admin.companies.add');
   }
 
+  /**
+   * A page used to display a company which
+   * afterwards can be edited.
+   *
+   * @param int $id unique identifier of the company
+   * @return \Illuminate\View\View
+   */
   public function editCompany($id)
   {
     $data['company'] = Company::where('id', $id)->first();
@@ -37,6 +67,13 @@ class AdminCompaniesController extends Controller
     return view('admin.companies.edit', $data);
   }
 
+  /**
+   * A method used for adding a company.
+   *
+   * @param array $request the validated form data
+   * @return \Illuminate\Support\Facades\Redirect redirects main admin company page
+   * with a success/error message
+   */
   public function add(AddCompanyRequest $request)
   {
     $inputs = $request->input();
@@ -51,6 +88,14 @@ class AdminCompaniesController extends Controller
 
   }
 
+  /**
+   * A method used for updating a company.
+   *
+   * @param array $request the validated form data
+   * @param int $id unique identifier of the company which is about to be updated
+   * @return \Illuminate\Support\Facades\Redirect redirects main admin company page
+   * with a success/error message
+   */
   public function update(AddCompanyRequest $request, $id)
   {
     $inputs = $request->input();
@@ -64,6 +109,12 @@ class AdminCompaniesController extends Controller
     return redirect()->route('admin.companies.get')->with('status', $status );
   }
 
+  /**
+   * A method used for deleting a company.
+   *
+   * @param int $id unique identifier of the company which is about to be deleted
+   * @return string $status error/success message
+   */
   public function delete($id)
   {
 

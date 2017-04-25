@@ -11,13 +11,32 @@ use App\Http\Requests\AdminEditUserRequest;
 
 class AdminUsersController extends Controller
 {
+  /*
+  |--------------------------------------------------------------------------
+  | Admin Users Controller
+  |--------------------------------------------------------------------------
+  |
+  | This controller handles CRUD related to users of
+  | the shop.
+  |
+  */
 
+  /**
+   * Create a new controller instance. Uses admin
+   * middleware to protect the data.
+   *
+   * @return void
+   */
   public function __construct()
   {
       $this->middleware('admin');
   }
 
-
+  /**
+   * A page listing all users.
+   *
+   * @return \Illuminate\View\View
+   */
   public function getUsers()
   {
     $data['users'] = User::all()->toArray();
@@ -25,6 +44,13 @@ class AdminUsersController extends Controller
     return view('admin.users.view', $data);
   }
 
+  /**
+   * A page used to display a user which
+   * afterwards can be edited.
+   *
+   * @param int $id unique identifier of the user
+   * @return \Illuminate\View\View
+   */
   public function editUser($id)
   {
     $data['user'] = User::where('id', $id)->first()->toArray();
@@ -34,6 +60,14 @@ class AdminUsersController extends Controller
     return view('admin.users.edit', $data);
   }
 
+  /**
+   * A method used for updating a user.
+   *
+   * @param array $request the validated form data
+   * @param int $id unique identifier of the user which is about to be updated
+   * @return \Illuminate\Support\Facades\Redirect redirects main admin user page
+   * with a success/error message
+   */
   public function update(AdminEditUserRequest $request, $id)
   {
     $inputs = $request->input();
@@ -54,6 +88,12 @@ class AdminUsersController extends Controller
     return redirect()->route('admin.users.get')->with('status', $status );
   }
 
+  /**
+   * A method used for deleting a user.
+   *
+   * @param int $id unique identifier of the user which is about to be deleted
+   * @return string $status error/success message
+   */
   public function delete($id)
   {
     $user = User::where('id', $id)->get()->first();
