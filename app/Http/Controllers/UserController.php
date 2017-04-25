@@ -112,7 +112,7 @@ class UserController extends Controller
     // save the new data
     $user->save();
     // success message in json format for the UI
-    $status = success_msg('Successfully updated preffered delivery type');
+    $status = success_msg('Successfully updated preferred delivery type');
 
     return redirect()->back()->with('status', $status );
   }

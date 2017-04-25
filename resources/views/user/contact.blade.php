@@ -8,13 +8,15 @@
     <div class="col-md-6">
       <div class="panel">
         <h2>Easiest way to get in touch with us.</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed semper mollis aliquet.
-          Sed vestibulum aliquet imperdiet. Nam non pharetra odio. Sed vitae elit risus.</p>
+        <p>Send us a direct message using the form below with your query or issue,
+        and we will reply to you as soon as we can.</p>
+        <p>Please ensure your email address for your account is up to date, as this is
+        where we will reply to.</p>
         {{ Form::open(['route' => 'sent_contact' ]) }}
           {{ Form::token() }}
           {{ Form::text('subject', null, ['placeholder' =>  "Subject*"]) }}
           {{ Form::textarea('message', null, ['placeholder' =>  "Message*"] ) }}
-          {{ Form::submit('Save', ['class' => 'btn red-btn']) }}
+          {{ Form::submit('Send', ['class' => 'btn red-btn']) }}
         {{Form::close()}}
       </div>
     </div>
