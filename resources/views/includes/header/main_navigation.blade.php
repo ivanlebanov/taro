@@ -29,7 +29,7 @@
           <!-- link to user profile -->
             <a href="{{ route('profile.get_personal_info') }}">
               <img src="{{asset('img/profile.png')}}" alt="user profile icon">
-              User account
+              User Account
             </a>
           @endif
             <ul class="dropdown-list">

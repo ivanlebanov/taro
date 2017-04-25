@@ -6,12 +6,28 @@
   <div class="container">
     <div class="col-sm-6">
       <div class="panel">
-        <h2>Delivery</h2>
-        <p>Delivery comes in two options</p>
+        <h2>Standard Delivery</h2>
 		<br>
 		<ul>
-		<li>Standard 3-5 day delivery
-		<li>Express 1-2 day Delivery.
+    <li>Free As Standard
+		<li>3-5 Day Delivery
+		<li>Royal Mail Delivered
+		</ul>
+		</p>
+		<br>
+		<p>Working days are Monday to Friday.
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="col-sm-6">
+      <div class="panel">
+        <h2>Express Delivery</h2>
+		<br>
+		<ul>
+    <li>£4.99 Extra Charge
+		<li>1-2 Day Delivery
+		<li>Royal Mail Tracked Delivered
 		</ul>
 		</p>
 		<br>

@@ -4,9 +4,10 @@
       <div class="top-footer-section">
         <div class="col-lg-6 info-footer">
           <div class="navbar-brand">T<span>A</span>RO</div>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Nulla egestas massa at nunc sodales, quis tristique ex scelerisque.
-            Fusce ullamcorper libero quis finibus molestie. Mauris non congue tellus.</p>
+          <p>Taro is an online marketplace for computer goods and accessories.
+              We aim to provide high quality service to our customers, and
+              offer great prices on great products. If you experience any
+              problems, please <a href="{{ route('contact') }}">contact us here.</a></p>
         </div>
         <div class="col-lg-6">
           <div class="col-lg-6">
@@ -18,17 +19,17 @@
                 <a href="{{ route('static.faq') }}">FAQ</a>
               </li>
               <li>
-                <a href="{{ route('static.payments') }}">Payment options</a>
+                <a href="{{ route('static.payments') }}">Payment Options</a>
               </li>
             </ul>
           </div>
           <div class="col-lg-6">
             <ul>
               <li>
-                <a href="{{ route('static.support') }}">Customer support</a>
+                <a href="{{ route('static.support') }}">Customer Support</a>
               </li>
               <li>
-                <a href="{{ route('contact') }}">Contact us</a>
+                <a href="{{ route('contact') }}">Contact Us</a>
               </li>
               <li>
                 <a href="{{ route('static.refunds') }}">Refunds/Returns</a>
@@ -41,7 +42,7 @@
       </div>
     </div>
     <div class="copyrights">
-      <small>All rights reserved 2017</small>
+      <small>&copy; 2017 Taro Industries Ltd; All Rights Reserved.</small>
     </div>
   </footer>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
