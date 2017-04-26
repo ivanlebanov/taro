@@ -13,6 +13,7 @@
   </div>
   <div class="col-md-12">
     @if(count($sliders) > 0)
+      <!-- listing all sliders -->
       <div class="panel mini-panel">
         <ul class="admin-list">
 
@@ -34,7 +35,9 @@
 
         </ul>
       </div>
+      <!-- end of listing all sliders -->
     @else
+    <!-- no slider message -->
       <div class="panel">
         <h2>No sliders</h2>
         <p>There are no sliders so far. Why no add the first one?</p>

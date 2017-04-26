@@ -35,3 +35,4 @@
     </li>
   </ul>
 </div>
+<!-- end of sidebar -->

@@ -7,9 +7,11 @@
     @foreach($products as $product)
       <div class="@if(isset($columns)) col-md-{{$columns}} @else col-md-3 @endif">
         <div class="product-wrapper">
+          <!-- product image + link -->
           <a href="{{ route('products.single_product', ['id' => $product['p_id'], 'name' => str_slug($product['p_name']) ])}}">
             <img src="{{asset( $product['p_thumb'] )}}" alt="">
           </a>
+          <!-- general info -->
           <div class="product-list-body">
             <h4>{{$product['p_name']}}</h4>
             <?php $product['p_features'] = array_slice( explode('|' , $product['p_features']), 0, 2); ?>
@@ -22,6 +24,7 @@
 
             </ul>
             @endif
+            <!-- cta buttons -->
             <p>Quantity:
               <a href="#" data-url="{{route('cart.update', ['id' => $product['p_id'] ])}}"
                  data-qty="{{$cart->$product['p_id'] - 1}}" data-id="{{$product['p_id']}}"

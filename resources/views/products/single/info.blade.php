@@ -14,6 +14,7 @@
     <p>{{$product['p_description']}}</p>
     <?php $product['p_features'] = explode('|' , $product['p_features']); ?>
     @if(count($product['p_features']) > 0)
+    <!-- listing features -->
     <ul class="feature-list">
 
       @foreach($product['p_features'] as $feature)
@@ -21,33 +22,36 @@
       @endforeach
 
     </ul>
+    <!-- end of listing features -->
     @endif
+    
     <div class="price">
       @if($product['p_discount_active'] == 1)
         <strike>£{{$product['p_price']}}</strike> £{{$product['p_discount_price']}}
       @else
         £{{$product['p_price']}}
       @endif
-	  @if($product['p_stock'] == "" || $product['p_stock'] == 0 )
-		<br>
-		<p style="color:#ffaa00;font-size:70%;text-align:right;">None left in stock!</p>
-	  @else
-        @if($product['p_stock'] > 10)
-          <p style="color:#f85f73;font-size:70%;text-align:right;">10+
-        @else
-          <p style="color:##f85f73;font-size:70%;text-align:right;">{{$product['p_stock']}}
-        @endif
-	    in stock</p>
+  	  @if($product['p_stock'] == "" || $product['p_stock'] == 0 )
+  		  <p class="no-stock">None left in stock!</p>
+  	  @else
+          @if($product['p_stock'] > 10)
+            <p class="many-stock">10+ in stock</p>
+          @else
+            <p class="low-stock">{{$product['p_stock']}} in stock</p>
+          @endif
       @endif
     </div>
 	@if($product['p_stock'] == "" || $product['p_stock'] == 0 )
-	<div class="row">
+    <!-- add to wishlist cta -->
+    <div class="row">
       <div class="col-md-6">
         <a href="#" class="btn link-btn add_to_wishlist" data-item-id="{{$product['p_id']}}"
                 data-url="{{ route('wishlist.add')}}">Add to wishlist</a>
       </div>
     </div>
+    <!-- end of add to wishlist cta -->
 	@else
+    <!-- quantity dropdown -->
     <div class="row">
       <div class="col-md-2">
         <h3>Quantity:</h3>
@@ -62,6 +66,8 @@
         </div>
       </div>
     </div>
+    <!-- end of quantity dropdown -->
+    <!-- cta buttons -->
     <div class="row">
       <div class="col-md-6">
         <button type="button" class="btn big-btn red-btn add_to_cart_single"
@@ -72,9 +78,13 @@
                 data-url="{{ route('wishlist.add')}}">Add to wishlist</a>
       </div>
     </div>
+    <!-- end of cta buttons -->
 	@endif
+
     @if($product['p_user_manual_link'] != "")
+        <!-- link to manual -->
       <a href="{{asset($product['p_user_manual_link'])}}" class="btn grey-link-btn" target="_blank">User Manual</a>
+        <!-- end of link to manual -->
     @endif
   </div>
 </div>

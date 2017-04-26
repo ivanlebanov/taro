@@ -15,6 +15,7 @@
     <div class="panel mini-panel">
       <ul class="admin-list">
 
+        <!-- listing all products -->
         @foreach($products as $product)
           <li>
             <div class="col-md-9">
@@ -30,10 +31,13 @@
             </div>
           </li>
         @endforeach
+        <!-- end of listing all products -->
 
       </ul>
     </div>
+
   @else
+  <!-- no products message -->
     <div class="panel">
       <h2>No products</h2>
       <p>There are no products so far. Why no add the first one?</p>

@@ -1,6 +1,7 @@
 <div class="col-sm-6">
   <div class="panel">
     <h2>Delivery methods</h2>
+    <!-- delivery form -->
     {{ Form::open(['route' => 'delivery.add']) }}
 
       @foreach($delivery_types as $key => $delivery_type)
@@ -22,6 +23,7 @@
       {{ Form::submit('Save', ['class' => 'btn red-btn']) }}
 
     {{ Form::close()}}
+    <!-- end of delivery form -->
 
   </div>
 </div>

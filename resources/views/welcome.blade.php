@@ -12,6 +12,7 @@
   @include('includes.list_products', [ 'products' => $best_sellers, 'title' => 'Best sellers'])
 
 @endsection
+
 @section('page_footer')
   <script type="text/javascript">
     var url = window.location.href;

@@ -13,6 +13,7 @@
   <div class="col-md-5">
     <div class="panel">
       <h2>Add a product</h2>
+      <!-- Add products form -->
       {{ Form::open([ 'route' => ['admin.products.add'], 'files' => true]) }}
         {{ Form::text('name', null, ['placeholder' => "Name*"] ) }}
         {{ Form::text('price', null, ['placeholder' => "Price*"] ) }}
@@ -29,12 +30,14 @@
         <h3>More images:</h3>
         <div>{{ Form::file('additional_images[]', ['multiple' => 'multiple'] ) }}</div>
 
+        <!-- categories dropdown -->
         @if(count($categories) > 0)
           <div class="select-style">
             {{ Form::select('category', $categories,  $product['category_id'], ['placeholder' =>  "Category"]) }}
           </div>
         @endif
 
+        <!-- companies dropdown -->
         @if(count($companies) > 0)
           <div class="select-style">
             {{ Form::select('company', $companies,  $product['p_company_id'], ['placeholder' =>  "Company"]) }}
@@ -43,6 +46,7 @@
 
         {{ Form::submit('Save', ['class' => 'btn red-btn']) }}
       {{ Form::close() }}
+      <!-- end of Add category form -->
     </div>
   </div>
 

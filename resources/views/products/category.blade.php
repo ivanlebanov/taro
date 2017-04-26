@@ -12,6 +12,8 @@
 
     @include('products.load_more')
   @else
+    <!-- no products -->
     @include('products.no_products')
+    <!-- end of no products -->
   @endif
 @endsection

@@ -15,5 +15,4 @@
     </script>
 </head>
 <body>
-
   @include('admin.sidebar')

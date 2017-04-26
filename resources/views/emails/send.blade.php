@@ -1,3 +1,4 @@
+<!-- basic template for emails -->
 <html>
 <head></head>
 <body>

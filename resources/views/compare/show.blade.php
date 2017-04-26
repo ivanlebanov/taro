@@ -5,11 +5,9 @@
 @section('content')
   <!-- displaying latest products in the category using the template for listing products -->
   @if(count($products) > 0)
-
-        @include('includes.compare_products', [ 'products' => $products, 'title' => 'Comparing products' ])
-
+    @include('includes.compare_products', [ 'products' => $products, 'title' => 'Comparing products' ])
   @else
-
+  <!-- no products message -->
   <div class="container">
     <div class="col-md-5">
       <div class="panel">
@@ -18,6 +16,6 @@
       </div>
     </div>
   </div>
-
+  <!-- end of no products message -->
   @endif
 @endsection

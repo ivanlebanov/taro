@@ -1,4 +1,4 @@
-<!-- Scripts -->
+<!-- footer -->
   <footer>
     <div class="container">
       <div class="top-footer-section">
@@ -45,10 +45,14 @@
       <small>&copy; 2017 Taro Industries Ltd; All Rights Reserved.</small>
     </div>
   </footer>
+  <!-- javascript general libs -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="{{ asset('js/notificationFx.js') }}"></script>
   <script src="{{ asset('js/main.js') }}"></script>
+  <!-- end of javascript admin libs -->
   @include('includes.errors')
+  <!-- additional scripts -->
   @yield('page_footer')
+  <!-- end of additional scripts -->
 </body>
 </html>

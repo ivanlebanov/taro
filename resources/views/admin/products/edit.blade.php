@@ -13,6 +13,7 @@
   <div class="col-md-5">
     <div class="panel">
       <h2>Add a product</h2>
+      <!-- edit product form -->
       {{ Form::open([ 'route' => ['admin.products.update', 'id' => $product['p_id']], 'files' => true, 'method' => 'PUT']) }}
         {{ Form::text('name', $product['p_name'], ['placeholder' => "Name*"] ) }}
         {{ Form::text('price', $product['p_price'], ['placeholder' => "Price*"] ) }}
@@ -23,6 +24,7 @@
         {{ Form::text('sales', $product['p_sales'], ['placeholder' => "Sales*"] ) }}
         {{ Form::text('stock', $product['p_stock'], ['placeholder' => "Stock*"] ) }}
         <h3>User Manual Link:</h3>
+        <!-- link to manual file if available -->
         @if($product['p_user_manual_link'] != "")
           <div>
             <a href="{{$product['p_user_manual_link']}}" class="simple_link">File</a>
@@ -33,6 +35,7 @@
         <img src="{{asset( $product['p_thumb'] )}}" alt="">
         <div>{{ Form::file('thumb' ) }}</div>
         <h3>More images:</h3>
+        <!-- listing related images if any -->
         @if(count($more_images) > 0)
 
           @foreach($more_images as $image)
@@ -52,12 +55,14 @@
         @endif
         <div>{{ Form::file('additional_images[]', ['multiple' => 'multiple'] ) }}</div>
 
+        <!-- categories dropdown -->
         @if(count($categories) > 0)
           <div class="select-style">
             {{ Form::select('category', $categories,  $product['category_id'], ['placeholder' =>  "Category"]) }}
           </div>
         @endif
 
+        <!-- companies dropdown -->
         @if(count($companies) > 0)
           <div class="select-style">
             {{ Form::select('company', $companies,  $product['p_company_id'], ['placeholder' =>  "Company"]) }}
@@ -66,6 +71,7 @@
 
         {{ Form::submit('Save', ['class' => 'btn red-btn']) }}
       {{ Form::close() }}
+      <!-- end of edit product form -->
     </div>
   </div>
 

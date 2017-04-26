@@ -6,13 +6,12 @@
 <div class="col-md-9">
   <h2>Users</h2>
 </div>
-<div class="col-md-3">
-
-</div>
+<div class="col-md-3"></div>
 
 <div class="col-md-5">
   <div class="panel">
     <h2>Edit user</h2>
+    <!-- edit user form -->
     {{ Form::open([ 'route' => ['admin.users.update', 'id' =>  $user['id'] ] , 'method' => 'PUT']) }}
       {{ Form::text('name', $user['name'], ['placeholder' => "Name*"] ) }}
       {{ Form::text('email', $user['email'], ['placeholder' => "E-mail*"] ) }}
@@ -45,6 +44,7 @@
 
       {{ Form::submit('Save', ['class' => 'btn red-btn']) }}
     {{ Form::close() }}
+    <!-- end of user form -->
   </div>
 </div>
 

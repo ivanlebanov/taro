@@ -7,9 +7,11 @@
     @foreach($products as $product)
       <div class="@if(isset($columns)) col-md-{{$columns}} @else col-md-3 @endif">
         <div class="product-wrapper">
+          <!-- product image + link -->
           <a href="{{ route('products.single_product', ['id' => $product['p_id'], 'name' => str_slug($product['p_name']) ])}}">
             <img src="{{asset( $product['p_thumb'] )}}" alt="">
           </a>
+          <!-- general info -->
           <div class="product-list-body">
             <h4>{{$product['p_name']}}</h4>
             <p>Description: {{$product['p_description']}}</p>
@@ -30,7 +32,7 @@
             </ul>
             @endif
           </div>
-
+          <!-- cta buttons -->
           <div class="product-list-footer compare-footer">
             <button data-item-id='{{$product['p_id']}}' type="button" class="btn grey-btn compare_delete"
             data-url="{{route('compare.delete')}}">remove</button>

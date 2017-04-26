@@ -11,6 +11,7 @@
   </div>
   <div class="col-md-12">
     @if(count($users) > 0)
+      <!-- list all users -->
       <div class="panel mini-panel">
         <ul class="admin-list">
 
@@ -32,7 +33,9 @@
 
         </ul>
       </div>
+      <!-- end of list all users -->
     @else
+      <!-- no users message -->
       <div class="panel">
         <h2>No users</h2>
         <p>There are no users so far.</p>

@@ -9,6 +9,7 @@
         @include('includes.wishlist_products', [ 'products' => $products, 'title' => 'Your wishlist' ])
 
   @else
+    <!-- no wishlist panel -->
     <div class="container">
       <div class="col-md-5">
         <div class="panel">
@@ -17,5 +18,6 @@
         </div>
       </div>
     </div>
+    <!-- end of no wishlist panel -->
   @endif
 @endsection
