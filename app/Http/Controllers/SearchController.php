@@ -8,7 +8,12 @@ use App\Http\Requests\SearchRequest;
 
 class SearchController extends Controller
 {
-
+    /**
+    * Take a search string and return matching products
+    *
+    * @param Array $request A request object containing the search string
+    * @return \Illuminate\View\View
+    */
   public function search(SearchRequest $request)
   {
     $input = $request->input();
@@ -27,6 +32,12 @@ class SearchController extends Controller
 
   }
 
+  /**
+  * Searches for products matching substrings of the original search string
+  *
+  * @param String $newString a string which will be trimmed to a substring of itself
+  * @return Array A list of products which match the substring created from the input string
+  */
   public function subSearch($newString)
   {
     $data['products'] = Product::where('p_name', 'LIKE', $newString)->orwhere('p_name', 'LIKE', $newString)->get()->toArray();
@@ -37,7 +48,12 @@ class SearchController extends Controller
   }
 
 
-
+  /**
+  * Takes the request from the site and returns a json object with the search results
+  *
+  * @param Array $request
+  * @return JSON $data
+  */
   public function searchResults(Request $request)
   {
     $input = $request->input();

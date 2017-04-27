@@ -12,7 +12,11 @@ use Illuminate\Http\Request;
 
 class WishlistController extends Controller
 {
-
+  /**
+  * Gets the contents of the wishlist from the users cookies
+  *
+  * @return \Illuminate\View\View
+  */
   public function get()
   {
     $wishlist_cookie = explode( ', ', Cookie::get('wishlist') );
@@ -21,6 +25,12 @@ class WishlistController extends Controller
     return view('wishlist.show', $data);
   }
 
+  /**
+  * Adds a new product to the users wishlist
+  *
+  * @param Request $request
+  * @return JSON $response | success_msg $status
+  */
   public function add(Request $request)
   {
     $inputs = $request->input();
@@ -45,9 +55,14 @@ class WishlistController extends Controller
 
     $status = success_msg('Successfully added to the wishlist. <a href="' . route('wishlist.get') . '">Check it here</a>.');
     return $status;
-
   }
 
+  /**
+  * Remove an item from the users wishlist
+  *
+  * @param Request $request
+  * @return success_msg
+  */
   public function remove(Request $request)
   {
     $input = $request->input();

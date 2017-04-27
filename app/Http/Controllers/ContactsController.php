@@ -23,12 +23,23 @@ class ContactsController extends Controller
   {
       $this->middleware('auth');
   }
+
+  /**
+  * Returns the Contacts page
+  *
+  * @return \Illuminate\View\View
+  */
   public function getContactPage()
   {
-
     return view('user.contact');
   }
 
+  /**
+  * Save data from the contact form
+  *
+  * @param UpdateContactUsRequest $request
+  * @return \Illuminate\Support\Facades\Redirect
+  */
   public function saveContactForm(UpdateContactUsRequest $request)
   {
     $user_id = \Auth::user()['attributes']['id'];

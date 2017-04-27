@@ -22,6 +22,11 @@ class UserController extends Controller
       $this->middleware('auth');
   }
 
+  /**
+  * Returns the profile page with a users currently saved information
+  *
+  * @return \Illuminate\View\View
+  */
   public function profile()
   {
       $user = \Auth::user();
@@ -32,6 +37,11 @@ class UserController extends Controller
 
   }
 
+  /**
+  * Returns a users orders page
+  *
+  * @return \Illuminate\View\View
+  */
   public function orders()
   {
     $user = \Auth::user();
@@ -45,8 +55,14 @@ class UserController extends Controller
       $data['orders'] = [];
 
     return view('user.orders', $data);
-
   }
+
+  /**
+  * Saves the contents of the users personal info form to the database
+  *
+  * @param UpdatePersonalInfoRequest $request
+  * @return \Illuminate\Support\Facades\Redirect
+  */
   public function savePersonalInfo(UpdatePersonalInfoRequest $request)
   {
     // get the keys needed from the form
@@ -63,9 +79,14 @@ class UserController extends Controller
     $status = success_msg('Successfully updated personal info');
 
     return redirect()->back()->with('status', $status );
-
   }
 
+  /**
+  * Save the contents of the users address form to the database
+  *
+  * @param UpdateAddressRequest $request
+  * @return \Illuminate\Support\Facades\Redirect
+  */
   public function saveAddress(UpdateAddressRequest $request)
   {
     // get the keys needed from the form
@@ -85,6 +106,12 @@ class UserController extends Controller
 
   }
 
+  /**
+  * Updates the information in the users account forms
+  *
+  * @param UpdateUserAccountRequest $request
+  * @return \Illuminate\Support\Facades\Redirect
+  */
   public function update(UpdateUserAccountRequest $request)
   {
     // get the keys needed from the form
@@ -103,6 +130,12 @@ class UserController extends Controller
     return redirect()->back()->with('status', $status );
   }
 
+  /**
+  * Changes the preffered delivery type
+  *
+  * @param UpdateUserDeliveryRequest $request
+  * @return \Illuminate\Support\Facades\Redirect
+  */
   public function addDelivery(UpdateUserDeliveryRequest $request)
   {
     $input = $request->input();

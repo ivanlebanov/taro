@@ -16,7 +16,11 @@ use App\Http\Requests\UpdateContactUsRequest;
 class CompareController extends Controller
 {
 
-
+  /**
+  * Retrieves the products to be compared from the users cookies
+  *
+  * @return \Illuminate\View\View
+  */
   public function get()
   {
     $compare_cookie = explode( ', ', Cookie::get('compare') );
@@ -24,6 +28,13 @@ class CompareController extends Controller
 
     return view('compare.show', $data);
   }
+
+  /**
+  * Adds a new product to the list to compare
+  *
+  * @param Request $request The request object
+  * @return JSON $response | error_msg | success_msg $status
+  */
   public function add(Request $request)
   {
     $inputs = $request->input();
@@ -54,9 +65,14 @@ class CompareController extends Controller
     $status = ($new_length == 1) ? success_msg('Successfully added for comparision. Add at least 2 products to compare') :
       success_msg('Successfully added for comparision. <a href="' . route('compare.get') . '">Check it here</a>.');
     return $status;
-
   }
 
+  /**
+  * Removes a product from comparison list
+  *
+  * @param Request $request
+  * @return success_msg
+  */
   public function remove(Request $request)
   {
     $input = $request->input();

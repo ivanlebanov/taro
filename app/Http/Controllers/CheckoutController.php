@@ -13,11 +13,21 @@ use Cookie;
 class CheckoutController extends Controller
 {
 
+  /**
+  * Create a new controller instance
+  *
+  * @return void
+  */
   public function __construct()
   {
       $this->middleware('auth');
   }
 
+  /**
+  * Displays the checkout page including the users data and and Delivery options
+  *
+  * @return \Illuminate\View\View
+  */
   public function getCheckoutPage()
   {
     $user = \Auth::user()['attributes'];
@@ -28,6 +38,12 @@ class CheckoutController extends Controller
     return view('checkout.page', $data);
   }
 
+  /**
+  * Places an order and then adjusts the stock levels of purchased products in the database.
+  *
+  * @param Request $request The request object from the user
+  * @return \Illuminate\Support\Facades\Redirect
+  */
   public function placeOrder(Request $request)
   {
     $user = \Auth::user()['attributes'];
@@ -80,6 +96,9 @@ class CheckoutController extends Controller
 
   }
 
+  /**
+  *
+  */
   public function createReceipt($user_id, $delivery, $user_info, $products, $cart, $total, $order)
   {
 
@@ -110,6 +129,12 @@ class CheckoutController extends Controller
 
   }
 
+  /**
+  * Sends an email with provided content to the email within an order
+  *
+  * @param Array $order
+  * @param String $content
+  */
   public function sendMail($order, $content)
   {
 
@@ -120,12 +145,18 @@ class CheckoutController extends Controller
 
         $message->to('test@myport.ac.uk');
 
-
         //Add a subject
         $message->subject("Your order");
 
     });
   }
+
+  /**
+  * Provides access to the receipt for an order, to the user who placed it
+  *
+  * @param Int $id The orders id
+  * @return \Illuminate\Support\Facades\Redirect
+  */
   public function getReceipt($id)
   {
     $data['order'] = Order::where('id', $id)->first()['attributes'];
@@ -135,6 +166,12 @@ class CheckoutController extends Controller
     return "/orders/order" . $data['order']['o_hidden'] . ".pdf";
   }
 
+  /**
+  * Redirects the user to a confirmation page when an order is placed successfully
+  *
+  * @param Int $id The id of the order
+  * @return \Illuminate\View\View
+  */
   public function orderConfirmed($id)
   {
 
@@ -148,6 +185,12 @@ class CheckoutController extends Controller
     return view('checkout.order_placed', $data);
   }
 
+  /**
+  * Adjusts the stock levels of products in the database
+  *
+  * @param Array $cart The products in the cart
+  * @param bool $bought Whether the cart was purchased or not
+  */
   public function reacalculateStock($cart, $bought)
   {
 
@@ -163,6 +206,12 @@ class CheckoutController extends Controller
 
   }
 
+  /**
+  * Allows the cancellation of orders that have been placed within the last hour by the user that placed it
+  *
+  * @param Int $id the order id
+  * @return success_msg | error_msg Provides either a succes or error message
+  */
   public function declineOrder($id)
   {
     $order = Order::where('id', $id)->get()->first();
@@ -179,6 +228,12 @@ class CheckoutController extends Controller
 
   }
 
+  /**
+  * Generates a randomised string
+  *
+  * @param Int $length An integer which is defined as 10
+  * @return String $randomString The produced random string
+  */
   public function generateRandomString($length = 10) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);

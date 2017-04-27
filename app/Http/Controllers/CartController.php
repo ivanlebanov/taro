@@ -8,7 +8,11 @@ use Cookie;
 
 class CartController extends Controller
 {
-
+    /**
+    * Reads the contents of a users cart from a cookie and returns it to the application
+    *
+    * @return JSON $data
+    */
   public function getCartContents()
   {
     $data['cart'] = json_decode(Cookie::get('cart'));
@@ -30,6 +34,13 @@ class CartController extends Controller
     return json_encode($data);
   }
 
+  /**
+  *
+  *
+  * @param Request $request The request object from the client
+  * @param String $id The p_id of the product to be added to the cart
+  * @return String $status A message confirming the status of the action
+  */
   public function add(Request $request, $id)
   {
     $inputs = $request->input();
@@ -74,6 +85,13 @@ class CartController extends Controller
 
   }
 
+  /**
+  * Updates the quantity of an item in the users basket
+  *
+  * @param Request $request The request object from the client
+  * @param String $id The p_id of the product to be updated
+  * @return String $status A message confirming the status of the action
+  */
   public function update(Request $request, $id)
   {
     $inputs = $request->input();
@@ -119,6 +137,13 @@ class CartController extends Controller
 
   }
 
+  /**
+  * Deletes an item from the users basket
+  *
+  * @param Request $request The request object from the client
+  * @param String $id The p_id of the product to be deleted
+  * @return String $status A message confirming the status of the action
+  */
   public function delete(Request $request, $id)
   {
     $cart = json_decode(Cookie::get('cart'));
@@ -139,6 +164,14 @@ class CartController extends Controller
     return $status;
 
   }
+
+  /**
+  * Produces the total cost of all items in a users basket
+  *
+  * @param Array $products The products in the users basket
+  * @param cookie $cookie Contains the quantities of products in the basket
+  * @return Number $total The total cost of the users basket
+  */
   public function calculateTotal($products, $cookie)
   {
     // incorporate total counting
@@ -154,6 +187,12 @@ class CartController extends Controller
     return $total;
   }
 
+  /**
+  * Calculate the total number of products in the cart
+  *
+  * @param Array $cart The products within the cart
+  * @return Number $quantity The total number of products in the cart
+  */
   public function getCartQuantity($cart)
   {
     $quantity = 0;
@@ -168,6 +207,12 @@ class CartController extends Controller
 
   }
 
+  /**
+  * Returns a page with the contents of the users cart or if cart is empty,
+  * will return a page to indicate so
+  *
+  * @return \Illuminate\View\View
+  */
   public function getCartPage()
   {
     $data['cart'] = json_decode(Cookie::get('cart'));

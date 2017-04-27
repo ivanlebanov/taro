@@ -13,8 +13,8 @@ class ProductController extends Controller
   /**
   * Show a category page.
   *
-  * @param  string  $category - the name of the category
-  * @return View
+  * @param  string  $category The name of the category
+  * @return \Illuminate\View\View
   */
   public function getCategoryPage(Request $request, $category)
   {
@@ -47,7 +47,12 @@ class ProductController extends Controller
     return view('products.category', $data);
   }
 
-
+  /**
+  * Load more products onto the page
+  *
+  * @param String $category The category the products should be from
+  * @return \Illuminate\View\View
+  */
   public function loadMore(Request $request, $category)
   {
     $input = $request->input();
@@ -110,6 +115,12 @@ class ProductController extends Controller
     return view('products.single_product', $data);
   }
 
+  /**
+  * Returns the 'gallery' for a product
+  *
+  * @param Int $id
+  * @return JSON $product A json object containing the product id and gallery
+  */
   public function getSingleProduct($id)
   {
     $product = Product::where('p_id', $id)->first();

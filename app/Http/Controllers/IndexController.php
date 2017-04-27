@@ -10,7 +10,9 @@ class IndexController extends Controller
 {
   /**
   *  Method for displaying the homepage.
-  **/
+  *
+  * @return \Illuminate\View\View
+  */
   public function index()
   {
     // get latest 4 products currently being promoted

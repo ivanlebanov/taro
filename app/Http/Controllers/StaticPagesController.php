@@ -13,35 +13,61 @@ use App\Http\Requests\UpdatePersonalInfoRequest;
 use App\Http\Requests\UpdateAddressRequest;
 class StaticPagesController extends Controller
 {
+  /**
+  * Returns the Delivery page
+  *
+  * @return \Illuminate\View\View
+  */
   public function getDeliveryPage()
   {
-
     return view('pages.delivery');
   }
 
+  /**
+  * Returns the FAQ page
+  *
+  * @return \Illuminate\View\View
+  */
   public function getFAQPage()
   {
-
     return view('pages.faq');
   }
 
+  /**
+  * Returns the Payment page
+  *
+  * @return \Illuminate\View\View
+  */
   public function getPaymentPage()
   {
-
     return view('pages.payment');
   }
 
+  /**
+  * Returns the Support page
+  *
+  * @return \Illuminate\View\View
+  */
   public function getSupportPage()
   {
-
     return view('pages.support');
   }
 
+  /**
+  * Returns the Refund page
+  *
+  * @return \Illuminate\View\View
+  */
   public function getRefundPage()
   {
-
     return view('pages.refunds');
   }
+
+  /**
+  * Returns the 404 error page
+  *
+  * @return \Illuminate\View\View
+  */
   public function get404()
   {
     return view('errors.404');
