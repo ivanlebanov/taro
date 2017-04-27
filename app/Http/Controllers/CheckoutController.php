@@ -97,7 +97,9 @@ class CheckoutController extends Controller
   }
 
   /**
+  * Produces a new receipt for the order that has been placed
   *
+  * @return Saves a pdf of the receipt on the system and emails a copy to the user
   */
   public function createReceipt($user_id, $delivery, $user_info, $products, $cart, $total, $order)
   {
