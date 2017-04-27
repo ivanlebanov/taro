@@ -1,0 +1,60 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+
+use App\Product as Product;
+use App\Category as Category;
+use App\Slider as Slider;
+use App\User as User;
+use App\Message as Message;
+use App\Http\Requests\UpdateContactUsRequest;
+
+class ContactsController extends Controller
+{
+  /**
+   * Create a new controller instance.
+   *
+   * @return void
+   */
+  public function __construct()
+  {
+      $this->middleware('auth');
+  }
+
+  /**
+  * Returns the Contacts page
+  *
+  * @return \Illuminate\View\View
+  */
+  public function getContactPage()
+  {
+    return view('user.contact');
+  }
+
+  /**
+  * Save data from the contact form
+  *
+  * @param UpdateContactUsRequest $request
+  * @return \Illuminate\Support\Facades\Redirect
+  */
+  public function saveContactForm(UpdateContactUsRequest $request)
+  {
+    $user_id = \Auth::user()['attributes']['id'];
+    $inputs = $request->input();
+    $message = new Message();
+    $message->m_user_id = $user_id;
+    $message->m_subject = $inputs['subject'];
+    $message->m_message = $inputs['message'];
+
+    $message->save();
+
+    // success message in json format for the UI
+    $status = success_msg('Successfully send your message');
+
+    return redirect()->back()->with('status', $status );
+  }
+}
+

@@ -248,3 +248,4 @@ class CheckoutController extends Controller
     return $randomString;
   }
 }
+

@@ -37,3 +37,4 @@ class HomeController extends Controller
       return view('products.products', ["products" => $active_promotions, 'categories' => $categories]);
     }
 }
+
